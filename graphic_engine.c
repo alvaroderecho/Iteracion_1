@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "screen.h"
 #include "graphic_engine.h"
-#include "command.h"
+
 
 struct _Graphic_engine{
   Area *map, *descript, *banner, *help, *feedback;

@@ -4,7 +4,7 @@ exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.
 game_loop.o: game_loop.c graphic_engine.h
 	gcc -c game_loop.c
 
-graphic_engine.o: graphic_engine.c graphic_engine.h command.h screen.h
+graphic_engine.o: graphic_engine.c graphic_engine.h
 	gcc -c graphic_engine.c
 
 game.o: game.c game.h
