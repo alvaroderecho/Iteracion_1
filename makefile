@@ -1,5 +1,5 @@
-exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o
-	gcc -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o
+exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o
+	gcc -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o
 
 game_loop.o: game_loop.c graphic_engine.h
 	gcc -c game_loop.c
@@ -12,6 +12,9 @@ game.o: game.c game.h
 
 game_reader.o: game_reader.c game_reader.h
 	gcc -c game_reader.c
+
+object.o: object.c object.h
+	gcc -c object.c
 	
 screen.o: screen.c screen.h
 	gcc -c screen.c
