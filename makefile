@@ -16,7 +16,7 @@ game_reader.o: game_reader.c game_reader.h
 screen.o: screen.c screen.h
 	gcc -c screen.c
 
-space.o: space.c space.h types.h
+space.o: space.c space.h
 	gcc -c space.c
 
 command.o: command.c command.h
