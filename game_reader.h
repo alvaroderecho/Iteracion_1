@@ -1,6 +1,9 @@
 #ifndef __GAME_READER__
 #define __GAME_READER__
 
+#include "command.h"
+#include "space.h"
+
 typedef struct _Game{
   Id player_location;
   Id object_location;

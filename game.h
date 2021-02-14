@@ -16,12 +16,6 @@
 #include "space.h"
 #include "game_reader.h"
 
-typedef struct _Game{
-  Id player_location;
-  Id object_location;
-  Space* spaces[MAX_SPACES + 1];
-  T_Command last_cmd;
-} Game;
 
 STATUS game_create(Game* game);
 STATUS game_create_from_file(Game* game, char* filename);
