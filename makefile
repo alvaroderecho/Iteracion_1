@@ -1,5 +1,5 @@
-exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o
-	gcc -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o
+exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o
+	gcc -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o
 
 game_loop.o: game_loop.c graphic_engine.h
 	gcc -c game_loop.c
@@ -24,6 +24,9 @@ space.o: space.c space.h
 
 command.o: command.c command.h
 	gcc -c command.c
+
+player.o: player.c player.h
+	gcc -c player.c
 
 clean:
 	@echo "Cleaning: "
