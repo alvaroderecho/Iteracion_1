@@ -7,10 +7,10 @@ game_loop.o: game_loop.c graphic_engine.h
 graphic_engine.o: graphic_engine.c graphic_engine.h
 	gcc -c graphic_engine.c
 
-game.o: game.c game.h
+game.o: game.c game.h game_reader.h
 	gcc -c game.c
 
-game_reader.o: game_reader.c game_reader.h
+game_reader.o: game_reader.c game_reader.h space.h
 	gcc -c game_reader.c
 
 object.o: object.c object.h

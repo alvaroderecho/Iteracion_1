@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "game_reader.h"
-
-
-
+#include "space.h"
 
 STATUS game_load_spaces(Game* game, char* filename) {
   FILE* file = NULL;
