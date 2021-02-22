@@ -1,10 +1,10 @@
-/** 
+/**
  * @brief It implements the command interpreter
- * 
+ *
  * @file command.c
  * @author Profesores PPROG
- * @version 2.0 
- * @date 13-01-2020 
+ * @version 2.0
+ * @date 13-01-2020
  * @copyright GNU Public License
  */
 
@@ -16,14 +16,16 @@
 
 char *cmd_to_str[N_CMD]
 [N_CMDT] = {
-	{"","No command"}, 
+	{"","No command"},
 	{"","Unknown"},
-	{"e","Exit"}, 
-	{"n","Next"}, 
-	{"b","Back"}
+	{"e","Exit"},
+	{"n","Next"},
+	{"b","Back"},
+	{"t","Take"}
+	{"d","Drop"}
 	};
 
-//Puntero tipo char de dimensiones 5x2, 5 filas, 2 columnas. 
+//Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
 
 //*************************************************
@@ -49,9 +51,9 @@ T_Command get_user_input()
 
 	if (scanf("%s", input) > 0)	{
 		cmd = UNKNOWN; // == 0
-		while( cmd == UNKNOWN && i < N_CMD) { //N_CMD == 5
-			
-			if (!strcasecmp(input, cmd_to_str[i][CMDS]) || !strcasecmp(input, cmd_to_str[i][CMDL])) 
+		while( cmd == UNKNOWN && i < N_CMD) { //N_CMD == 7
+
+			if (!strcasecmp(input, cmd_to_str[i][CMDS]) || !strcasecmp(input, cmd_to_str[i][CMDL]))
 			/* La condición indica que si el input es igual a un elemento
 			del array tipo char "cmd_to_str", deberá guardar la posición
 			en la variable cmd. Si el input fuese igual a "n", que está en
@@ -63,9 +65,9 @@ T_Command get_user_input()
 				i++;
 		}
 	}
-	
+
 	/* Si cmd = -1, ha habido directamente un error de comando,
-	si cmd = 0, es un comando desconocido, 
+	si cmd = 0, es un comando desconocido,
 	si cmd = 1, indica que debe salir "exit",
 	si cmd = 2, indica que debe ir a la siguiente casilla "next"
 	si cmd = 3, indica que debe ir a la casilla anterior "back"
