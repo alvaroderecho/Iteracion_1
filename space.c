@@ -10,7 +10,7 @@ struct _Space {
   Id south;
   Id east;
   Id west;
-  BOOL object;
+  Id object;
 };
 
 Space* space_create(Id id) {
@@ -144,9 +144,9 @@ Id space_get_west(Space* space) {
   return space->west;
 }//solicitar oeste
 
-BOOL space_get_object(Space* space) {
+Id space_get_object(Space* space) {
   if (!space) {
-    return FALSE;
+    return NO_ID;
   }
   return space->object;
 }//solicitar objeto
@@ -197,4 +197,3 @@ STATUS space_print(Space* space) {
 
   return OK;
 } //Pasar todo por pantalla
-
