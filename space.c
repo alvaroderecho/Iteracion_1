@@ -98,7 +98,7 @@ STATUS space_set_object(Space* space, Id id) {
   if (!space) {
     return ERROR;
   }
-  space->object = value;
+  space->object = id;
   return OK;
 } //establecer un objeto
 

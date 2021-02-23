@@ -21,7 +21,7 @@ char *cmd_to_str[N_CMD]
 	{"e","Exit"},
 	{"n","Next"},
 	{"b","Back"},
-	{"t","Take"}
+	{"t","Take"},
 	{"d","Drop"}
 	};
 
