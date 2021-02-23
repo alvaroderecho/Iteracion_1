@@ -94,7 +94,7 @@ STATUS space_set_west(Space* space, Id id) {
   return OK;
 }//oeste del espacio
 
-STATUS space_set_object(Space* space, BOOL value) {
+STATUS space_set_object(Space* space, Id id) {
   if (!space) {
     return ERROR;
   }
