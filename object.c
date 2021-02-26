@@ -13,12 +13,13 @@ Object* object_create(Id id) { //creación de objeto
 
     if (id == NO_ID)
         return NULL;
-    
+
     new_object = (Object *) malloc(sizeof(Object));
 
-    if (new_object == NULL);
+    if (new_object == NULL){
         return NULL;
-    
+      }
+
     new_object->id = id;
     new_object->name[0] = '\0';
 
