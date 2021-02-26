@@ -7,11 +7,12 @@ typedef struct _Object Object;
 
 //funciones
 
-Object* create_object(Id id);
-STATUS destroy_object(Object* object);
-STATUS set_object_id(Object* object, Id ide);
-STATUS set_object_name(Object* object, char* name);
-Id get_object_id(Object* object);
+Object* object_create(Id id);
+STATUS object_destroy(Object* object);
+STATUS object_set_id(Object* object, Id ide);
+STATUS object_set_name(Object* object, char* name);
+Id object_get_id(Object* object);
 STATUS object_print(Object* object);
+const char * object_get_name (Object * object);
 
 #endif

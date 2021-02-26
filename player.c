@@ -11,7 +11,7 @@ struct _Player {
     Id object;
 };
 
-Player* create_player(Id id) {
+Player* player_create(Id id) {
     Player *new_player = NULL;
 
     if (id == NO_ID) //==-1
@@ -27,7 +27,7 @@ Player* create_player(Id id) {
     return new_player;
 }
 
-STATUS destroy_player(Player* player) {
+STATUS player_destroy(Player* player) {
     if (!player) // == 0
         return ERROR;
     free(player);
@@ -35,14 +35,14 @@ STATUS destroy_player(Player* player) {
     return OK; //destruido
 }
 
-STATUS set_player_id(Player* player, Id ide) {
+STATUS player_set_id(Player* player, Id ide) {
     if (!player || ide == NO_ID)
         return ERROR;
     player->id = ide;
     return OK;
 } //Modificar la ID
 
-STATUS set_player_name(Player* player, char* name) {
+STATUS player_set_name(Player* player, char* name) {
     if (!player || !name)
         return ERROR;
     if (!strcpy(player->name, name)) //cambia el nombre
@@ -59,33 +59,33 @@ STATUS set_player_location(Player* player, Id id) {
     return OK;    
 }
 
-STATUS set_player_object(Player* player, Id id) {
+STATUS player_set_object(Player* player, Id id) {
     if (!player || id == NO_ID)
         return ERROR;
     player->object = id;
     return OK;
 }
 
-Id get_player_id(Player* player) {
+Id player_get_id(Player* player) {
     if (!player)
         return NO_ID;
     return player->id;
 }
 
-const char * get_player_name(Player* player) {
+const char * player_get_name(Player* player) {
     if (!player)
         return NULL;
     return player->name;
 }
 
 
-Id get_player_location(Player* player) {
+Id player_get_location(Player* player) {
     if (!player)
         return NO_ID;
     return player->location;
 }
 
-Id get_player_object(Player* player) {
+Id player_get_object(Player* player) {
     if (!player)
         return NO_ID;
     return player->object;

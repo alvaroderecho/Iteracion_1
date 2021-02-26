@@ -6,16 +6,16 @@
 typedef struct _Player Player;
 
 //funciones
-Player* create_player(Id id);
-STATUS destroy_player(Player* player);
-STATUS set_player_id(Player* player, Id ide);
-STATUS set_player_name(Player* player, char* name);
+Player* player_create(Id id);
+STATUS player_destroy(Player* player);
+STATUS player_set_id(Player* player, Id ide);
+STATUS player_set_name(Player* player, char* name);
 STATUS set_player_location(Player* player, Id id);
-STATUS set_player_object(Player* player, Id id);
-Id get_player_id(Player* player);
-const char * get_player_name(Player* player);
-Id get_player_location(Player* player);
-Id get_player_object(Player* player);
+STATUS player_set_object(Player* player, Id id);
+Id player_get_id(Player* player);
+const char * player_get_name(Player* player);
+Id player_get_location(Player* player);
+Id player_get_object(Player* player);
 STATUS player_print(Player* player);
 
 #endif

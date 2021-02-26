@@ -8,7 +8,7 @@ struct _Object {
     char name[WORD_SIZE + 1];
 };
 
-Object* create_object(Id id) { //creación de objeto
+Object* object_create(Id id) { //creación de objeto
     Object *new_object = NULL;
 
     if (id == NO_ID)
@@ -25,7 +25,7 @@ Object* create_object(Id id) { //creación de objeto
     return new_object;
 }
 
-STATUS destroy_object(Object* object) { //eliminar un objeto
+STATUS object_destroy(Object* object) { //eliminar un objeto
     if (!object) // == 0
         return ERROR;
 
@@ -34,14 +34,14 @@ STATUS destroy_object(Object* object) { //eliminar un objeto
     return OK;
 }
 
-STATUS set_object_id(Object* object, Id ide) {
+STATUS object_set_id(Object* object, Id ide) {
     if (!object || ide == NO_ID)
         return ERROR;
     object->id = ide;
     return OK;
 } //Modificar la ID
 
-STATUS set_object_name(Object* object, char* name) {
+STATUS object_set_name(Object* object, char* name) {
     if (!object || !name)
         return ERROR;
     if (!strcpy(object->name, name)) //cambia el nombre
@@ -50,13 +50,13 @@ STATUS set_object_name(Object* object, char* name) {
     return OK; //nombre cambiado
 }
 
-Id get_object_id(Object* object) {
+Id object_get_id(Object* object) {
     if (!object)
         return NO_ID;
     return object->id;
 } //solicitar ID
 
-const char * get_object_name (Object * object) {
+const char * object_get_name (Object * object) {
     if (!object)
         return NULL;
     return object->name;
