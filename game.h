@@ -36,7 +36,7 @@ Object* game_get_object (Game *game);
 Id game_player_get_location(Game* game);
 Id game_get_object_location(Game* game);
 T_Command game_get_last_command(Game* game);
-STATUS game_set_player_location(Game* game, Id id);
+STATUS game_player_set_location(Game* game, Id id);
 STATUS game_set_object_location(Game* game, Id id);
 Id     game_get_space_id_at(Game* game, int position);
 

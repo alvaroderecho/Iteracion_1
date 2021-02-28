@@ -1,3 +1,14 @@
+/**
+ * @brief Define Las estructuras y funciones de los jugadores
+ *
+ * @file player.h
+ * @author 2111_10
+ * @version 1.0
+ * @date 15-02-2021
+ * @copyright GNU Public License
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,7 +62,7 @@ STATUS player_set_name(Player* player, char* name) {
     return OK; //nombre cambiado
 }
 
-STATUS set_player_location(Player* player, Id id) {
+STATUS player_set_location(Player* player, Id id) {
     if (!player || id == NO_ID)
         return ERROR;
     

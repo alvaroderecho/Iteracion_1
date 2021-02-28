@@ -1,3 +1,13 @@
+/**
+ * @brief Define Las estructuras y funciones de los objetos
+ *
+ * @file object.h
+ * @author 2111_10
+ * @version 1.0
+ * @date 15-02-2021
+ * @copyright GNU Public License
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

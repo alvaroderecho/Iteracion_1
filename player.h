@@ -10,7 +10,7 @@ Player* player_create(Id id);
 STATUS player_destroy(Player* player);
 STATUS player_set_id(Player* player, Id ide);
 STATUS player_set_name(Player* player, char* name);
-STATUS set_player_location(Player* player, Id id);
+STATUS player_set_location(Player* player, Id id);
 STATUS player_set_object(Player* player, Id id);
 Id player_get_id(Player* player);
 const char * player_get_name(Player* player);

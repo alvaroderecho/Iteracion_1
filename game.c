@@ -43,20 +43,20 @@ static callback_fn game_callback_fn_list[N_CALLBACK]={
 
 STATUS game_add_space(Game* game, Space* space);
 Id     game_get_space_id_at(Game* game, int position);
-STATUS game_set_player_location(Game* game, Id id);
+STATUS game_player_set_location(Game* game, Id id);
 STATUS game_set_object_location(Game* game, Id id);
 
 /**
    Game interface implementation
 */
 
-STATUS game_set_player_location(Game* game, Id id) {
+STATUS game_player_set_location(Game* game, Id id) {
 
   if (id == NO_ID) {
     return ERROR;
   }
 
-  set_player_location(game_get_player(game), id);
+  player_set_location(game_get_player(game), id);
   return OK;
 
 }
@@ -85,7 +85,7 @@ STATUS game_create(Game* game) {
     game->spaces[i] = NULL;
   }
 
-  game_set_player_location(game, NO_ID);
+  game_player_set_location(game, NO_ID);
   game_set_object_location(game, NO_ID);
   game->last_cmd = NO_CMD;
 
@@ -155,7 +155,7 @@ Player* game_get_player (Game* game){
   return game->player;
 }
 
-Object* game_get_object (Game *game){
+Object* game_get_object (Game* game){
   if (game == NULL){
     return NULL;
   }
@@ -240,7 +240,7 @@ void game_callback_next(Game* game) {
     if (current_id == space_id) {
       current_id = space_get_south(game->spaces[i]);
       if (current_id != NO_ID) {
-	game_set_player_location(game, current_id);
+	game_player_set_location(game, current_id);
       }
       return;
     }
@@ -263,7 +263,7 @@ void game_callback_back(Game* game) {
     if (current_id == space_id) {
       current_id = space_get_north(game->spaces[i]);
       if (current_id != NO_ID) {
-	game_set_player_location(game, current_id);
+	game_player_set_location(game, current_id);
       }
       return;
     }
