@@ -68,8 +68,11 @@ STATUS game_create_from_file(Game* game, char* filename) {
   if (game_load_spaces(game, filename) == ERROR)
     return ERROR;
 
-  game_player_set_location(game, game_get_space_id_at(game, 0));
-  game_set_object_location(game, game_get_space_id_at(game, 0));
+  if (game_player_set_location(game, game_get_space_id_at(game, 0)) == ERROR)
+    return ERROR;
+    
+  if (game_set_object_location(game, game_get_space_id_at(game, 0)) == ERROR)
+    return ERROR;
 
   return OK;
 }

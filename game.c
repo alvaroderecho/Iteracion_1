@@ -52,11 +52,12 @@ STATUS game_set_object_location(Game* game, Id id);
 
 STATUS game_player_set_location(Game* game, Id id) {
 
-  if (id == NO_ID) {
+  if (!game || id == NO_ID) {
     return ERROR;
   }
 
-  player_set_location(game_get_player(game), id);
+  if (player_set_location(game_get_player(game), id) == ERROR)
+    return ERROR;
   return OK;
 
 }
@@ -72,8 +73,8 @@ STATUS game_set_object_location(Game* game, Id id) {
   }
 
 
- space_set_object(game_get_space(game,id), object_get_id(game_get_object(game)));
-
+ if (space_set_object(game_get_space(game,id), object_get_id(game_get_object(game))) == ERROR)
+    return ERROR;
 
   return OK;
 }
