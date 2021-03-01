@@ -15,7 +15,9 @@
 
 typedef struct _Set Set;
 
-
+Set * set_create ();
+STATUS set_destroy (Set * set);
+STATUS set_add_values (Set* set, Id id);
 
 
 #endif
