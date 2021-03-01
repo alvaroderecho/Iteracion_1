@@ -16,10 +16,7 @@
 #include "screen.h"
 #include "game_reader.h"
 
-
-
 typedef struct _Graphic_engine Graphic_engine;
-
 
 /**
  * @brief Crea un motor gráfico
@@ -30,7 +27,7 @@ typedef struct _Graphic_engine Graphic_engine;
  * @date 15/02/2021
  * @return Graphic_engine*
  */
-Graphic_engine* graphic_engine_create();
+Graphic_engine *graphic_engine_create();
 
 /**
  * @brief Destruye un motor gráfico

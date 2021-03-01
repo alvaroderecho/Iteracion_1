@@ -15,15 +15,14 @@
 #define CMD_LENGHT 30
 
 char *cmd_to_str[N_CMD]
-[N_CMDT] = {
-	{"","No command"},
-	{"","Unknown"},
-	{"e","Exit"},
-	{"n","Next"},
-	{"b","Back"},
-	{"t","Take"},
-	{"d","Drop"}
-	};
+				[N_CMDT] = {
+					{"", "No command"},
+					{"", "Unknown"},
+					{"e", "Exit"},
+					{"n", "Next"},
+					{"b", "Back"},
+					{"t", "Take"},
+					{"d", "Drop"}};
 
 //Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
@@ -34,9 +33,9 @@ char *cmd_to_str[N_CMD]
 
 T_Command get_user_input()
 {
-	T_Command cmd = NO_CMD; // == -1
-	char input[CMD_LENGHT] = ""; //variable input tipo char, tamaño 30
-	int i= UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
+	T_Command cmd = NO_CMD;		  // == -1
+	char input[CMD_LENGHT] = "";  //variable input tipo char, tamaño 30
+	int i = UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
 
 	// cmd == -1, input = "", i == 2
 
@@ -49,12 +48,14 @@ T_Command get_user_input()
 	o algo desconocido o "b" de "back".
 	*/
 
-	if (scanf("%s", input) > 0)	{
+	if (scanf("%s", input) > 0)
+	{
 		cmd = UNKNOWN; // == 0
-		while( cmd == UNKNOWN && i < N_CMD) { //N_CMD == 7
+		while (cmd == UNKNOWN && i < N_CMD)
+		{ //N_CMD == 7
 
 			if (!strcasecmp(input, cmd_to_str[i][CMDS]) || !strcasecmp(input, cmd_to_str[i][CMDL]))
-			/* La condición indica que si el input es igual a un elemento
+				/* La condición indica que si el input es igual a un elemento
 			del array tipo char "cmd_to_str", deberá guardar la posición
 			en la variable cmd. Si el input fuese igual a "n", que está en
 			la posición 3 del array, quedaría: cmd = 3+ NO_CMD (NO_CMD == -1)
@@ -73,5 +74,5 @@ T_Command get_user_input()
 	si cmd = 3, indica que debe ir a la casilla anterior "back"
 	*/
 
-return cmd;
+	return cmd;
 }

@@ -14,19 +14,22 @@
 #define N_CMDT 2
 #define N_CMD 7
 
-typedef enum enum_CmdType {
+typedef enum enum_CmdType
+{
   CMDS,
-  CMDL} T_CmdType;
+  CMDL
+} T_CmdType;
 
-typedef enum enum_Command {
+typedef enum enum_Command
+{
   NO_CMD = -1,
   UNKNOWN,
   EXIT,
   NEXT,
   BACK,
   TAKE,
-  DROP} T_Command;
-
+  DROP
+} T_Command;
 
 /**
  * @brief Ejecuta un comando

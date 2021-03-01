@@ -15,7 +15,6 @@
 
 typedef struct _Area Area;
 
-
 /**
  * @brief Inicializa una pantalla
  *
@@ -25,7 +24,7 @@ typedef struct _Area Area;
  * @date 15/02/2021
  * @return void
  */
-void  screen_init();
+void screen_init();
 
 /**
  * @brief Destruye una pantalla
@@ -36,7 +35,7 @@ void  screen_init();
  * @date 15/02/2021
  * @return void
  */
-void  screen_destroy();
+void screen_destroy();
 
 /**
  * @brief Pinta una pantalla
@@ -47,8 +46,7 @@ void  screen_destroy();
  * @date 15/02/2021
  * @return void
  */
-void  screen_paint();
-
+void screen_paint();
 
 /**
  * @brief Inicializa un área
@@ -63,7 +61,7 @@ void  screen_paint();
  * @param height Alto
  * @return Area*
  */
-Area* screen_area_init(int x, int y, int width, int height);
+Area *screen_area_init(int x, int y, int width, int height);
 
 /**
  * @brief Destruye un área
@@ -75,7 +73,7 @@ Area* screen_area_init(int x, int y, int width, int height);
  * @param area Área a destruir
  * @return void
  */
-void  screen_area_destroy(Area* area);
+void screen_area_destroy(Area *area);
 
 /**
  * @brief Limpia un área
@@ -87,7 +85,7 @@ void  screen_area_destroy(Area* area);
  * @param area Área a limpiar
  * @return void
  */
-void  screen_area_clear(Area* area);
+void screen_area_clear(Area *area);
 
 /**
  * @brief Resetea el cursor de un área
@@ -99,7 +97,7 @@ void  screen_area_clear(Area* area);
  * @param area Área a usar
  * @return void
  */
-void  screen_area_reset_cursor(Area* area);
+void screen_area_reset_cursor(Area *area);
 
 /**
  * @brief Modifica un área
@@ -112,6 +110,6 @@ void  screen_area_reset_cursor(Area* area);
  * @param str  
  * @return void
  */
-void  screen_area_puts(Area* area, char *str);
+void screen_area_puts(Area *area, char *str);
 
 #endif

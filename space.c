@@ -3,7 +3,8 @@
 #include <string.h>
 #include "space.h"
 
-struct _Space {
+struct _Space
+{
   Id id;
   char name[WORD_SIZE + 1];
   Id north;
@@ -13,16 +14,18 @@ struct _Space {
   Id object;
 };
 
-Space* space_create(Id id) {
+Space *space_create(Id id)
+{
 
   Space *newSpace = NULL; //puntero tipo Space a newSpace
 
   if (id == NO_ID) // == -1
     return NULL;
 
-  newSpace = (Space *) malloc(sizeof (Space));
+  newSpace = (Space *)malloc(sizeof(Space));
 
-  if (newSpace == NULL) {
+  if (newSpace == NULL)
+  {
     return NULL; //Comprobación reserva memoria dinámica
   }
   newSpace->id = id; //ID del nuevo espacio
@@ -31,16 +34,18 @@ Space* space_create(Id id) {
 
   newSpace->north = NO_ID; // == -1
   newSpace->south = NO_ID; // == -1
-  newSpace->east = NO_ID; // == -1
-  newSpace->west = NO_ID; // == -1
+  newSpace->east = NO_ID;  // == -1
+  newSpace->west = NO_ID;  // == -1
 
   newSpace->object = FALSE; // == 0
 
   return newSpace;
 }
 
-STATUS space_destroy(Space* space) {
-  if (!space) { // == 0
+STATUS space_destroy(Space *space)
+{
+  if (!space)
+  {               // == 0
     return ERROR; //no se puede eliminar
   }
 
@@ -50,111 +55,140 @@ STATUS space_destroy(Space* space) {
   return OK; //eliminado correctamente
 }
 
-STATUS space_set_name(Space* space, char* name) {
-  if (!space || !name) { //si el nombre es 0, o el espacio
+STATUS space_set_name(Space *space, char *name)
+{
+  if (!space || !name)
+  {               //si el nombre es 0, o el espacio
     return ERROR; //error
   }
 
-  if (!strcpy(space->name, name)) { //cambia el nombre
+  if (!strcpy(space->name, name))
+  {               //cambia el nombre
     return ERROR; //no hay cambio si se llaman igual
   }
 
   return OK; //completado
 }
 
-STATUS space_set_north(Space* space, Id id) {
-  if (!space || id == NO_ID) {
+STATUS space_set_north(Space *space, Id id)
+{
+  if (!space || id == NO_ID)
+  {
     return ERROR;
   }
   space->north = id;
   return OK;
 } //norte del espacio
 
-STATUS space_set_south(Space* space, Id id) {
-  if (!space || id == NO_ID) {
+STATUS space_set_south(Space *space, Id id)
+{
+  if (!space || id == NO_ID)
+  {
     return ERROR;
   }
   space->south = id;
   return OK;
-}//sur del espacio
+} //sur del espacio
 
-STATUS space_set_east(Space* space, Id id) {
-  if (!space || id == NO_ID) {
+STATUS space_set_east(Space *space, Id id)
+{
+  if (!space || id == NO_ID)
+  {
     return ERROR;
   }
   space->east = id;
   return OK;
-}//este del espacio
+} //este del espacio
 
-STATUS space_set_west(Space* space, Id id) {
-  if (!space || id == NO_ID) {
+STATUS space_set_west(Space *space, Id id)
+{
+  if (!space || id == NO_ID)
+  {
     return ERROR;
   }
   space->west = id;
   return OK;
-}//oeste del espacio
+} //oeste del espacio
 
-STATUS space_set_object(Space* space, Id id) {
-  if (!space) {
+STATUS space_set_object(Space *space, Id id)
+{
+  if (!space)
+  {
     return ERROR;
   }
   space->object = id;
   return OK;
 } //establecer un objeto
 
-const char * space_get_name(Space* space) {
-  if (!space) {
+const char *space_get_name(Space *space)
+{
+  if (!space)
+  {
     return NULL;
   }
   return space->name;
 } //solicitar nombre
 
-Id space_get_id(Space* space) {
-  if (!space) {
+Id space_get_id(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->id;
-}//solicitar ID
+} //solicitar ID
 
-Id space_get_north(Space* space) {
-  if (!space) {
+Id space_get_north(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->north;
-}//solicitar norte
+} //solicitar norte
 
-Id space_get_south(Space* space) {
-  if (!space) {
+Id space_get_south(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->south;
-}//solicitar sur
+} //solicitar sur
 
-Id space_get_east(Space* space) {
-  if (!space) {
+Id space_get_east(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->east;
-}//solicitar este
+} //solicitar este
 
-Id space_get_west(Space* space) {
-  if (!space) {
+Id space_get_west(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->west;
-}//solicitar oeste
+} //solicitar oeste
 
-Id space_get_object(Space* space) {
-  if (!space) {
+Id space_get_object(Space *space)
+{
+  if (!space)
+  {
     return NO_ID;
   }
   return space->object;
-}//solicitar objeto
+} //solicitar objeto
 
-STATUS space_print(Space* space) {
+STATUS space_print(Space *space)
+{
   Id idaux = NO_ID;
 
-  if (!space) {
+  if (!space)
+  {
     return ERROR;
   }
 
@@ -162,36 +196,51 @@ STATUS space_print(Space* space) {
   //Muestra ID y nombre del espacio
 
   idaux = space_get_north(space);
-  if (NO_ID != idaux) { //implica norte diferente a -1
+  if (NO_ID != idaux)
+  { //implica norte diferente a -1
     fprintf(stdout, "---> North link: %ld.\n", idaux);
-  } else {
+  }
+  else
+  {
     fprintf(stdout, "---> No north link.\n");
   }
 
   idaux = space_get_south(space);
-  if (NO_ID != idaux) {//implica sur diferente a -1
+  if (NO_ID != idaux)
+  { //implica sur diferente a -1
     fprintf(stdout, "---> South link: %ld.\n", idaux);
-  } else {
+  }
+  else
+  {
     fprintf(stdout, "---> No south link.\n");
   }
 
   idaux = space_get_east(space);
-  if (NO_ID != idaux) {//implica este diferente a -1
+  if (NO_ID != idaux)
+  { //implica este diferente a -1
     fprintf(stdout, "---> East link: %ld.\n", idaux);
-  } else {
+  }
+  else
+  {
     fprintf(stdout, "---> No east link.\n");
   }
 
   idaux = space_get_west(space);
-  if (NO_ID != idaux) {//implica oeste diferente a -1
+  if (NO_ID != idaux)
+  { //implica oeste diferente a -1
     fprintf(stdout, "---> West link: %ld.\n", idaux);
-  } else {
+  }
+  else
+  {
     fprintf(stdout, "---> No west link.\n");
   }
 
-  if (space_get_object(space)) { //objeto diferente a 0
+  if (space_get_object(space))
+  { //objeto diferente a 0
     fprintf(stdout, "---> Object in the space.\n");
-  } else {
+  }
+  else
+  {
     fprintf(stdout, "---> No object in the space.\n");
   }
 

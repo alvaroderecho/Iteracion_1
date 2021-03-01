@@ -26,7 +26,7 @@ typedef struct _Object Object;
  * @param id Id del objeto
  * @return Object*
  */
-Object* object_create(Id id);
+Object *object_create(Id id);
 
 /**
  * @brief Destruye un objeto
@@ -38,7 +38,7 @@ Object* object_create(Id id);
  * @param object Objeto a destruir
  * @return STATUS
  */
-STATUS object_destroy(Object* object);
+STATUS object_destroy(Object *object);
 
 /**
  * @brief Establece una Id a un objeto
@@ -51,7 +51,7 @@ STATUS object_destroy(Object* object);
  * @param ide Id del objeto
  * @return STATUS
  */
-STATUS object_set_id(Object* object, Id ide);
+STATUS object_set_id(Object *object, Id ide);
 
 /**
  * @brief Establece el nombre de un objeto
@@ -64,7 +64,7 @@ STATUS object_set_id(Object* object, Id ide);
  * @param name Nombre del objeto
  * @return STATUS
  */
-STATUS object_set_name(Object* object, char* name);
+STATUS object_set_name(Object *object, char *name);
 
 /**
  * @brief Devuelve la id de un objeto
@@ -76,7 +76,7 @@ STATUS object_set_name(Object* object, char* name);
  * @param object Objecto usado
  * @return Id
  */
-Id object_get_id(Object* object);
+Id object_get_id(Object *object);
 
 /**
  * @brief Imprime los datos de un objeto
@@ -88,7 +88,7 @@ Id object_get_id(Object* object);
  * @param object Objeto usado
  * @return STATUS
  */
-STATUS object_print(Object* object);
+STATUS object_print(Object *object);
 
 /**
  * @brief Devuelve el nombre de un objeto
@@ -100,6 +100,6 @@ STATUS object_print(Object* object);
  * @param object Objeto usado
  * @return const char *
  */
-const char * object_get_name (Object * object);
+const char *object_get_name(Object *object);
 
 #endif

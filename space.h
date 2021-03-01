@@ -18,7 +18,6 @@ typedef struct _Space Space;
 #define MAX_SPACES 100
 #define FIRST_SPACE 1
 
-
 /**
  * @brief Crea un espacio
  *
@@ -29,7 +28,7 @@ typedef struct _Space Space;
  * @param id Id del espacio a crear
  * @return Space*
  */
-Space* space_create(Id id);
+Space *space_create(Id id);
 
 /**
  * @brief Destruye un espacio
@@ -41,7 +40,7 @@ Space* space_create(Id id);
  * @param space Espacio a destruir
  * @return STATUS
  */
-STATUS space_destroy(Space* space);
+STATUS space_destroy(Space *space);
 
 /**
  * @brief Devuelve la Id de un espacio
@@ -53,7 +52,7 @@ STATUS space_destroy(Space* space);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_id(Space* space);
+Id space_get_id(Space *space);
 
 /**
  * @brief Establece el nombre de un espacio
@@ -66,7 +65,7 @@ Id space_get_id(Space* space);
  * @param name Nombre del espacio
  * @return STATUS
  */
-STATUS space_set_name(Space* space, char* name);
+STATUS space_set_name(Space *space, char *name);
 
 /**
  * @brief Establece el nombre de un espacio
@@ -78,7 +77,7 @@ STATUS space_set_name(Space* space, char* name);
  * @param space Espacio usado
  * @return const char *
  */
-const char* space_get_name(Space* space);
+const char *space_get_name(Space *space);
 
 /**
  * @brief Establece el norte de un espacio
@@ -91,7 +90,7 @@ const char* space_get_name(Space* space);
  * @param id Id del norte
  * @return STATUS
  */
-STATUS space_set_north(Space* space, Id id);
+STATUS space_set_north(Space *space, Id id);
 
 /**
  * @brief Devuelve el norte de un espacio
@@ -103,7 +102,7 @@ STATUS space_set_north(Space* space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_north(Space* space);
+Id space_get_north(Space *space);
 
 /**
  * @brief Establece el sur de un espacio
@@ -116,7 +115,7 @@ Id space_get_north(Space* space);
  * @param id Id del sur
  * @return STATUS
  */
-STATUS space_set_south(Space* space, Id id);
+STATUS space_set_south(Space *space, Id id);
 
 /**
  * @brief Devuelve el sur de un espacio
@@ -128,7 +127,7 @@ STATUS space_set_south(Space* space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_south(Space* space);
+Id space_get_south(Space *space);
 
 /**
  * @brief Establece el este de un espacio
@@ -141,7 +140,7 @@ Id space_get_south(Space* space);
  * @param id Id del este
  * @return STATUS
  */
-STATUS space_set_east(Space* space, Id id);
+STATUS space_set_east(Space *space, Id id);
 
 /**
  * @brief Devuelve el este de un espacio
@@ -153,7 +152,7 @@ STATUS space_set_east(Space* space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_east(Space* space);
+Id space_get_east(Space *space);
 
 /**
  * @brief Establece el oeste de un espacio
@@ -166,7 +165,7 @@ Id space_get_east(Space* space);
  * @param id Id del oeste
  * @return STATUS
  */
-STATUS space_set_west(Space* space, Id id);
+STATUS space_set_west(Space *space, Id id);
 
 /**
  * @brief Devuelve el oeste de un espacio
@@ -178,7 +177,7 @@ STATUS space_set_west(Space* space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_west(Space* space);
+Id space_get_west(Space *space);
 
 /**
  * @brief Establece la id de un objeto
@@ -191,7 +190,7 @@ Id space_get_west(Space* space);
  * @param id Id del objeto
  * @return STATUS
  */
-STATUS space_set_object(Space* space, Id id);
+STATUS space_set_object(Space *space, Id id);
 
 /**
  * @brief Devuelve la Id del objeto
@@ -203,7 +202,7 @@ STATUS space_set_object(Space* space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_object(Space* space);
+Id space_get_object(Space *space);
 
 /**
  * @brief Imprime los datos de un espacio
@@ -215,7 +214,7 @@ Id space_get_object(Space* space);
  * @param space Espacio usado
  * @return STATUS
  */
-STATUS space_print(Space* space);
+STATUS space_print(Space *space);
 
 /**
  * @brief Comprueba si hay objeto en el espacio
