@@ -27,6 +27,16 @@ typedef enum enum_Command {
   TAKE,
   DROP} T_Command;
 
+
+/**
+ * @brief Ejecuta un comando
+ *
+ * @file command.c
+ * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @version 1.0
+ * @date 15/02/2021
+ * @return T_Command
+ */
 T_Command get_user_input();
 
 #endif

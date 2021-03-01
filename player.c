@@ -34,6 +34,8 @@ Player* player_create(Id id) {
     
     new_player->id = id;
     new_player->name[0] = '\0';
+    new_player->location = NO_ID;
+    new_player->object = NO_ID;
 
     return new_player;
 }
@@ -63,16 +65,18 @@ STATUS player_set_name(Player* player, char* name) {
 }
 
 STATUS player_set_location(Player* player, Id id) {
-    if (!player || id == NO_ID)
+    if (!player || id == NO_ID) {
         return ERROR;
+    }
     
     player->location = id;
     return OK;    
 }
 
 STATUS player_set_object(Player* player, Id id) {
-    if (!player || id == NO_ID)
+    if (!player || id == NO_ID) {
         return ERROR;
+    }
     player->object = id;
     return OK;
 }
