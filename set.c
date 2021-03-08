@@ -13,8 +13,8 @@
 
 #define MAX_ID 32
 
-typedef struct _Set {
-    Id * id[MAX_ID];
+struct _Set {
+    Id id[MAX_ID];
     int num_id;
 };
 
@@ -30,6 +30,7 @@ Set * set_create () { //creación de set
         new_set->id[i] = NO_ID;
     }
     new_set->num_id = 0;
+    return new_set;
 }
 
 STATUS set_destroy (Set * set) {
@@ -43,7 +44,7 @@ STATUS set_add_values (Set* set, Id id) {
 
     int i;
 
-    if (!set || set->num_id == MAX_ID || id == NULL) return ERROR;
+    if (!set || set->num_id == MAX_ID || id == NO_ID) return ERROR;
 
     for (i=0;i<set->num_id;i++) { //comprobación el valor no se repite
         if (set->id[i] == id)
@@ -58,6 +59,7 @@ STATUS set_add_values (Set* set, Id id) {
 
 STATUS set_del_values (Set* set, Id id) {
     int i;
+    Id flag;
 
     if (!set || set->num_id == 0) return ERROR;
 
@@ -65,15 +67,29 @@ STATUS set_del_values (Set* set, Id id) {
         if (set->id[i] == id) { //i == posición del ID
             
             set->id[i] = NO_ID;
-            if (i = set->num_id - 1) return OK;
+            if (i == set->num_id - 1) return OK;
         
-            set->id[i] = set->id[set->num_id];
+            flag = set->id[set->num_id];
+            set->id[i] = flag;
             set->id[set->num_id] = NO_ID;
-
+            set->num_id--;
             return OK;
         }
             
     }
     return ERROR;
 
+}
+
+STATUS set_print(Set* set) {
+    int i;
+    
+    if (!set) return ERROR;
+
+    fprintf(stdout,"Set of %d Id(s): ",set->num_id);
+    for (i=0;i<set->num_id;i++) {
+        fprintf(stdout,"%ld ",set->id[i]);        
+    }
+
+    return OK;
 }

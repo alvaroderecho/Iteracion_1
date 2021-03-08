@@ -31,6 +31,9 @@ command.o: command.c command.h
 player.o: player.c player.h types.h
 	$(CC) $(CFLAGS) -c player.c
 
+set.o: set.c set.h
+	$(CC) $(CFLAGS) -c set.c
+
 clean:
 	@echo "Cleaning: "
 	rm -rf *.o exe
