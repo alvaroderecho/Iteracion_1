@@ -49,6 +49,8 @@ space_test: space_test.o
 space_test.o: space_test.c space_test.h test.h
 	$(CC) ($CFLAGS) -c space_test.c
 
+set.o: set.c set.h types.h
+	$(CC) ($CFLAGS) -c set.c
 clean:
 	@echo "Cleaning: "
 	rm -rf *.o exe
