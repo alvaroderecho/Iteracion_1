@@ -34,23 +34,24 @@ player.o: player.c player.h types.h
 set_test: set_test.o set.o
 	$(CC) $(CFLAGS) -oset_test set_test.o set.o
 
-set_test.o: set_test.c set_test.h test.h set.h
-	$(CC) ($CFLAGS) -c set_test.c
+set_test.o: set_test.c set_test.h test.h set.h types.h
+	$(CC) $(CFLAGS) -c set_test.c
 
 die_test: die_test.o die.o
 	$(CC) $(CFLAGS) -odie_test die_test.o die.o
 
 die_test.o: die_test.c die_test.h test.h die.h
-	$(CC) ($CFLAGS) -c die_test.c
+	$(CC) $(CFLAGS) -c die_test.c
 
 space_test: space_test.o space.o
 	$(CC) $(CFLAGS) -ospace_test space_test.o space.o
 
 space_test.o: space_test.c space_test.h test.h space.h
-	$(CC) ($CFLAGS) -c space_test.c
+	$(CC) $(CFLAGS) -c space_test.c
 
 set.o: set.c set.h types.h
-	$(CC) ($CFLAGS) -c set.c
+	$(CC) $(CFLAGS) -c set.c
+
 clean:
 	@echo "Cleaning: "
 	rm -rf *.o exe space_test die_test set_test
