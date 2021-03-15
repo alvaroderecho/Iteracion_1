@@ -33,7 +33,7 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 
 T_Command command_get_user_input()
 {
-	T_Command cmd = NO_CMD;		  // == -1
+	T_Command cmd = NO_CMD;	  // == -1
 	char input[CMD_LENGHT] = "";  //variable input tipo char, tamaño 30
 	int i = UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
 
