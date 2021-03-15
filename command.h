@@ -40,6 +40,6 @@ typedef enum enum_Command
  * @date 15/02/2021
  * @return T_Command
  */
-T_Command get_user_input();
+T_Command command_get_user_input();
 
 #endif

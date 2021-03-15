@@ -14,15 +14,15 @@
 
 #define CMD_LENGHT 30
 
-char *cmd_to_str[N_CMD]
-				[N_CMDT] = {
-					{"", "No command"},
-					{"", "Unknown"},
-					{"e", "Exit"},
-					{"n", "Next"},
-					{"b", "Back"},
-					{"t", "Take"},
-					{"d", "Drop"}};
+char *cmd_to_str[N_CMD][N_CMDT] = 
+{
+{"", "No command"},
+{"", "Unknown"},
+{"e", "Exit"},
+{"n", "Next"},
+{"b", "Back"},
+{"t", "Take"},
+{"d", "Drop"}};
 
 //Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
@@ -31,7 +31,7 @@ char *cmd_to_str[N_CMD]
 
 //T_Command es una enumeración definida en command.h
 
-T_Command get_user_input()
+T_Command command_get_user_input()
 {
 	T_Command cmd = NO_CMD;		  // == -1
 	char input[CMD_LENGHT] = "";  //variable input tipo char, tamaño 30

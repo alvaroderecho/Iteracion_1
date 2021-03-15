@@ -201,7 +201,7 @@ Id game_get_object_location(Game *game)
 
   object_id = object_get_id(game_get_object(game));
 
-  for (i = 0; i < MAX_SPACES || game->spaces[i] != NULL; i++)
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     if (space_get_object(game->spaces[i]) == object_id)
     {
@@ -315,44 +315,31 @@ void game_callback_back(Game *game)
 
 void game_callback_take(Game *game)
 {
-  int i = 0;
-  Id current_id = NO_ID;
   Id object_id = NO_ID;
   Id space_id = NO_ID;
 
   space_id = game_player_get_location(game);
+  space_print(game_get_space(game,space_id));
 
   if (space_id == NO_ID)
     return;
 
-  if (player_get_object(game->player) != NO_ID)
+  if (player_get_object(game_get_player(game)) != NO_ID)
   {
     return;
   }
+  space_print(game_get_space(game,space_id));
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
-  {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
-    {
-      object_id = space_get_object(game->spaces[i]);
-      if (object_id == NO_ID)
-      {
-        return;
-      }
-    }
-    break;
-  }
-  player_set_object(game->player, object_id);
-  space_set_object(game->spaces[i], NO_ID);
+  object_id = space_get_object(game_get_space(game,space_id));
+
+  player_set_object(game_get_player(game), object_id);
+  space_set_object(game_get_space(game,space_id), NO_ID);
 
   return;
 }
 
 void game_callback_drop(Game *game)
 {
-  int i = 0;
-  Id current_id = NO_ID;
   Id object_id = NO_ID;
   Id space_id = NO_ID;
 
@@ -361,27 +348,15 @@ void game_callback_drop(Game *game)
   if (space_id == NO_ID)
     return;
 
-  if (player_get_object(game->player) == NO_ID)
+  if (player_get_object(game_get_player(game)) == NO_ID)
   {
     return;
   }
-
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
-  {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
-    {
-      object_id = space_get_object(game->spaces[i]);
-      if (object_id != NO_ID)
-      {
-        return;
-      }
-    }
-    break;
-  }
+  
   object_id = player_get_object(game_get_player(game)); //id del objeto del jugador
-  player_set_object(game_get_player(game), NO_ID);      //poner id del objeto del jugador a NO_ID
-  space_set_object(game->spaces[i], object_id);
+  
+  player_set_object(game_get_player(game), NO_ID);  //poner id del objeto del jugador a NO_ID
+  space_set_object(game_get_space(game,space_id), object_id);
 
   return;
 }

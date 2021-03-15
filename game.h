@@ -19,7 +19,7 @@
 
 typedef struct _Game
 {
-  Player *player;
+  Player *player; //COMENTAR ESTRUCTURAS
   Object *object;
   Space *spaces[MAX_SPACES + 1];
   T_Command last_cmd;
