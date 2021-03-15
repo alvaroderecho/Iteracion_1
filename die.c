@@ -12,7 +12,7 @@ struct _Die
   int max;
   int last_throw;
 
-}
+};
 
 Die *die_create(Id id, int min, int max){
   Die *d = NULL;
@@ -48,25 +48,11 @@ Id die_getId (Die *d){
   return d->id;
 }
 
-int die_getMin (Die *d){
-  if (d == NULL){
-    return -1;
-  }
-  return d->min;
-}
-
-int die_getMax (Die *d){
-  if (d == NULL){
-    return -1;
-  }
-  return d->max;
-}
-
 int die_getLastThrow (Die *d){
   if (d == NULL){
     return -1;
   }
-  d->last_throw;
+  return d->last_throw;
 }
 
 STATUS die_roll (Die *d){
@@ -85,6 +71,6 @@ STATUS die_print (Die *d){
     return ERROR;
   }
 
-  fprintf(stdout, "--> Dado (Id: %d; Min: %d; Max: %d; Última tirada: %d \n", d->id, d->min, d->max, d->last_throw);
+  fprintf(stdout, "--> Dado (Id: %ld; Min: %d; Max: %d; Última tirada: %d \n", d->id, d->min, d->max, d->last_throw);
   return OK;
 }

@@ -19,8 +19,6 @@ typedef struct _Die Die;
  Die * die_create (Id id, int min, int max);
  STATUS die_destroy (Die *d);
  Id die_getId (Die *d);
- int die_getMin (Die *d);
- int die_getMax (Die *d);
  int die_getLastThrow (Die *d);
  STATUS die_roll (Die *d);
  STATUS die_print (Die *d);
