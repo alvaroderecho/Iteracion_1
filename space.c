@@ -3,6 +3,7 @@
 #include <string.h>
 #include "space.h"
 
+
 struct _Space
 {
   Id id;
@@ -11,12 +12,12 @@ struct _Space
   Id south;
   Id east;
   Id west;
-  Id object;
+  Set * objects;
 };
 
 Space *space_create(Id id)
 {
-
+  
   Space *newSpace = NULL; //puntero tipo Space a newSpace
 
   if (id == NO_ID) // == -1
@@ -37,7 +38,7 @@ Space *space_create(Id id)
   newSpace->east = NO_ID;  // == -1
   newSpace->west = NO_ID;  // == -1
 
-  newSpace->object = FALSE; // == 0
+  newSpace->objects = set_create();
 
   return newSpace;
 }
@@ -116,7 +117,7 @@ STATUS space_set_object(Space *space, Id id)
   {
     return ERROR;
   }
-  space->object = id;
+  if(set_add_values(space->objects,id) == ERROR) return ERROR;
   return OK;
 } //establecer un objeto
 
@@ -174,13 +175,14 @@ Id space_get_west(Space *space)
   return space->west;
 } //solicitar oeste
 
-Id space_get_object(Space *space)
+Id space_get_object(Space *space, int x)
 {
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
-  return space->object;
+  
+  return space->objects;
 } //solicitar objeto
 
 STATUS space_print(Space *space)
