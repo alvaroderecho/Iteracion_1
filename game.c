@@ -14,7 +14,7 @@
 #include <string.h>
 #include "game.h"
 
-#define N_CALLBACK 6
+#define N_CALLBACK 8
 
 /**
    Define the function type for the callbacks
@@ -30,6 +30,9 @@ void game_callback_next(Game *game);
 void game_callback_back(Game *game);
 void game_callback_take(Game *game);
 void game_callback_drop(Game *game);
+void game_callback_left(Game *game);
+void game_callback_right(Game *game)
+;
 
 static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_unknown,
@@ -37,7 +40,9 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_next,
     game_callback_back,
     game_callback_take,
-    game_callback_drop};
+    game_callback_drop,
+    game_callback_left,
+    game_callback_right};
 
 /**
    Private functions
@@ -359,4 +364,58 @@ void game_callback_drop(Game *game)
   space_set_object(game_get_space(game,space_id), object_id);
 
   return;
+}
+
+void game_callback_left(Game *game)
+{
+  int i = 0;
+  Id current_id = NO_ID;
+  Id space_id = NO_ID;
+
+  space_id = game_player_get_location(game);
+  if (space_id == NO_ID)
+  {
+    return;
+  }
+
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      current_id = space_get_west(game->spaces[i]);
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+  }
+}
+
+void game_callback_right(Game *game)
+{
+  int i = 0;
+  Id current_id = NO_ID;
+  Id space_id = NO_ID;
+
+  space_id = game_player_get_location(game);
+  if (space_id == NO_ID)
+  {
+    return;
+  }
+
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      current_id = space_get_east(game->spaces[i]);
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+  }
 }

@@ -22,7 +22,9 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"n", "Next"},
 {"b", "Back"},
 {"t", "Take"},
-{"d", "Drop"}};
+{"d", "Drop"},
+{"l", "Left"},
+{"r", "Right"}};
 
 //Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
