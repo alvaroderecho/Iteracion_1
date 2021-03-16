@@ -202,15 +202,17 @@ Id game_player_get_location(Game *game)
 Id game_get_object_location(Game *game)
 {
   Id object_id;
-  int i;
+  int i,j;
 
   object_id = object_get_id(game_get_object(game));
 
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
-    if (space_get_object(game->spaces[i]) == object_id)
+    for (j=0;j<space_number_of_objects(game->spaces[i]);j++){
+    if (space_get_object(game->spaces[i],j) == object_id)
     {
       return space_get_id(game->spaces[i]);
+    }
     }
   }
 

@@ -177,12 +177,14 @@ Id space_get_west(Space *space)
 
 Id space_get_object(Space *space, int x)
 {
+  Id *ids;
   if (!space)
   {
     return NULL;
   }
-  
-  return space->objects;
+  ids=set_get_ids(space->objects);
+
+  return ids[x];
 } //solicitar objeto
 
 STATUS space_print(Space *space)
@@ -237,9 +239,9 @@ STATUS space_print(Space *space)
     fprintf(stdout, "---> No west link.\n");
   }
 
-  if (space_get_object(space))
+  if (space_is_object_in(space) > 0)
   { //objeto diferente a 0
-    fprintf(stdout, "---> Object in the space.\n");
+    fprintf(stdout, "---> %d object(s) in the space.\n",space_is_object_in(space));
   }
   else
   {
@@ -248,3 +250,13 @@ STATUS space_print(Space *space)
 
   return OK;
 } //Pasar todo por pantalla
+int space_number_of_objects(Space *s){
+    int i;
+    
+    if (s == NULL) return 0;
+    
+
+    if ((i=set_get_numids(s->objects))>0) return i;
+    
+    return 0;
+}

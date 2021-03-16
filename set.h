@@ -20,6 +20,7 @@ STATUS set_destroy (Set * set);
 STATUS set_add_values (Set* set, Id id);
 STATUS set_del_values (Set* set, Id id);
 STATUS set_print(Set* set);
-
+Id * set_get_ids(Set* set);
+int set_get_numids(Set* set);
 
 #endif
