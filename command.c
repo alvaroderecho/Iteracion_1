@@ -14,7 +14,7 @@
 
 #define CMD_LENGHT 30
 
-char *cmd_to_str[N_CMD][N_CMDT] = 
+char *cmd_to_str[N_CMD][N_CMDT] =
 {
 {"", "No command"},
 {"", "Unknown"},
@@ -24,7 +24,8 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"t", "Take"},
 {"d", "Drop"},
 {"l", "Left"},
-{"r", "Right"}};
+{"r", "Right"},
+{"rl", "Roll"}};
 
 //Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador

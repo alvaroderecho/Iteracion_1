@@ -16,6 +16,7 @@
 #include "space.h"
 #include "object.h"
 #include "player.h"
+#include "die.h"
 
 typedef struct _Game
 {
@@ -23,6 +24,7 @@ typedef struct _Game
   Object *object;
   Space *spaces[MAX_SPACES + 1];
   T_Command last_cmd;
+  Die *die;
 } Game;
 
 /**
@@ -123,6 +125,18 @@ Space *game_get_space(Game *game, Id id);
  * @return Player*
  */
 Player *game_get_player(Game *game);
+
+/**
+ * @brief Devuelve el dado del juego
+ *
+ * @file game.c
+ * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @version 1.0
+ * @date 18/03/2021
+ * @param game Juego usado
+ * @return Player*
+ */
+Die *game_get_die(Game *game);
 
 /**
  * @brief Devuelve el objeto del juego

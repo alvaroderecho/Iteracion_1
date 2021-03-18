@@ -14,7 +14,7 @@
 #include <string.h>
 #include "game.h"
 
-#define N_CALLBACK 8
+#define N_CALLBACK 9
 
 /**
    Define the function type for the callbacks
@@ -31,8 +31,8 @@ void game_callback_back(Game *game);
 void game_callback_take(Game *game);
 void game_callback_drop(Game *game);
 void game_callback_left(Game *game);
-void game_callback_right(Game *game)
-;
+void game_callback_right(Game *game);
+void game_callback_roll(Game *game);
 
 static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_unknown,
@@ -42,7 +42,8 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_take,
     game_callback_drop,
     game_callback_left,
-    game_callback_right};
+    game_callback_right,
+    game_callback_roll};
 
 /**
    Private functions
@@ -99,6 +100,7 @@ STATUS game_create(Game *game)
   game->player = player_create(1);
   game->object = object_create(1);
   game->last_cmd = NO_CMD;
+  game->die = die_create(1, 1, 6);
 
   return OK;
 }
@@ -113,6 +115,7 @@ STATUS game_destroy(Game *game)
   }
   player_destroy(game_get_player(game));
   object_destroy(game_get_object(game));
+  die_destroy(game_get_die(game));
 
   return OK;
 }
@@ -171,6 +174,7 @@ Space *game_get_space(Game *game, Id id)
 
   return NULL;
 }
+
 Player *game_get_player(Game *game)
 {
   if (game == NULL)
@@ -178,6 +182,15 @@ Player *game_get_player(Game *game)
     return NULL;
   }
   return game->player;
+}
+
+Die *game_get_die(Game *game)
+{
+  if (game == NULL)
+  {
+    return NULL;
+  }
+  return game->die;
 }
 
 Object *game_get_object(Game *game)
@@ -359,9 +372,9 @@ void game_callback_drop(Game *game)
   {
     return;
   }
-  
+
   object_id = player_get_object(game_get_player(game)); //id del objeto del jugador
-  
+
   player_set_object(game_get_player(game), NO_ID);  //poner id del objeto del jugador a NO_ID
   space_set_object(game_get_space(game,space_id), object_id);
 
@@ -420,4 +433,10 @@ void game_callback_right(Game *game)
       return;
     }
   }
+}
+
+void game_callback_roll(Game *game){
+if (die_roll(game_get_die(game)) == ERROR){
+  return;
+}
 }
