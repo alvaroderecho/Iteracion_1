@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "graphic_engine.h"
+#include "game_reader.h"
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
 void game_loop_run(Game game, Graphic_engine *gengine);
@@ -38,7 +39,7 @@ int main(int argc, char *argv[])
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
 {
-  if (game_create_from_file(game, file_name) == ERROR)
+  if (game_reader_create_from_file(game, file_name) == ERROR)
   {
     fprintf(stderr, "Error while initializing game.\n");
     return 1;
@@ -61,7 +62,7 @@ void game_loop_run(Game game, Graphic_engine *gengine)
   while ((command != EXIT) && !game_is_over(&game))
   {
     graphic_engine_paint_game(gengine, &game);
-    command = get_user_input();
+    command = command_get_user_input();
     game_update(&game, command);
   }
 }

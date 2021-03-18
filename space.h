@@ -12,6 +12,7 @@
 #define SPACE_H
 
 #include "types.h"
+#include "set.h"
 
 typedef struct _Space Space;
 
@@ -202,7 +203,7 @@ STATUS space_set_object(Space *space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_object(Space *space);
+Id space_get_object(Space *space, int x);
 
 /**
  * @brief Imprime los datos de un espacio
@@ -226,6 +227,6 @@ STATUS space_print(Space *space);
  * @param s Espacio usado
  * @return Bool
  */
-BOOL is_object_in(Space *s);
+int space_number_of_objects(Space *s);
 
 #endif

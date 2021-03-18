@@ -3,6 +3,7 @@
 #include <string.h>
 #include "space.h"
 
+
 struct _Space
 {
   Id id;
@@ -11,12 +12,12 @@ struct _Space
   Id south;
   Id east;
   Id west;
-  Id object;
+  Set * objects;
 };
 
 Space *space_create(Id id)
 {
-
+  
   Space *newSpace = NULL; //puntero tipo Space a newSpace
 
   if (id == NO_ID) // == -1
@@ -37,7 +38,7 @@ Space *space_create(Id id)
   newSpace->east = NO_ID;  // == -1
   newSpace->west = NO_ID;  // == -1
 
-  newSpace->object = FALSE; // == 0
+  newSpace->objects = set_create();
 
   return newSpace;
 }
@@ -116,7 +117,7 @@ STATUS space_set_object(Space *space, Id id)
   {
     return ERROR;
   }
-  space->object = id;
+  if(set_add_values(space->objects,id) == ERROR) return ERROR;
   return OK;
 } //establecer un objeto
 
@@ -174,13 +175,16 @@ Id space_get_west(Space *space)
   return space->west;
 } //solicitar oeste
 
-Id space_get_object(Space *space)
+Id space_get_object(Space *space, int x)
 {
+  Id *ids;
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
-  return space->object;
+  ids=set_get_ids(space->objects);
+
+  return ids[x];
 } //solicitar objeto
 
 STATUS space_print(Space *space)
@@ -235,9 +239,9 @@ STATUS space_print(Space *space)
     fprintf(stdout, "---> No west link.\n");
   }
 
-  if (space_get_object(space))
+  if (space_is_object_in(space) > 0)
   { //objeto diferente a 0
-    fprintf(stdout, "---> Object in the space.\n");
+    fprintf(stdout, "---> %d object(s) in the space.\n",space_is_object_in(space));
   }
   else
   {
@@ -246,3 +250,13 @@ STATUS space_print(Space *space)
 
   return OK;
 } //Pasar todo por pantalla
+int space_number_of_objects(Space *s){
+    int i;
+    
+    if (s == NULL) return 0;
+    
+
+    if ((i=set_get_numids(s->objects))>0) return i;
+    
+    return 0;
+}

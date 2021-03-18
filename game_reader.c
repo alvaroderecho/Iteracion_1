@@ -14,7 +14,7 @@
 #include "game_reader.h"
 #include "space.h"
 
-STATUS game_load_spaces(Game *game, char *filename)
+STATUS game_reader_load_spaces(Game *game, char *filename)
 {
   FILE *file = NULL;
   char line[WORD_SIZE] = "";
@@ -77,13 +77,13 @@ STATUS game_load_spaces(Game *game, char *filename)
   return status;
 }
 
-STATUS game_create_from_file(Game *game, char *filename)
+STATUS game_reader_create_from_file(Game *game, char *filename)
 {
 
   if (game_create(game) == ERROR)
     return ERROR;
 
-  if (game_load_spaces(game, filename) == ERROR)
+  if (game_reader_load_spaces(game, filename) == ERROR)
     return ERROR;
 
   if (game_player_set_location(game, game_get_space_id_at(game, 0)) == ERROR)
@@ -93,4 +93,56 @@ STATUS game_create_from_file(Game *game, char *filename)
     return ERROR;
 
   return OK;
+}
+
+STATUS game_reader_load_objects(Game *game, char *filename)
+{
+  FILE *file = NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id id, obj_location;
+  Object *object;
+  STATUS status = OK;
+
+  if (!filename)
+  {
+    return ERROR;
+  }
+
+  file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    return ERROR;
+  }
+
+  while (fgets(line, WORD_SIZE, file))
+  {
+
+    if (strncmp("#o:", line, 3) == 0)
+    {
+      toks = strtok(line + 3, "|");
+      id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      obj_location = atol(toks);
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld", id, name, obj_location);
+#endif
+      object = object_create(id);
+      if (object != NULL)
+      {
+        object_set_name(object, name);
+        space_set_object(game_get_space(game, obj_location), id);
+      }
+    }
+  }
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+  return status;
+
 }

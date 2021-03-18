@@ -93,3 +93,12 @@ STATUS set_print(Set* set) {
 
     return OK;
 }
+Id * set_get_ids(Set* set){
+    if (set == NULL) return NULL;
+    return set->id;
+
+}
+int set_get_numids(Set* set){
+    if (set == NULL) return 0;
+    return set->num_id;
+}

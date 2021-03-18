@@ -14,7 +14,6 @@
 #include "game.h"
 #include "command.h"
 #include "screen.h"
-#include "game_reader.h"
 
 typedef struct _Graphic_engine Graphic_engine;
 
