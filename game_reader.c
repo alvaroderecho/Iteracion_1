@@ -23,6 +23,8 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
   Id id = NO_ID, north = NO_ID, east = NO_ID, south = NO_ID, west = NO_ID;
   Space *space = NULL;
   STATUS status = OK;
+  char **spgdesc;
+  int i,j;
 
   if (!filename)
   {
@@ -34,6 +36,18 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
   {
     return ERROR;
   }
+
+  if ((spgdesc = (char**)malloc(3*sizeof(char*))) == NULL) return ERROR; //tres filas
+  for (i=0;i<MAX_LINES;i++) {
+    if ((spgdesc[i] = (char*)malloc(9*sizeof(char))) == NULL) {
+      for (j=0;j<i;j++) free(spgdesc[j]);      
+      free(spgdesc);
+      
+      return ERROR;
+    } 
+  }
+
+
 
   while (fgets(line, WORD_SIZE, file))
   {
@@ -51,6 +65,10 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
       south = atol(toks);
       toks = strtok(NULL, "|");
       west = atol(toks);
+      for (i=0;i<MAX_LINES;i++) {
+      toks = strtok(NULL, "|");
+      strcpy(spgdesc[i], toks);          
+      }
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
 #endif
@@ -62,10 +80,17 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
         space_set_east(space, east);
         space_set_south(space, south);
         space_set_west(space, west);
+        space_set_gDesc(space,spgdesc);
         game_add_space(game, space);
       }
     }
   }
+
+  for (i=0;i<MAX_LINES;i++) {
+    free(spgdesc[i]);
+  }
+  free(spgdesc);
+
 
   if (ferror(file))
   {

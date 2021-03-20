@@ -13,13 +13,13 @@
 
 #include "types.h"
 #include "set.h"
+#define MAX_LINES 3
 
 typedef struct _Space Space;
 
 #define MAX_SPACES 100
 #define FIRST_SPACE 1
-#define Max_lenght_string 8
-#define Num_strings 3
+
 
 /**
  * @brief Crea un espacio
@@ -251,5 +251,5 @@ char **space_get_gDesc(Space *space);
  * @param s Espacio usado
  * @return STATUS
  */
-STATUS space_set_gDesc(Space *space, char gDesc[Num_strings][Max_lenght_string]);
+STATUS space_set_gDesc(Space *space, char **gDesc);
 #endif

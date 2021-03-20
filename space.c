@@ -3,6 +3,7 @@
 #include <string.h>
 #include "space.h"
 
+
 struct _Space
 {
   Id id;
@@ -12,13 +13,13 @@ struct _Space
   Id east;
   Id west;
   Set *objects;
-  char gDesc[Num_strings][Max_lenght_string];
+  char **gDesc;
 };
 
 Space *space_create(Id id)
 {
   Space *newSpace = NULL; //puntero tipo Space a newSpace
-  char desc_ini[Num_strings][Max_lenght_string] = {{"*******"}, {"*******"}, {"*******"}};
+
   if (id == NO_ID) // == -1
     return NULL;
 
@@ -39,19 +40,26 @@ Space *space_create(Id id)
 
   newSpace->objects = set_create();
 
-  if (space_set_gDesc(newSpace, desc_ini) == ERROR)
-    return NULL;
+  if ((newSpace->gDesc = (char**)malloc(3*sizeof(char*))) == NULL) return NULL; //tres filas
+  if ((newSpace->gDesc[0] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //primera fila
+  if ((newSpace->gDesc[1] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //segunda fila
+  if ((newSpace->gDesc[2] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //tercera fila
 
   return newSpace;
 }
 
 STATUS space_destroy(Space *space)
 {
+  int i;
   if (!space)
   {               // == 0
     return ERROR; //no se puede eliminar
   }
-
+  for (i=0;i<MAX_LINES;i++) {
+    free(space->gDesc[i]);
+  }
+  free(space->gDesc);
+  set_destroy(space->objects);
   free(space); //libera memoria
   space = NULL;
 
@@ -197,19 +205,13 @@ char **space_get_gDesc(Space *space)
   return space->gDesc;
 }
 
-STATUS space_set_gDesc(Space *space, char desc[Num_strings][Max_lenght_string])
+STATUS space_set_gDesc(Space *space, char **desc)
 {
-  int i, j;
+  int i;
   if (space == NULL)
     return ERROR;
-
-  for (i = 0; i < Num_strings; i++)
-  {
-    for (j = 0; j < Max_lenght_string; j++)
-    {
-      space->gDesc[i][j] = desc[i][j];
-    }
-  }
+  for (i=0;i<MAX_LINES;i++)
+  strcpy(space->gDesc[i],desc[i]);
 
   return OK;
 }
@@ -274,7 +276,7 @@ STATUS space_print(Space *space)
   {
     fprintf(stdout, "---> No object in the space.\n");
   }
-  for (i = 0; i < Num_strings; i++)
+  for (i = 0; i < MAX_LINES; i++)
     fprintf(stdout, "%s\n", space->gDesc[i]);
 
   return OK;
