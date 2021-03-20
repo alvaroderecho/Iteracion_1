@@ -339,7 +339,8 @@ void game_callback_take(Game *game)
   Id space_id = NO_ID;
 
   space_id = game_player_get_location(game);
-  space_print(game_get_space(game,space_id));
+
+  scanf(" O%ld",&object_id);
 
   if (space_id == NO_ID)
     return;
@@ -348,9 +349,6 @@ void game_callback_take(Game *game)
   {
     return;
   }
-  space_print(game_get_space(game,space_id));
-
-  object_id = space_get_object(game_get_space(game,space_id));
 
   player_set_object(game_get_player(game), object_id);
   space_set_object(game_get_space(game,space_id), NO_ID);

@@ -65,7 +65,7 @@ T_Command command_get_user_input()
 			, de esta forma quedaría cmd = 2, y devolvería la instrucción "next".
 			*/
 				cmd = i + NO_CMD;
-			else
+			else //aquí hacer la excepción de take
 				i++;
 		}
 	}

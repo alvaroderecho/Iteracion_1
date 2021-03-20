@@ -11,15 +11,14 @@ struct _Space
   Id south;
   Id east;
   Id west;
-  Set * objects;
+  Set *objects;
   char gDesc[Num_strings][Max_lenght_string];
 };
 
 Space *space_create(Id id)
 {
-  int i;
   Space *newSpace = NULL; //puntero tipo Space a newSpace
-  char desc_ini[Num_strings][Max_lenght_string]={{"*******"},{"*******"},{"*******"}};
+  char desc_ini[Num_strings][Max_lenght_string] = {{"*******"}, {"*******"}, {"*******"}};
   if (id == NO_ID) // == -1
     return NULL;
 
@@ -39,9 +38,10 @@ Space *space_create(Id id)
   newSpace->west = NO_ID;  // == -1
 
   newSpace->objects = set_create();
-  
-  if(space_set_gDesc(newSpace,desc_ini)==NULL) return NULL;
-  
+
+  if (space_set_gDesc(newSpace, desc_ini) == ERROR)
+    return NULL;
+
   return newSpace;
 }
 
@@ -119,7 +119,8 @@ STATUS space_set_object(Space *space, Id id)
   {
     return ERROR;
   }
-  if(set_add_values(space->objects,id) == ERROR) return ERROR;
+  if (set_add_values(space->objects, id) == ERROR)
+    return ERROR;
   return OK;
 } //establecer un objeto
 
@@ -182,25 +183,34 @@ Id space_get_object(Space *space, int x)
   Id *ids;
   if (!space)
   {
-    return NULL;
+    return NO_ID;
   }
-  ids=set_get_ids(space->objects);
+  ids = set_get_ids(space->objects);
 
   return ids[x];
 } //solicitar objeto
-char space_get_gDesc(Space *space){
-  if (space == NULL) return "error";
+
+char **space_get_gDesc(Space *space)
+{
+  if (space == NULL)
+    return NULL;
   return space->gDesc;
 }
-STATUS space_set_gDesc(Space *space, char desc[Num_strings][Max_lenght_string]){
-  int i,j;
-  if (space == NULL) return ERROR;
 
-  for (i=0;i<Num_strings;i++){
-    
-      strcpy(space->gDesc[i],desc[i]);
+STATUS space_set_gDesc(Space *space, char desc[Num_strings][Max_lenght_string])
+{
+  int i, j;
+  if (space == NULL)
+    return ERROR;
+
+  for (i = 0; i < Num_strings; i++)
+  {
+    for (j = 0; j < Max_lenght_string; j++)
+    {
+      space->gDesc[i][j] = desc[i][j];
     }
-  
+  }
+
   return OK;
 }
 
@@ -256,26 +266,28 @@ STATUS space_print(Space *space)
     fprintf(stdout, "---> No west link.\n");
   }
 
-  if (space_is_object_in(space) > 0)
+  if (space_number_of_objects(space) > 0)
   { //objeto diferente a 0
-    fprintf(stdout, "---> %d object(s) in the space.\n",space_is_object_in(space));
+    fprintf(stdout, "---> %d object(s) in the space.\n", space_number_of_objects(space));
   }
   else
   {
     fprintf(stdout, "---> No object in the space.\n");
   }
-  for (i=0;i<Num_strings;i++)
-  fprint(stdout,"%s\n",space->gDesc[i]);
+  for (i = 0; i < Num_strings; i++)
+    fprintf(stdout, "%s\n", space->gDesc[i]);
 
   return OK;
 } //Pasar todo por pantalla
-int space_number_of_objects(Space *s){
-    int i;
-    
-    if (s == NULL) return 0;
-    
+int space_number_of_objects(Space *s)
+{
+  int i;
 
-    if ((i=set_get_numids(s->objects))>0) return i;
-    
+  if (s == NULL)
     return 0;
+
+  if ((i = set_get_numids(s->objects)) > 0)
+    return i;
+
+  return 0;
 }

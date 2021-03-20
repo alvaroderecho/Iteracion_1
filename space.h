@@ -240,7 +240,7 @@ int space_number_of_objects(Space *s);
  * @param s Espacio usado
  * @return char
  */
-char space_get_gDesc(Space *space);
+char **space_get_gDesc(Space *space);
 /**
  * @brief Establece la descripcion de un espacio
  *
