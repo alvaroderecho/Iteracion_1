@@ -3,7 +3,6 @@
 #include <string.h>
 #include "space.h"
 
-
 struct _Space
 {
   Id id;
@@ -13,13 +12,14 @@ struct _Space
   Id east;
   Id west;
   Set * objects;
+  char gDesc[Num_strings][Max_lenght_string];
 };
 
 Space *space_create(Id id)
 {
-  
+  int i;
   Space *newSpace = NULL; //puntero tipo Space a newSpace
-
+  char desc_ini[Num_strings][Max_lenght_string]={{"*******"},{"*******"},{"*******"}};
   if (id == NO_ID) // == -1
     return NULL;
 
@@ -39,7 +39,9 @@ Space *space_create(Id id)
   newSpace->west = NO_ID;  // == -1
 
   newSpace->objects = set_create();
-
+  
+  if(space_set_gDesc(newSpace,desc_ini)==NULL) return NULL;
+  
   return newSpace;
 }
 
@@ -186,11 +188,26 @@ Id space_get_object(Space *space, int x)
 
   return ids[x];
 } //solicitar objeto
+char space_get_gDesc(Space *space){
+  if (space == NULL) return "error";
+  return space->gDesc;
+}
+STATUS space_set_gDesc(Space *space, char desc[Num_strings][Max_lenght_string]){
+  int i,j;
+  if (space == NULL) return ERROR;
+
+  for (i=0;i<Num_strings;i++){
+    
+      strcpy(space->gDesc[i],desc[i]);
+    }
+  
+  return OK;
+}
 
 STATUS space_print(Space *space)
 {
   Id idaux = NO_ID;
-
+  int i;
   if (!space)
   {
     return ERROR;
@@ -247,6 +264,8 @@ STATUS space_print(Space *space)
   {
     fprintf(stdout, "---> No object in the space.\n");
   }
+  for (i=0;i<Num_strings;i++)
+  fprint(stdout,"%s\n",space->gDesc[i]);
 
   return OK;
 } //Pasar todo por pantalla

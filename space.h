@@ -18,6 +18,8 @@ typedef struct _Space Space;
 
 #define MAX_SPACES 100
 #define FIRST_SPACE 1
+#define Max_lenght_string 8
+#define Num_strings 3
 
 /**
  * @brief Crea un espacio
@@ -218,15 +220,36 @@ Id space_get_object(Space *space, int x);
 STATUS space_print(Space *space);
 
 /**
- * @brief Comprueba si hay objeto en el espacio
+ * @brief Devuelve el número de objetos de un espacio
  *
  * @file space.c
  * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
  * @version 1.0
  * @date 15/02/2021
  * @param s Espacio usado
- * @return Bool
+ * @return int
  */
 int space_number_of_objects(Space *s);
-
+/**
+ * @brief Devuelve la descripcion del espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @version 1.0
+ * @date 15/02/2021
+ * @param s Espacio usado
+ * @return char
+ */
+char space_get_gDesc(Space *space);
+/**
+ * @brief Establece la descripcion de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @version 1.0
+ * @date 15/02/2021
+ * @param s Espacio usado
+ * @return STATUS
+ */
+STATUS space_set_gDesc(Space *space, char gDesc[Num_strings][Max_lenght_string]);
 #endif
