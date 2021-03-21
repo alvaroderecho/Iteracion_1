@@ -11,7 +11,7 @@
 #define OBJECT_H
 
 #include "types.h"
-
+#define Max_Objects 100
 typedef struct _Object Object;
 
 //funciones

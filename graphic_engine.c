@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "graphic_engine.h"
+#include "space.h"
 
 struct _Graphic_engine
 {
@@ -19,11 +20,11 @@ Graphic_engine *graphic_engine_create()
   if (ge == NULL)
     return NULL;
 
-  ge->map = screen_area_init(1, 1, 48, 13);
-  ge->descript = screen_area_init(50, 1, 29, 13);
-  ge->banner = screen_area_init(28, 15, 23, 1);
-  ge->help = screen_area_init(1, 16, 78, 2);
-  ge->feedback = screen_area_init(1, 19, 78, 3);
+  ge->map = screen_area_init(1, 1, 48, /*13*/21);
+  ge->descript = screen_area_init(50, 1, 29, /*13*/21);
+  ge->banner = screen_area_init(28, /*15*/23, 23, 1);
+  ge->help = screen_area_init(1, /*16*/24, 78, 2);
+  ge->feedback = screen_area_init(1, /*19*/27, 78, 3);
 
   return ge;
 }
@@ -46,7 +47,7 @@ void graphic_engine_destroy(Graphic_engine *ge)
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 {
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, obj_loc = NO_ID;
-  Space *space_act = NULL;
+  Space *space_act = NULL, *space_next = NULL, *space_back = NULL;
   char obj = '\0';
   char str[255];
   T_Command last_cmd = UNKNOWN;
@@ -59,6 +60,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
     space_act = game_get_space(game, id_act);
     id_back = space_get_north(space_act);
     id_next = space_get_south(space_act);
+    space_next = game_get_space(game, id_next);
+    space_back = game_get_space(game, id_back);
 
     if (game_get_object_location(game) == id_back)
       obj = '*';
@@ -68,6 +71,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
     if (id_back != NO_ID)
     {
       sprintf(str, "  |         %2d|", (int)id_back);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_back)[0]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |",space_get_gDesc(space_back)[1]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_back)[2]);
       screen_area_puts(ge->map, str);
       sprintf(str, "  |     %c     |", obj);
       screen_area_puts(ge->map, str);
@@ -88,6 +97,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
       screen_area_puts(ge->map, str);
       sprintf(str, "  | 8D      %2d|", (int)id_act);
       screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_act)[0]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |",space_get_gDesc(space_act)[1]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_act)[2]);
+      screen_area_puts(ge->map, str);
       sprintf(str, "  |     %c     |", obj);
       screen_area_puts(ge->map, str);
       sprintf(str, "  +-----------+");
@@ -106,6 +121,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
       sprintf(str, "  +-----------+");
       screen_area_puts(ge->map, str);
       sprintf(str, "  |         %2d|", (int)id_next);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_next)[0]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |",space_get_gDesc(space_next)[1]);
+      screen_area_puts(ge->map, str);
+      sprintf(str, "  |  %s  |", space_get_gDesc(space_next)[2]);
       screen_area_puts(ge->map, str);
       sprintf(str, "  |     %c     |", obj);
       screen_area_puts(ge->map, str);
