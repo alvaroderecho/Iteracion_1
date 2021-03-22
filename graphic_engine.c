@@ -65,11 +65,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
     space_next = game_get_space(game, id_next);
     space_back = game_get_space(game, id_back);
 
-    /*if (game_get_object_location(game) == id_back)
-      obj = '*';
-    else
-      obj = ' ';*/
-
     if (id_back != NO_ID)
     {
       sprintf(str, "  |         %2d|", (int)id_back);
@@ -87,12 +82,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
       sprintf(str, "        ^");
       screen_area_puts(ge->map, str);
     }
-
-    /*if (game_get_object_location(game) == id_act)
-      obj = '*';
-    else
-      obj = ' ';*/
-
+    
     if (id_act != NO_ID)
     {
       sprintf(str, "  +-----------+");
