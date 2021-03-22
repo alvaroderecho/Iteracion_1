@@ -52,7 +52,7 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
 STATUS game_add_space(Game *game, Space *space);
 Id game_get_space_id_at(Game *game, int position);
 STATUS game_player_set_location(Game *game, Id id);
-STATUS game_set_object_location(Game *game, Id id);
+STATUS game_set_object_location(Game *game, Id id, Id id2);
 
 /**
    Game interface implementation
@@ -69,7 +69,7 @@ STATUS game_player_set_location(Game *game, Id id)
   return player_set_location(game_get_player(game), id);
 }
 
-STATUS game_set_object_location(Game *game, Id id)
+STATUS game_set_object_location(Game *game, Id id, Id id2)
 {
 
   //int i = 0;
@@ -82,10 +82,17 @@ STATUS game_set_object_location(Game *game, Id id)
     return ERROR;
   }
 
-  if (space_set_object(game_get_space(game, id), object_get_id(game_get_object(game))) == ERROR)
+  if (space_set_object(game_get_space(game, id), object_get_id(game_get_object(game,id2))) == ERROR)
     return ERROR;
 
   return OK;
+}
+
+int game_num_o(Game *game) {
+  int i=0;
+  while (game->objects[i]!= NULL)
+  i++;
+  return i;
 }
 
 STATUS game_create(Game *game)
@@ -97,8 +104,11 @@ STATUS game_create(Game *game)
     game->spaces[i] = NULL;
   }
 
+  for (i=0;i<OBJECTS;i++) {
+    game->objects[i] = NULL;
+  }
+
   game->player = player_create(1);
-  game->object = object_create(1);
   game->last_cmd = NO_CMD;
   game->die = die_create(1, 1, 6);
 
@@ -113,8 +123,12 @@ STATUS game_destroy(Game *game)
   {
     space_destroy(game->spaces[i]);
   }
+  for (i = 0; (i < OBJECTS) && (game->spaces[i] != NULL); i++)
+  {
+    object_destroy(game->objects[i]);
+  }
+
   player_destroy(game_get_player(game));
-  object_destroy(game_get_object(game));
   die_destroy(game_get_die(game));
 
   return OK;
@@ -142,6 +156,25 @@ STATUS game_add_space(Game *game, Space *space)
   game->spaces[i] = space;
 
   return OK;
+}
+
+STATUS game_add_object(Game *game, Object* object) {
+  int i=0;
+
+  if (object == NULL) return ERROR;
+
+  while ((i < OBJECTS) && (game->objects[i] != NULL))
+  {
+    i++;
+  }
+  if (i >= OBJECTS)
+  {
+    return ERROR;
+  }
+
+  game->objects[i] = object;
+  return OK;
+
 }
 
 Id game_get_space_id_at(Game *game, int position)
@@ -193,13 +226,20 @@ Die *game_get_die(Game *game)
   return game->die;
 }
 
-Object *game_get_object(Game *game)
+Object *game_get_object(Game *game, Id id)
 {
+  int i;
+
   if (game == NULL)
   {
     return NULL;
   }
-  return game->object;
+
+  for (i=0;i<OBJECTS;i++) {
+      if (object_get_id(game->objects[i]) == id)
+      return game->objects[i];
+  }
+  return NULL;
 }
 
 Id game_player_get_location(Game *game)
@@ -212,12 +252,12 @@ Id game_player_get_location(Game *game)
   return player_get_location(game_get_player(game));
 }
 
-Id game_get_object_location(Game *game)
+Id game_get_object_location(Game *game, Id id) 
 {
   Id object_id;
   int i,j;
 
-  object_id = object_get_id(game_get_object(game));
+  object_id = object_get_id(game_get_object(game,id));
 
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
@@ -256,7 +296,7 @@ void game_print_data(Game *game)
     space_print(game->spaces[i]);
   }
 
-  printf("=> Object location: %d\n", (int)game_get_object_location(game));
+  printf("=> Object location: %d\n", (int)game_get_object_location(game,1));
   printf("=> Player location: %d\n", (int)game_player_get_location(game));
   printf("prompt:> ");
 }

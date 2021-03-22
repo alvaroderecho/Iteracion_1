@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "graphic_engine.h"
 #include "space.h"
+#include <string.h>
 
 struct _Graphic_engine
 {
@@ -52,6 +53,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   char str[255];
   T_Command last_cmd = UNKNOWN;
   extern char *cmd_to_str[N_CMD][N_CMDT];
+  int i,num_o;
 
   /* Paint the in the map area */
   screen_area_clear(ge->map);
@@ -63,10 +65,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
     space_next = game_get_space(game, id_next);
     space_back = game_get_space(game, id_back);
 
-    if (game_get_object_location(game) == id_back)
+    /*if (game_get_object_location(game) == id_back)
       obj = '*';
     else
-      obj = ' ';
+      obj = ' ';*/
 
     if (id_back != NO_ID)
     {
@@ -86,10 +88,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
       screen_area_puts(ge->map, str);
     }
 
-    if (game_get_object_location(game) == id_act)
+    /*if (game_get_object_location(game) == id_act)
       obj = '*';
     else
-      obj = ' ';
+      obj = ' ';*/
 
     if (id_act != NO_ID)
     {
@@ -108,11 +110,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
       sprintf(str, "  +-----------+");
       screen_area_puts(ge->map, str);
     }
-
-    if (game_get_object_location(game) == id_next)
-      obj = '*';
-    else
-      obj = ' ';
 
     if (id_next != NO_ID)
     {
@@ -135,11 +132,33 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 
   /* Paint in the description area */
   screen_area_clear(ge->descript);
-  if ((obj_loc = game_get_object_location(game)) != NO_ID)
-  {
-    sprintf(str, "  Object location:%d", (int)obj_loc);
-    screen_area_puts(ge->descript, str);
+  num_o = game_num_o(game);
+  sprintf(str, "  Objects locations:");
+  screen_area_puts(ge->descript, str);
+
+  for (i=0;i<num_o;i++)  {
+      if ((obj_loc = game_get_object_location(game,object_get_id(game->objects[i]))) != NO_ID) {
+          sprintf(str,"O%d:%d ",(int)object_get_id(game->objects[i]), (int)obj_loc);
+      } 
+      screen_area_puts(ge->descript,str);
   }
+
+  sprintf(str," ");
+  screen_area_puts(ge->descript, str);
+  
+  sprintf(str, "Player object:");
+  screen_area_puts(ge->descript, str);
+
+  if (player_get_object(game->player) != NO_ID) {
+  sprintf(str, "O%d",(int)player_get_object(game->player));
+  screen_area_puts(ge->descript, str);
+  }
+
+  sprintf(str, " ");
+  screen_area_puts(ge->descript, str);
+
+  sprintf(str, "Last die value: %d",die_getLastThrow(game->die));
+  screen_area_puts(ge->descript, str);
 
   /* Paint in the banner area */
   screen_area_puts(ge->banner, " The game of the Goose ");

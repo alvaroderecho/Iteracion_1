@@ -114,8 +114,9 @@ STATUS game_reader_create_from_file(Game *game, char *filename)
   if (game_player_set_location(game, game_get_space_id_at(game, 0)) == ERROR)
     return ERROR;
 
-  if (game_set_object_location(game, game_get_space_id_at(game, 0)) == ERROR)
+  if (game_reader_load_objects(game, filename) == ERROR)
     return ERROR;
+
 
   return OK;
 }
@@ -159,7 +160,9 @@ STATUS game_reader_load_objects(Game *game, char *filename)
       if (object != NULL)
       {
         object_set_name(object, name);
+        object_set_id(object,id);
         space_set_object(game_get_space(game, obj_location), id);
+        game_add_object(game,object);
       }
     }
   }

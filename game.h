@@ -18,10 +18,12 @@
 #include "player.h"
 #include "die.h"
 
+#define OBJECTS 120
+
 typedef struct _Game
 {
   Player *player;                 //Puntero al jugador del juego
-  Object *object;                 //Puntero al objeto
+  Object *objects[OBJECTS];                 //Puntero al objeto
   Space *spaces[MAX_SPACES + 1];  //Espacios de un juego
   T_Command last_cmd;             //Último comando escrito por pantalla
   Die *die;                       //Dado usado en el juego
@@ -146,9 +148,10 @@ Die *game_get_die(Game *game);
  * @version 1.0
  * @date 13-01-2015
  * @param game Juego usado
+ * @param id Id del objeto
  * @return Object*
  */
-Object *game_get_object(Game *game);
+Object *game_get_object(Game *game, Id id);
 
 /**
  * @brief Devuelve la localización del jugador
@@ -170,10 +173,10 @@ Id game_player_get_location(Game *game);
  * @version 1.0
  * @date 13-01-2015
  * @param game Juego usado
+ * @param Id del objeto
  * @return Id
  */
-Id game_get_object_location(Game *game);
-
+Id game_get_object_location(Game *game, Id id);
 /**
  * @brief Devuelve el último comando
  *
@@ -210,7 +213,7 @@ STATUS game_player_set_location(Game *game, Id id);
  * @param id Localización del objeto
  * @return STATUS
  */
-STATUS game_set_object_location(Game *game, Id id);
+STATUS game_set_object_location(Game *game, Id id, Id id2);
 
 /**
  * @brief Devuelve la id de un espacio
@@ -224,5 +227,31 @@ STATUS game_set_object_location(Game *game, Id id);
  * @return Id
  */
 Id game_get_space_id_at(Game *game, int position);
+
+/**
+ * @brief Añade un Objeto
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/03/2021
+ * @param game Juego usado
+ * @param objet Objeto a añadir
+ * @return STATUS
+ */
+STATUS game_add_object(Game *game, Object* object);
+
+/**
+ * @brief Devuelve el número de objetos de un juego
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/03/2021
+ * @param game Juego usado
+ * @return int
+ */
+int game_num_o(Game *game);
+
 
 #endif
