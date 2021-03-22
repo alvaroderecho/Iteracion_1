@@ -1,7 +1,7 @@
 /**
  * @brief Define el Manejo de Conjuntos
  *
- * @author 2111_10
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 01-03-2021
  * @copyright GNU Public License
@@ -14,8 +14,8 @@
 #define MAX_ID 32
 
 struct _Set {
-    Id id[MAX_ID];
-    int num_id;
+    Id id[MAX_ID];              //Conjunto de Ids de objetos
+    int num_id;                 //Número de Ids
 };
 
 Set * set_create () { //creación de set

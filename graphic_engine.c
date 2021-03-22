@@ -5,7 +5,7 @@
 
 struct _Graphic_engine
 {
-  Area *map, *descript, *banner, *help, *feedback;
+  Area *map, *descript, *banner, *help, *feedback; //Interfaz del juego
 };
 
 Graphic_engine *graphic_engine_create()

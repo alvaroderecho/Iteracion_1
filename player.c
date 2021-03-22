@@ -15,10 +15,10 @@
 
 struct _Player
 {
-    Id id;
-    char name[WORD_SIZE + 1];
-    Id location;
-    Id object;
+    Id id;                              //Id del jugador
+    char name[WORD_SIZE + 1];           //Nombre del jugador
+    Id location;                        //Localización del jugador (su espacio)
+    Id object;                          //Id del objeto que lleva el jugador
 };
 
 Player *player_create(Id id)

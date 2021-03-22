@@ -2,7 +2,7 @@
  * @brief Define un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  */
@@ -20,7 +20,7 @@ typedef struct _Player Player;
  * @brief Crea un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param id Id del objeto
@@ -32,7 +32,7 @@ Player *player_create(Id id);
  * @brief Destruye un objeto
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a destruir
@@ -44,7 +44,7 @@ STATUS player_destroy(Player *player);
  * @brief Establece una Id al jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param id Id del objeto
@@ -56,7 +56,7 @@ STATUS player_set_id(Player *player, Id ide);
  * @brief Establece el nombre a un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -69,7 +69,7 @@ STATUS player_set_name(Player *player, char *name);
  * @brief Establece la localización a un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador usado
@@ -82,7 +82,7 @@ STATUS player_set_location(Player *player, Id id);
  * @brief Establece la Id de un objeto
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -95,7 +95,7 @@ STATUS player_set_object(Player *player, Id id);
  * @brief Devuelve la Id del jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -107,7 +107,7 @@ Id player_get_id(Player *player);
  * @brief Devuelve el nombre del jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -119,7 +119,7 @@ const char *player_get_name(Player *player);
  * @brief Devuelve la localización de un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -131,7 +131,7 @@ Id player_get_location(Player *player);
  * @brief Devuelve la Id del objeto de un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar
@@ -143,7 +143,7 @@ Id player_get_object(Player *player);
  * @brief Imprime los datos de un jugador
  *
  * @file player.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param player Jugador a usar

@@ -1,3 +1,12 @@
+/**
+ * @brief Define el Manejo de Dados
+ *
+ * @author Sergio Domínguez
+ * @version 1.0
+ * @date 07-03-2021
+ * @copyright GNU Public License
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,10 +16,10 @@
 
 struct _Die
 {
-  Id id;
-  int min;
-  int max;
-  int last_throw;
+  Id id;                        //Id del dado
+  int min;                      //Mínimo valor del dado
+  int max;                      //Máximo valor del dado
+  int last_throw;               //Valor de última tirada
 
 };
 

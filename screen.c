@@ -18,8 +18,8 @@
 
 struct _Area
 {
-  int x, y, width, height;
-  char *cursor;
+  int x, y, width, height;      //Tamaño de la pantalla
+  char *cursor;                 //Cursor
 };
 
 char *__data;

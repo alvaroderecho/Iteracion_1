@@ -6,14 +6,14 @@
 
 struct _Space
 {
-  Id id;
-  char name[WORD_SIZE + 1];
-  Id north;
-  Id south;
-  Id east;
-  Id west;
-  Set *objects;
-  char **gDesc;
+  Id id; //Id del espacio
+  char name[WORD_SIZE + 1]; //nombre del espacio
+  Id north; //coordenada norte
+  Id south; //coordenada sur
+  Id east; //coordenada este
+  Id west; //coordenada oeste
+  Set *objects; //puntero a conjunto de objetos
+  char **gDesc; //doble puntero a descripción gráfica del espacio
 };
 
 Space *space_create(Id id)

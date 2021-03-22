@@ -19,9 +19,9 @@ typedef struct _Area Area;
  * @brief Inicializa una pantalla
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @return void
  */
 void screen_init();
@@ -30,9 +30,9 @@ void screen_init();
  * @brief Destruye una pantalla
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @return void
  */
 void screen_destroy();
@@ -41,9 +41,9 @@ void screen_destroy();
  * @brief Pinta una pantalla
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @return void
  */
 void screen_paint();
@@ -52,9 +52,9 @@ void screen_paint();
  * @brief Inicializa un área
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @param x Posición x
  * @param y Posición y
  * @param width Ancho
@@ -67,9 +67,9 @@ Area *screen_area_init(int x, int y, int width, int height);
  * @brief Destruye un área
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @param area Área a destruir
  * @return void
  */
@@ -79,9 +79,9 @@ void screen_area_destroy(Area *area);
  * @brief Limpia un área
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @param area Área a limpiar
  * @return void
  */
@@ -91,9 +91,9 @@ void screen_area_clear(Area *area);
  * @brief Resetea el cursor de un área
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @param area Área a usar
  * @return void
  */
@@ -103,9 +103,9 @@ void screen_area_reset_cursor(Area *area);
  * @brief Modifica un área
  *
  * @file screen.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @param area Área a usar
  * @param str  
  * @return void

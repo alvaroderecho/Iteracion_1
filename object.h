@@ -2,7 +2,7 @@
  * @brief Define un Objeto
  *
  * @file game.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  */
@@ -20,7 +20,7 @@ typedef struct _Object Object;
  * @brief Crea un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param id Id del objeto
@@ -32,7 +32,7 @@ Object *object_create(Id id);
  * @brief Destruye un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objeto a destruir
@@ -44,7 +44,7 @@ STATUS object_destroy(Object *object);
  * @brief Establece una Id a un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objecto usado
@@ -57,7 +57,7 @@ STATUS object_set_id(Object *object, Id ide);
  * @brief Establece el nombre de un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objeto usado
@@ -70,7 +70,7 @@ STATUS object_set_name(Object *object, char *name);
  * @brief Devuelve la id de un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objecto usado
@@ -82,7 +82,7 @@ Id object_get_id(Object *object);
  * @brief Imprime los datos de un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objeto usado
@@ -94,7 +94,7 @@ STATUS object_print(Object *object);
  * @brief Devuelve el nombre de un objeto
  *
  * @file object.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Álvaro Derecho
  * @version 1.0
  * @date 15/02/2021
  * @param object Objeto usado

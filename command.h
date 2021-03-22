@@ -38,9 +38,9 @@ typedef enum enum_Command
  * @brief Ejecuta un comando
  *
  * @file command.c
- * @author Álvaro Derecho, Sergio Domínquez, Joseba Arranz
+ * @author Profesores PPROG
  * @version 1.0
- * @date 15/02/2021
+ * @date 13-01-2015
  * @return T_Command
  */
 T_Command command_get_user_input();
