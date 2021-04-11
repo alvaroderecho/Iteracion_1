@@ -14,21 +14,21 @@
 #include "game_reader.h"
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
-void game_loop_run(Game game, Graphic_engine *gengine);
-void game_loop_cleanup(Game game, Graphic_engine *gengine);
+void game_loop_run(Game *game, Graphic_engine *gengine);
+void game_loop_cleanup(Game *game, Graphic_engine *gengine);
 
 int main(int argc, char *argv[])
 {
-  Game game;
+  Game *game = NULL;
   Graphic_engine *gengine;
-
+  
   if (argc < 2)
   {
     fprintf(stderr, "Use: %s <game_data_file>\n", argv[0]);
     return 1;
   }
 
-  if (!game_loop_init(&game, &gengine, argv[1]))
+  if (!game_loop_init(game, &gengine, argv[1]))
   {
     game_loop_run(game, gengine);
     game_loop_cleanup(game, gengine);
@@ -55,20 +55,20 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
   return 0;
 }
 
-void game_loop_run(Game game, Graphic_engine *gengine)
+void game_loop_run(Game *game, Graphic_engine *gengine)
 {
   T_Command command = NO_CMD;
 
-  while ((command != EXIT) && !game_is_over(&game))
+  while ((command != EXIT) && !game_is_over(game))
   {
-    graphic_engine_paint_game(gengine, &game);
+    graphic_engine_paint_game(gengine, game);
     command = command_get_user_input();
-    game_update(&game, command);
+    game_update(game, command);
   }
 }
 
-void game_loop_cleanup(Game game, Graphic_engine *gengine)
+void game_loop_cleanup(Game *game, Graphic_engine *gengine)
 {
-  game_destroy(&game);
+  game_destroy(game);
   graphic_engine_destroy(gengine);
 }

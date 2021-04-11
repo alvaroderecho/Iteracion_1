@@ -16,6 +16,15 @@
 
 #define N_CALLBACK 9
 
+struct _Game
+{
+  Player *player;                 //Puntero al jugador del juego
+  Object *objects[OBJECTS];                 //Puntero al objeto
+  Space *spaces[MAX_SPACES + 1];  //Espacios de un juego
+  T_Command last_cmd;             //Último comando escrito por pantalla
+  Die *die;                       //Dado usado en el juego
+};
+
 /**
    Define the function type for the callbacks
 */
@@ -477,4 +486,8 @@ void game_callback_roll(Game *game){
 if (die_roll(game_get_die(game)) == ERROR){
   return;
 }
+}
+Object ** game_get_objects(Game *game){
+  if (game==NULL) return NULL;
+  return game->objects;
 }

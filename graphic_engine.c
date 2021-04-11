@@ -54,6 +54,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   T_Command last_cmd = UNKNOWN;
   extern char *cmd_to_str[N_CMD][N_CMDT];
   int i,num_o;
+  Object **objects=NULL;
 
   /* Paint the in the map area */
   screen_area_clear(ge->map);
@@ -127,8 +128,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   screen_area_puts(ge->descript, str);
 
   for (i=0;i<num_o;i++)  {
-      if ((obj_loc = game_get_object_location(game,object_get_id(game->objects[i]))) != NO_ID) {
-          sprintf(str,"O%d:%d ",(int)object_get_id(game->objects[i]), (int)obj_loc);
+    objects=game_get_objects(game);
+      if ((obj_loc = game_get_object_location(game,object_get_id(objects[i]))) != NO_ID) {
+          sprintf(str,"O%d:%d ",(int)object_get_id(objects[i]), (int)obj_loc);
       } 
       screen_area_puts(ge->descript,str);
   }
@@ -139,15 +141,15 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   sprintf(str, "Player object:");
   screen_area_puts(ge->descript, str);
 
-  if (player_get_object(game->player) != NO_ID) {
-  sprintf(str, "O%d",(int)player_get_object(game->player));
+  if (player_get_object(game_get_player(game)) != NO_ID) {
+  sprintf(str, "O%d",(int)player_get_object(game_get_player(game)));
   screen_area_puts(ge->descript, str);
   }
 
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
 
-  sprintf(str, "Last die value: %d",die_getLastThrow(game->die));
+  sprintf(str, "Last die value: %d",die_getLastThrow(game_get_die(game)));
   screen_area_puts(ge->descript, str);
 
   /* Paint in the banner area */

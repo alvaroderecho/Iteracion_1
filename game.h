@@ -20,14 +20,7 @@
 
 #define OBJECTS 120
 
-typedef struct _Game
-{
-  Player *player;                 //Puntero al jugador del juego
-  Object *objects[OBJECTS];                 //Puntero al objeto
-  Space *spaces[MAX_SPACES + 1];  //Espacios de un juego
-  T_Command last_cmd;             //Último comando escrito por pantalla
-  Die *die;                       //Dado usado en el juego
-} Game;
+typedef struct _Game Game;
 
 /**
  * @brief Añade un espacio
@@ -252,6 +245,16 @@ STATUS game_add_object(Game *game, Object* object);
  * @return int
  */
 int game_num_o(Game *game);
-
+/**
+ * @brief Devuelve el array de objetos
+ *
+ * @file game.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 2021
+ * @param game Juego usado
+ * @return ** Object
+ */
+Object ** game_get_objects(Game *game);
 
 #endif
