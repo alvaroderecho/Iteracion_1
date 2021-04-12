@@ -154,7 +154,7 @@ STATUS game_reader_load_objects(Game *game, char *filename)
       toks = strtok(NULL, "|");
       obj_location = atol(toks);
 #ifdef DEBUG
-      printf("Leido: %ld|%s|%ld", id, name, obj_location);
+      printf("Leido: %ld|%s|%ld|%ld|", id, name, location,object);
 #endif
       object = object_create(id);
       if (object != NULL)
@@ -173,4 +173,58 @@ STATUS game_reader_load_objects(Game *game, char *filename)
   fclose(file);
   return status;
 
+}
+STATUS game_reader_load_player(Game *game, char *filename){
+    FILE *file = NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id id, location,object;
+  Player *player;
+  STATUS status = OK;
+
+  if (!filename)
+  {
+    return ERROR;
+  }
+
+  file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    return ERROR;
+  }
+
+  while (fgets(line, WORD_SIZE, file))
+  {
+
+    if (strncmp("#o:", line, 3) == 0)
+    {
+      toks = strtok(line + 3, "|");
+      id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      location = atol(toks);
+      toks = strtok(NULL, "|");
+      object = atol(toks);
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld", id, name, obj_location);
+#endif
+      player = player_create(id);
+      if (object != NULL)
+      {
+        player_set_name(player, name);
+        player_set_id(player,id);
+        player_set_location(player,location);
+        player_set_object(player,object);
+        game_add_player(game,player);
+      }
+    }
+  }
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+  return status;
 }

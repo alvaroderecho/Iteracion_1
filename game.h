@@ -256,5 +256,17 @@ int game_num_o(Game *game);
  * @return ** Object
  */
 Object ** game_get_objects(Game *game);
+/**
+ * @brief Añade un jugador
+ *
+ * @file game.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 12/04/2021
+ * @param game Juego usado
+ * @param player Jugador a añadir
+ * @return STATUS
+ */
+STATUS game_add_player(Game *game, Player *player);
 
 #endif

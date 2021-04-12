@@ -18,11 +18,11 @@
 
 struct _Game
 {
-  Player *player;                 //Puntero al jugador del juego
-  Object *objects[OBJECTS];                 //Puntero al objeto
-  Space *spaces[MAX_SPACES + 1];  //Espacios de un juego
-  T_Command last_cmd;             //Último comando escrito por pantalla
-  Die *die;                       //Dado usado en el juego
+  Player *player;                //Puntero al jugador del juego
+  Object *objects[OBJECTS];      //Puntero al objeto
+  Space *spaces[MAX_SPACES + 1]; //Espacios de un juego
+  T_Command last_cmd;            //Último comando escrito por pantalla
+  Die *die;                      //Dado usado en el juego
 };
 
 /**
@@ -91,16 +91,17 @@ STATUS game_set_object_location(Game *game, Id id, Id id2)
     return ERROR;
   }
 
-  if (space_set_object(game_get_space(game, id), object_get_id(game_get_object(game,id2))) == ERROR)
+  if (space_set_object(game_get_space(game, id), object_get_id(game_get_object(game, id2))) == ERROR)
     return ERROR;
 
   return OK;
 }
 
-int game_num_o(Game *game) {
-  int i=0;
-  while (game->objects[i]!= NULL)
-  i++;
+int game_num_o(Game *game)
+{
+  int i = 0;
+  while (game->objects[i] != NULL)
+    i++;
   return i;
 }
 
@@ -113,7 +114,8 @@ STATUS game_create(Game *game)
     game->spaces[i] = NULL;
   }
 
-  for (i=0;i<OBJECTS;i++) {
+  for (i = 0; i < OBJECTS; i++)
+  {
     game->objects[i] = NULL;
   }
 
@@ -167,10 +169,12 @@ STATUS game_add_space(Game *game, Space *space)
   return OK;
 }
 
-STATUS game_add_object(Game *game, Object* object) {
-  int i=0;
+STATUS game_add_object(Game *game, Object *object)
+{
+  int i = 0;
 
-  if (object == NULL) return ERROR;
+  if (object == NULL)
+    return ERROR;
 
   while ((i < OBJECTS) && (game->objects[i] != NULL))
   {
@@ -183,7 +187,6 @@ STATUS game_add_object(Game *game, Object* object) {
 
   game->objects[i] = object;
   return OK;
-
 }
 
 Id game_get_space_id_at(Game *game, int position)
@@ -244,8 +247,9 @@ Object *game_get_object(Game *game, Id id)
     return NULL;
   }
 
-  for (i=0;i<OBJECTS;i++) {
-      if (object_get_id(game->objects[i]) == id)
+  for (i = 0; i < OBJECTS; i++)
+  {
+    if (object_get_id(game->objects[i]) == id)
       return game->objects[i];
   }
   return NULL;
@@ -261,20 +265,21 @@ Id game_player_get_location(Game *game)
   return player_get_location(game_get_player(game));
 }
 
-Id game_get_object_location(Game *game, Id id) 
+Id game_get_object_location(Game *game, Id id)
 {
   Id object_id;
-  int i,j;
+  int i, j;
 
-  object_id = object_get_id(game_get_object(game,id));
+  object_id = object_get_id(game_get_object(game, id));
 
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
-    for (j=0;j<space_number_of_objects(game->spaces[i]);j++){
-    if (space_get_object(game->spaces[i],j) == object_id)
+    for (j = 0; j < space_number_of_objects(game->spaces[i]); j++)
     {
-      return space_get_id(game->spaces[i]);
-    }
+      if (space_get_object(game->spaces[i], j) == object_id)
+      {
+        return space_get_id(game->spaces[i]);
+      }
     }
   }
 
@@ -305,7 +310,7 @@ void game_print_data(Game *game)
     space_print(game->spaces[i]);
   }
 
-  printf("=> Object location: %d\n", (int)game_get_object_location(game,1));
+  printf("=> Object location: %d\n", (int)game_get_object_location(game, 1));
   printf("=> Player location: %d\n", (int)game_player_get_location(game));
   printf("prompt:> ");
 }
@@ -389,7 +394,7 @@ void game_callback_take(Game *game)
 
   space_id = game_player_get_location(game);
 
-  scanf(" O%ld",&object_id);
+  scanf(" O%ld", &object_id);
 
   if (space_id == NO_ID)
     return;
@@ -400,7 +405,7 @@ void game_callback_take(Game *game)
   }
 
   player_set_object(game_get_player(game), object_id);
-  space_set_object(game_get_space(game,space_id), NO_ID);
+  space_set_object(game_get_space(game, space_id), NO_ID);
 
   return;
 }
@@ -422,8 +427,8 @@ void game_callback_drop(Game *game)
 
   object_id = player_get_object(game_get_player(game)); //id del objeto del jugador
 
-  player_set_object(game_get_player(game), NO_ID);  //poner id del objeto del jugador a NO_ID
-  space_set_object(game_get_space(game,space_id), object_id);
+  player_set_object(game_get_player(game), NO_ID); //poner id del objeto del jugador a NO_ID
+  space_set_object(game_get_space(game, space_id), object_id);
 
   return;
 }
@@ -482,12 +487,23 @@ void game_callback_right(Game *game)
   }
 }
 
-void game_callback_roll(Game *game){
-if (die_roll(game_get_die(game)) == ERROR){
-  return;
+void game_callback_roll(Game *game)
+{
+  if (die_roll(game_get_die(game)) == ERROR)
+  {
+    return;
+  }
 }
-}
-Object ** game_get_objects(Game *game){
-  if (game==NULL) return NULL;
+Object **game_get_objects(Game *game)
+{
+  if (game == NULL)
+    return NULL;
   return game->objects;
+}
+STATUS game_add_player(Game *game, Player *player)
+{
+  if (player == NULL)
+    return ERROR;
+  game->player = player;
+  return OK;
 }
