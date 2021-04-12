@@ -211,7 +211,7 @@ STATUS game_reader_load_player(Game *game, char *filename){
       printf("Leido: %ld|%s|%ld", id, name, obj_location);
 #endif
       player = player_create(id);
-      if (object != NULL)
+      if (player != NULL)
       {
         player_set_name(player, name);
         player_set_id(player,id);
