@@ -1,3 +1,12 @@
+/**
+ * @brief Tests del módulo link.c
+ *
+ * @author Álvaro Derecho
+ * @file link_test.c
+ * @version 1.0
+ * @date 12-04-2021
+ */
+
 #ifndef LINK_TEST_H
 #define LINK_TEST_H
 
