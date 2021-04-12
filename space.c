@@ -132,7 +132,7 @@ STATUS space_add_object(Space *space, Id id)
     return ERROR;
   return OK;
 } //establecer un objeto
-STATUS spàce_del_object(Space *space, Id id)
+STATUS space_del_object(Space *space, Id id)
 {
   if (!space)
   {
