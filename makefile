@@ -22,7 +22,7 @@ object.o: object.c object.h types.h
 screen.o: screen.c screen.h
 	$(CC) $(CFLAGS) -c screen.c
 
-space.o: space.c space.h types.h set.h
+space.o: space.c space.h types.h set.h 
 	$(CC) $(CFLAGS) -c space.c
 
 command.o: command.c command.h
@@ -43,10 +43,10 @@ die_test: die_test.o die.o
 die_test.o: die_test.c die_test.h test.h die.h
 	$(CC) $(CFLAGS) -c die_test.c
 
-space_test: space_test.o space.o
-	$(CC) $(CFLAGS) -ospace_test space_test.o space.o
+space_test: space_test.o space.o set.o
+	$(CC) $(CFLAGS) -ospace_test space_test.o space.o set.o
 
-space_test.o: space_test.c space_test.h test.h space.h
+space_test.o: space_test.c space_test.h test.h space.h set.h
 	$(CC) $(CFLAGS) -c space_test.c
 
 set.o: set.c set.h types.h

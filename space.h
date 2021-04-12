@@ -248,8 +248,20 @@ char **space_get_gDesc(Space *space);
  * @author Joseba Arranz
  * @version 1.0
  * @date 15/03/2021
- * @param s Espacio usado
+ * @param space Espacio usado
  * @return STATUS
  */
 STATUS space_set_gDesc(Space *space, char **gDesc);
+/**
+ * @brief Elimina un objeto de un espacio
+ *
+ * @file space.c
+ * @author Joseba Arranz
+ * @version 1.0
+ * @date 12/04/2021
+ * @param space Espacio usado
+ * @param id id del objeto
+ * @return STATUS
+ */
+STATUS space_del_object(Space *space, Id id);
 #endif
