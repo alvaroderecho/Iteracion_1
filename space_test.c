@@ -151,15 +151,15 @@ void test2_space_set_west() {
   PRINT_TEST_RESULT(space_set_west(s, 4) == ERROR);
 }
 
-void test1_space_set_object() {
+void test1_space_add_object() {
   Space *s;
   s = space_create(1);
-  PRINT_TEST_RESULT(space_set_object(s,TRUE) == OK);
+  PRINT_TEST_RESULT(space_add_object(s,TRUE) == OK);
 }
 
-void test2_space_set_object() {
+void test2_space_add_object() {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_object(s,TRUE) == ERROR);
+  PRINT_TEST_RESULT(space_add_object(s,TRUE) == ERROR);
 }
 
 void test1_space_get_name() {
@@ -179,21 +179,21 @@ void test2_space_get_name() {
 void test1_space_get_object() {
   Space *s;
   s = space_create(1);
-  PRINT_TEST_RESULT(space_get_object(s) == FALSE);
+  PRINT_TEST_RESULT(space_get_object(s,1) == FALSE);
      
 }
 
 void test2_space_get_object() {
   Space *s;
   s = space_create(1);
-  space_set_object(s,TRUE);
-  PRINT_TEST_RESULT(space_get_object(s) == TRUE);
+  space_add_object(s,TRUE);
+  PRINT_TEST_RESULT(space_get_object(s,1) == TRUE);
      
 }
 
 void test3_space_get_object() {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_object(s) == FALSE);
+  PRINT_TEST_RESULT(space_get_object(s,1) == FALSE);
 }
 
 void test1_space_get_north() {

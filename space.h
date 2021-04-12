@@ -193,7 +193,7 @@ Id space_get_west(Space *space);
  * @param id Id del objeto
  * @return STATUS
  */
-STATUS space_set_object(Space *space, Id id);
+STATUS space_add_object(Space *space, Id id);
 
 /**
  * @brief Devuelve la Id del objeto

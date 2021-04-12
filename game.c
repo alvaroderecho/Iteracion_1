@@ -91,7 +91,7 @@ STATUS game_set_object_location(Game *game, Id id, Id id2)
     return ERROR;
   }
 
-  if (space_set_object(game_get_space(game, id), object_get_id(game_get_object(game, id2))) == ERROR)
+  if (space_add_object(game_get_space(game, id), object_get_id(game_get_object(game, id2))) == ERROR)
     return ERROR;
 
   return OK;
@@ -405,7 +405,7 @@ void game_callback_take(Game *game)
   }
 
   player_set_object(game_get_player(game), object_id);
-  space_set_object(game_get_space(game, space_id), NO_ID);
+  space_del_object(game_get_space(game, space_id),object_id);
 
   return;
 }
@@ -428,7 +428,7 @@ void game_callback_drop(Game *game)
   object_id = player_get_object(game_get_player(game)); //id del objeto del jugador
 
   player_set_object(game_get_player(game), NO_ID); //poner id del objeto del jugador a NO_ID
-  space_set_object(game_get_space(game, space_id), object_id);
+  space_add_object(game_get_space(game, space_id), object_id);
 
   return;
 }
