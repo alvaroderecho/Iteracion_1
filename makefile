@@ -1,8 +1,8 @@
 CFLAGS = -g -Wall -pedantic
 CC = gcc
 
-exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o
-	$(CC) $(CFLAGS) -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o
+exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o
+	$(CC) $(CFLAGS) -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o
 
 game_loop.o: game_loop.c graphic_engine.h game.h command.h space.h types.h object.h player.h screen.h game_reader.h
 	$(CC) $(CFLAGS) -c game_loop.c
@@ -55,6 +55,15 @@ set.o: set.c set.h types.h
 die.o: die.c die.h types.h
 	$(CC) $(CFALGS) -c die.c
 
+link.o: link.c link.h types.h
+	$(CC) $(CFALGS) -c link.c	
+
+link_test: link_test.o link.o
+	$(CC) $(CFLAGS) -olink_test link_test.o link.o
+
+link_test.o: link_test.c link_test.h link.h types.h test.h
+	$(CC) $(CFLAGS) -c link_test.c
+
 clean:
 	@echo "Cleaning: "
-	rm -rf *.o exe space_test die_test set_test
+	rm -rf *.o exe space_test die_test set_test link_test

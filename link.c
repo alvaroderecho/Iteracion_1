@@ -16,6 +16,9 @@ Link *link_create(Id id)
 {
 
     Link *link;
+
+    if (id == NO_ID) return NULL;
+    
     if ((link = (Link *)malloc(sizeof(Link))) == NULL)
         return NULL;
 
