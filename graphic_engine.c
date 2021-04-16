@@ -201,7 +201,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
     objects = game_get_objects(game);
     if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
     {
-      sprintf(str, "O%d:%d ", (int)object_get_id(objects[i]), (int)obj_loc);
+      sprintf(str, "%s:%d", object_get_name(objects[i]), (int)obj_loc);
     }
     screen_area_puts(ge->descript, str);
   }
@@ -214,7 +214,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 
   if (player_get_object(game_get_player(game)) != NO_ID)
   {
-    sprintf(str, "O%d", (int)player_get_object(game_get_player(game)));
+    sprintf(str, "%s", object_get_name (game_get_object (game,player_get_object(game_get_player(game))))); //nombre del objeto que lleva el jugador
     screen_area_puts(ge->descript, str);
   }
 
