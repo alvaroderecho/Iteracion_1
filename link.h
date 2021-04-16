@@ -166,4 +166,17 @@ BOOL link_get_state(const Link *link);
  */
 STATUS link_print(const Link *link);
 
+/**
+ * @brief Establece un estado al enlace
+ *
+ * @file link.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 23/03/2021
+ * @param link Enlace de interés
+ * @param st Estado del enlace
+ * @return STATUS
+ */
+STATUS link_set_state(Link *l, BOOL st);
+
 #endif

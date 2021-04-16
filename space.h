@@ -13,6 +13,7 @@
 
 #include "types.h"
 #include "set.h"
+#include "link.h"
 #define MAX_LINES 3
 
 typedef struct _Space Space;
@@ -93,7 +94,7 @@ const char *space_get_name(Space *space);
  * @param id Id del norte
  * @return STATUS
  */
-STATUS space_set_north(Space *space, Id id);
+STATUS space_set_north(Space *space, Link * link);
 
 /**
  * @brief Devuelve el norte de un espacio
@@ -105,7 +106,7 @@ STATUS space_set_north(Space *space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_north(Space *space);
+Link * space_get_north(Space *space);
 
 /**
  * @brief Establece el sur de un espacio
@@ -118,7 +119,7 @@ Id space_get_north(Space *space);
  * @param id Id del sur
  * @return STATUS
  */
-STATUS space_set_south(Space *space, Id id);
+STATUS space_set_south(Space *space, Link * link);
 
 /**
  * @brief Devuelve el sur de un espacio
@@ -130,7 +131,7 @@ STATUS space_set_south(Space *space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_south(Space *space);
+Link * space_get_south(Space *space);
 
 /**
  * @brief Establece el este de un espacio
@@ -143,7 +144,7 @@ Id space_get_south(Space *space);
  * @param id Id del este
  * @return STATUS
  */
-STATUS space_set_east(Space *space, Id id);
+STATUS space_set_east(Space *space, Link * link);
 
 /**
  * @brief Devuelve el este de un espacio
@@ -155,7 +156,7 @@ STATUS space_set_east(Space *space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_east(Space *space);
+Link * space_get_east(Space *space);
 
 /**
  * @brief Establece el oeste de un espacio
@@ -168,7 +169,7 @@ Id space_get_east(Space *space);
  * @param id Id del oeste
  * @return STATUS
  */
-STATUS space_set_west(Space *space, Id id);
+STATUS space_set_west(Space *space, Link * link);
 
 /**
  * @brief Devuelve el oeste de un espacio
@@ -180,7 +181,7 @@ STATUS space_set_west(Space *space, Id id);
  * @param space Espacio usado
  * @return Id
  */
-Id space_get_west(Space *space);
+Link * space_get_west(Space *space);
 
 /**
  * @brief Establece la id de un objeto
@@ -264,4 +265,17 @@ STATUS space_set_gDesc(Space *space, char **gDesc);
  * @return STATUS
  */
 STATUS space_del_object(Space *space, Id id);
+
+/**
+ * @brief Comprueba si dos espacios están conectados
+ *
+ * @file space.c
+ * @author Álvaro Derecho y Joseba Arranz
+ * @version 1.0
+ * @date 16/04/2021
+ * @param sp1 Espacio 1
+ * @param sp2 Espacio 2
+ * @return BOOL
+ */
+BOOL space_if_connected (Space *sp1, Space *sp2);
 #endif

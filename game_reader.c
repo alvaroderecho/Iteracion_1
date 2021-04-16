@@ -13,6 +13,7 @@
 #include <string.h>
 #include "game_reader.h"
 #include "space.h"
+#include "link.h"
 
 STATUS game_reader_load_spaces(Game *game, char *filename)
 {
@@ -20,7 +21,7 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char *toks = NULL;
-  Id id = NO_ID, north = NO_ID, east = NO_ID, south = NO_ID, west = NO_ID;
+  Id id = NO_ID;
   Space *space = NULL;
   STATUS status = OK;
   char **spgdesc;
@@ -58,13 +59,9 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
       toks = strtok(NULL, "|");
       strcpy(name, toks);
       toks = strtok(NULL, "|");
-      north = atol(toks);
       toks = strtok(NULL, "|");
-      east = atol(toks);
       toks = strtok(NULL, "|");
-      south = atol(toks);
       toks = strtok(NULL, "|");
-      west = atol(toks);
       for (i=0;i<MAX_LINES;i++) {
       toks = strtok(NULL, "|");
       strcpy(spgdesc[i], toks);          
@@ -76,10 +73,6 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
       if (space != NULL)
       {
         space_set_name(space, name);
-        space_set_north(space, north);
-        space_set_east(space, east);
-        space_set_south(space, south);
-        space_set_west(space, west);
         space_set_gDesc(space,spgdesc);
         game_add_space(game, space);
       }
@@ -117,6 +110,10 @@ STATUS game_reader_create_from_file(Game *game, char *filename)
   if (game_reader_load_objects(game, filename) == ERROR)
     return ERROR;
 
+  if (game_reader_load_links(game,filename) == ERROR) 
+    return ERROR;
+
+    //FALTA game_reader_load_players
 
   return OK;
 }
@@ -227,4 +224,76 @@ STATUS game_reader_load_player(Game *game, char *filename){
 
   fclose(file);
   return status;
+}
+
+STATUS game_reader_load_links(Game *game, char *filename)
+{
+  FILE *file = NULL;
+  BOOL l_st;
+  Id id, sp1, sp2;
+  char name[WORD_SIZE+1] = "";
+  char line[WORD_SIZE] = "";
+  char *toks = NULL;
+  Link *link;
+  STATUS status = OK;
+
+  if (!filename) return ERROR;
+
+  file = fopen(filename,"r");
+  if (file == NULL) return ERROR;
+
+  while (fgets(line,WORD_SIZE,file)) {
+
+    if (strncmp("#l:", line, 3) == 0) {
+        toks = strtok(line+3,"|");
+        id = atol(toks);
+        toks = strtok(NULL,"|");
+        strcpy(name,toks);
+        toks = strtok(NULL,"|");
+        sp1 = atol(toks);
+        toks= strtok(NULL,"|");
+        sp2 = atol(toks);
+        toks= strtok(NULL,"|");
+        l_st = atoi(toks);
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld|%ld|%ld|", id, name, sp1, sp2, l_st);
+#endif
+
+    link = link_create(id);    
+    if (link!= NULL) {
+      link_set_name(link,name);
+      link_set_sp1(link,sp1);
+      link_set_sp2(link,sp2);
+      link_set_state(link,l_st);
+
+      if (sp2 == sp1 + 1) { //casillas contiguas
+        space_set_north(game_get_space(game,sp2),link);
+        space_set_south(game_get_space(game,sp1),link);
+       
+        //space_print(game_get_space(game,sp2));
+
+      }
+      else if (sp2 == sp1 + 4) { //ocas
+        space_set_east(game_get_space(game,sp1),link); //oca, solo ida
+      }
+      else if (sp2 == sp1 + 8) { //puente ida y vuelta
+        space_set_east(game_get_space(game,sp1),link);
+        space_set_west(game_get_space(game,sp2),link);
+      }
+      else {//muerte
+        space_set_west(game_get_space(game,sp1),link);
+      }
+    }
+
+  }
+  }
+
+  
+  if (ferror(file)) {
+    status = ERROR;
+  }
+
+  fclose(file);
+  return status;
+
 }

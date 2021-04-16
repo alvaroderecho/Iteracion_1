@@ -61,8 +61,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   if ((id_act = game_player_get_location(game)) != NO_ID)
   {
     space_act = game_get_space(game, id_act);
-    id_back = space_get_north(space_act);
-    id_next = space_get_south(space_act);
+    id_back = link_get_sp1(space_get_north(space_act)); //devuelve el espacio 2 de un enlace de tipo norte (espacio superior)
+    id_next = link_get_sp2(space_get_south(space_act));
     space_next = game_get_space(game, id_next);
     space_back = game_get_space(game, id_back);
 

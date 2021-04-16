@@ -13,7 +13,7 @@ graphic_engine.o: graphic_engine.c graphic_engine.h game.h command.h space.h typ
 game.o: game.c game.h command.h space.h types.h object.h player.h set.h
 	$(CC) $(CFLAGS) -c game.c
 
-game_reader.o: game_reader.c game_reader.h game.h command.h space.h types.h object.h player.h
+game_reader.o: game_reader.c game_reader.h game.h command.h space.h types.h object.h player.h link.h
 	$(CC) $(CFLAGS) -c game_reader.c
 
 object.o: object.c object.h types.h
@@ -22,7 +22,7 @@ object.o: object.c object.h types.h
 screen.o: screen.c screen.h
 	$(CC) $(CFLAGS) -c screen.c
 
-space.o: space.c space.h types.h set.h 
+space.o: space.c space.h types.h set.h link.h
 	$(CC) $(CFLAGS) -c space.c
 
 command.o: command.c command.h

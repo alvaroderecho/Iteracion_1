@@ -63,4 +63,18 @@ STATUS game_reader_load_objects(Game *game, char *filename);
  * @return STATUS
  */
 STATUS game_reader_load_player(Game *game, char *filename);
+
+/**
+ * @brief Carga los enlaces
+ *
+ * @file game_reader.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 12/04/2021
+ * @param game Juego usado
+ * @param filename Nombre del archivo
+ * @return STATUS
+ */
+STATUS game_reader_load_links(Game *game, char *filename);
+
 #endif

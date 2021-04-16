@@ -3,17 +3,16 @@
 #include <string.h>
 #include "space.h"
 
-
 struct _Space
 {
-  Id id; //Id del espacio
+  Id id;                    //Id del espacio
   char name[WORD_SIZE + 1]; //nombre del espacio
-  Id north; //coordenada norte
-  Id south; //coordenada sur
-  Id east; //coordenada este
-  Id west; //coordenada oeste
-  Set *objects; //puntero a conjunto de objetos
-  char **gDesc; //doble puntero a descripción gráfica del espacio
+  Link *north;              //link norte
+  Link *south;              //link sur
+  Link *east;               //link este
+  Link *west;               //link oeste
+  Set *objects;             //puntero a conjunto de objetos
+  char **gDesc;             //doble puntero a descripción gráfica del espacio
 };
 
 Space *space_create(Id id)
@@ -33,17 +32,21 @@ Space *space_create(Id id)
 
   newSpace->name[0] = '\0';
 
-  newSpace->north = NO_ID; // == -1
-  newSpace->south = NO_ID; // == -1
-  newSpace->east = NO_ID;  // == -1
-  newSpace->west = NO_ID;  // == -1
+  newSpace->north = NULL;
+  newSpace->south = NULL;
+  newSpace->east = NULL;
+  newSpace->west = NULL;
 
   newSpace->objects = set_create();
 
-  if ((newSpace->gDesc = (char**)malloc(3*sizeof(char*))) == NULL) return NULL; //tres filas
-  if ((newSpace->gDesc[0] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //primera fila
-  if ((newSpace->gDesc[1] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //segunda fila
-  if ((newSpace->gDesc[2] = (char*)malloc(9*sizeof(char))) == NULL) return NULL; //tercera fila
+  if ((newSpace->gDesc = (char **)malloc(3 * sizeof(char *))) == NULL)
+    return NULL; //tres filas
+  if ((newSpace->gDesc[0] = (char *)malloc(9 * sizeof(char))) == NULL)
+    return NULL; //primera fila
+  if ((newSpace->gDesc[1] = (char *)malloc(9 * sizeof(char))) == NULL)
+    return NULL; //segunda fila
+  if ((newSpace->gDesc[2] = (char *)malloc(9 * sizeof(char))) == NULL)
+    return NULL; //tercera fila
 
   return newSpace;
 }
@@ -55,11 +58,18 @@ STATUS space_destroy(Space *space)
   {               // == 0
     return ERROR; //no se puede eliminar
   }
-  for (i=0;i<MAX_LINES;i++) {
+  for (i = 0; i < MAX_LINES; i++)
+  {
     free(space->gDesc[i]);
   }
   free(space->gDesc);
   set_destroy(space->objects);
+
+  
+  link_destroy(space->north);
+  link_destroy(space->south);
+  link_destroy(space->east);
+  link_destroy(space->west);
   free(space); //libera memoria
   space = NULL;
 
@@ -81,43 +91,43 @@ STATUS space_set_name(Space *space, char *name)
   return OK; //completado
 }
 
-STATUS space_set_north(Space *space, Id id)
+STATUS space_set_north(Space *space, Link *link)
 {
-  if (!space || id == NO_ID)
+  if (!space || !link)
   {
     return ERROR;
   }
-  space->north = id;
+  space->north = link;
   return OK;
 } //norte del espacio
 
-STATUS space_set_south(Space *space, Id id)
+STATUS space_set_south(Space *space, Link *link)
 {
-  if (!space || id == NO_ID)
+  if (!space || !link)
   {
     return ERROR;
   }
-  space->south = id;
+  space->south = link;
   return OK;
 } //sur del espacio
 
-STATUS space_set_east(Space *space, Id id)
+STATUS space_set_east(Space *space, Link *link)
 {
-  if (!space || id == NO_ID)
+  if (!space || !link)
   {
     return ERROR;
   }
-  space->east = id;
+  space->east = link;
   return OK;
 } //este del espacio
 
-STATUS space_set_west(Space *space, Id id)
+STATUS space_set_west(Space *space, Link *link)
 {
-  if (!space || id == NO_ID)
+  if (!space || !link)
   {
     return ERROR;
   }
-  space->west = id;
+  space->west = link;
   return OK;
 } //oeste del espacio
 
@@ -142,7 +152,7 @@ STATUS space_del_object(Space *space, Id id)
   if (set_del_values(space->objects, id) == ERROR)
     return ERROR;
   return OK;
-} 
+}
 
 const char *space_get_name(Space *space)
 {
@@ -162,38 +172,38 @@ Id space_get_id(Space *space)
   return space->id;
 } //solicitar ID
 
-Id space_get_north(Space *space)
+Link *space_get_north(Space *space)
 {
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
   return space->north;
 } //solicitar norte
 
-Id space_get_south(Space *space)
+Link *space_get_south(Space *space)
 {
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
   return space->south;
 } //solicitar sur
 
-Id space_get_east(Space *space)
+Link *space_get_east(Space *space)
 {
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
   return space->east;
 } //solicitar este
 
-Id space_get_west(Space *space)
+Link *space_get_west(Space *space)
 {
   if (!space)
   {
-    return NO_ID;
+    return NULL;
   }
   return space->west;
 } //solicitar oeste
@@ -222,15 +232,15 @@ STATUS space_set_gDesc(Space *space, char **desc)
   int i;
   if (space == NULL)
     return ERROR;
-  for (i=0;i<MAX_LINES;i++)
-  strcpy(space->gDesc[i],desc[i]);
+  for (i = 0; i < MAX_LINES; i++)
+    strcpy(space->gDesc[i], desc[i]);
 
   return OK;
 }
 
 STATUS space_print(Space *space)
 {
-  Id idaux = NO_ID;
+  Link *link = NULL;
   int i;
   if (!space)
   {
@@ -240,40 +250,40 @@ STATUS space_print(Space *space)
   fprintf(stdout, "--> Space (Id: %ld; Name: %s)\n", space->id, space->name);
   //Muestra ID y nombre del espacio
 
-  idaux = space_get_north(space);
-  if (NO_ID != idaux)
+  link = space_get_north(space);
+  if (NULL != link)
   { //implica norte diferente a -1
-    fprintf(stdout, "---> North link: %ld.\n", idaux);
+    fprintf(stdout, "---> North link: %ld.\n", link_getId(link));
   }
   else
   {
     fprintf(stdout, "---> No north link.\n");
   }
 
-  idaux = space_get_south(space);
-  if (NO_ID != idaux)
+  link = space_get_south(space);
+  if (NULL != link)
   { //implica sur diferente a -1
-    fprintf(stdout, "---> South link: %ld.\n", idaux);
+    fprintf(stdout, "---> South link: %ld.\n", link_getId(link));
   }
   else
   {
     fprintf(stdout, "---> No south link.\n");
   }
 
-  idaux = space_get_east(space);
-  if (NO_ID != idaux)
+  link = space_get_east(space);
+  if (NULL != link)
   { //implica este diferente a -1
-    fprintf(stdout, "---> East link: %ld.\n", idaux);
+    fprintf(stdout, "---> East link: %ld.\n", link_getId(link));
   }
   else
   {
     fprintf(stdout, "---> No east link.\n");
   }
 
-  idaux = space_get_west(space);
-  if (NO_ID != idaux)
+  link = space_get_west(space);
+  if (NULL != link)
   { //implica oeste diferente a -1
-    fprintf(stdout, "---> West link: %ld.\n", idaux);
+    fprintf(stdout, "---> West link: %ld.\n", link_getId(link));
   }
   else
   {
@@ -304,4 +314,16 @@ int space_number_of_objects(Space *s)
     return i;
 
   return 0;
+}
+
+BOOL space_if_connected(Space *sp1, Space *sp2)
+{
+
+  if (link_getId(space_get_north(sp2)) == link_getId(space_get_south(sp1)))
+    return TRUE;
+
+  else if (link_getId(space_get_east(sp1)) == link_getId(space_get_west(sp2)))
+    return TRUE;
+
+  return FALSE;
 }

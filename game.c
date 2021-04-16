@@ -78,6 +78,15 @@ STATUS game_player_set_location(Game *game, Id id)
   return player_set_location(game_get_player(game), id);
 }
 
+Game *game_init()
+{
+  Game *game = NULL;
+
+  if ((game = (Game *)malloc(sizeof(Game))) == NULL)
+    return NULL;
+  return game;
+}
+
 STATUS game_set_object_location(Game *game, Id id, Id id2)
 {
 
@@ -107,9 +116,9 @@ int game_num_o(Game *game)
 
 STATUS game_create(Game *game)
 {
-  int i;
 
-  for (i = 0; i < MAX_SPACES; i++)
+  int i;
+  for (i = 0; i <= MAX_SPACES; i++)
   {
     game->spaces[i] = NULL;
   }
@@ -120,7 +129,9 @@ STATUS game_create(Game *game)
   }
 
   game->player = player_create(1);
+
   game->last_cmd = NO_CMD;
+
   game->die = die_create(1, 1, 6);
 
   return OK;
@@ -141,7 +152,7 @@ STATUS game_destroy(Game *game)
 
   player_destroy(game_get_player(game));
   die_destroy(game_get_die(game));
-
+  free(game);
   return OK;
 }
 
@@ -349,7 +360,7 @@ void game_callback_next(Game *game)
     current_id = space_get_id(game->spaces[i]);
     if (current_id == space_id)
     {
-      current_id = space_get_south(game->spaces[i]);
+      current_id = link_get_sp2(space_get_south(game->spaces[i]));
       if (current_id != NO_ID)
       {
         game_player_set_location(game, current_id);
@@ -377,7 +388,7 @@ void game_callback_back(Game *game)
     current_id = space_get_id(game->spaces[i]);
     if (current_id == space_id)
     {
-      current_id = space_get_north(game->spaces[i]);
+      current_id = link_get_sp1(space_get_north(game->spaces[i]));
       if (current_id != NO_ID)
       {
         game_player_set_location(game, current_id);
@@ -405,7 +416,7 @@ void game_callback_take(Game *game)
   }
 
   player_set_object(game_get_player(game), object_id);
-  space_del_object(game_get_space(game, space_id),object_id);
+  space_del_object(game_get_space(game, space_id), object_id);
 
   return;
 }
@@ -450,7 +461,11 @@ void game_callback_left(Game *game)
     current_id = space_get_id(game->spaces[i]);
     if (current_id == space_id)
     {
-      current_id = space_get_west(game->spaces[i]);
+      if (link_getId(space_get_west(game->spaces[i])) == 31)
+        current_id = link_get_sp2(space_get_west(game->spaces[i]));
+      else
+        current_id = link_get_sp1(space_get_west(game->spaces[i]));
+
       if (current_id != NO_ID)
       {
         game_player_set_location(game, current_id);
@@ -477,7 +492,7 @@ void game_callback_right(Game *game)
     current_id = space_get_id(game->spaces[i]);
     if (current_id == space_id)
     {
-      current_id = space_get_east(game->spaces[i]);
+      current_id = link_get_sp2(space_get_east(game->spaces[i]));
       if (current_id != NO_ID)
       {
         game_player_set_location(game, current_id);

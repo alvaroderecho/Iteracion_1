@@ -19,7 +19,7 @@ void game_loop_cleanup(Game *game, Graphic_engine *gengine);
 
 int main(int argc, char *argv[])
 {
-  Game *game = NULL;
+  Game *game;
   Graphic_engine *gengine;
   
   if (argc < 2)
@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Use: %s <game_data_file>\n", argv[0]);
     return 1;
   }
+
+  if ((game = game_init()) == NULL ) return 1;
 
   if (!game_loop_init(game, &gengine, argv[1]))
   {

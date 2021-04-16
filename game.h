@@ -269,4 +269,15 @@ Object ** game_get_objects(Game *game);
  */
 STATUS game_add_player(Game *game, Player *player);
 
+/**
+ * @brief Reserva memoria para un Game
+ *
+ * @file game.c
+ * @author Álvaro Derecho y Joseba Arranz 
+ * @version 1.0
+ * @date 16/04/2021
+ * @return Game
+ */
+Game * game_init();
+
 #endif

@@ -9,7 +9,7 @@ struct _Link
     char name[WORD_SIZE + 1]; //nombre del enlace
     Id sp1;                    //Id espacio inicial
     Id sp2;                    //Id espacio que conecta con el inicial
-    BOOL link_st;              //TRUE abierto, FALSE cerrado
+    BOOL link_st;              //TRUE cerrado, FALSE abierto
 };
 
 Link *link_create(Id id)
@@ -78,6 +78,13 @@ STATUS link_change_state(Link *link)
         link->link_st = FALSE;
     else
         link->link_st = TRUE;
+    return OK;
+}
+
+STATUS link_set_state(Link *l, BOOL st) {
+    if (!l) return ERROR;
+    l->link_st = st;
+
     return OK;
 }
 
