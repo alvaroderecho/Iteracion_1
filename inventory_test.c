@@ -16,7 +16,7 @@
 #include "inventory_test.h"
 #include "test.h"
 
-#define MAX_TESTS 13
+#define MAX_TESTS 20
 
 /**
  * @brief Main function for INVENTORY unit tests.
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
   int all = 1;
 
   if (argc < 2) {
-    printf("Running all test for module Die:\n");
+    printf("Running all test for module Inventory:\n");
   } else {
     test = atoi(argv[1]);
     all = 0;
@@ -58,6 +58,13 @@ int main(int argc, char** argv) {
   if (all || test == 11) test3_inventory_delId();
   if (all || test == 12) test1_inventory_setMaxInv();
   if (all || test == 13) test2_inventory_setMaxInv();
+  if (all || test == 14) test1_inventory_containsObject();
+  if (all || test == 15) test2_inventory_containsObject();
+  if (all || test == 16) test3_inventory_containsObject();
+  if (all || test == 17) test4_inventory_containsObject();
+  if (all || test == 18) test5_inventory_containsObject();
+  if (all || test == 19) test1_inventory_isEmpty();
+  if (all || test == 20) test2_inventory_isEmpty();
 
   PRINT_PASSED_PERCENTAGE;
 
@@ -149,4 +156,54 @@ void test2_inventory_setMaxInv(){
   in = inventory_create(1);
   inventory_setMaxInv(in, 3);
   PRINT_TEST_RESULT(inventory_getMaxInv(in) == 3);
+}
+
+void test1_inventory_containsObject(){
+  Inventory *in;
+  in = inventory_create(1);
+  inventory_addId(in, 1);
+  PRINT_TEST_RESULT(inventory_containsObject(in, 1) == TRUE);
+}
+
+void test2_inventory_containsObject(){
+  Inventory *in;
+  in = inventory_create(1);
+  inventory_addId(in, 2);
+  PRINT_TEST_RESULT(inventory_containsObject(in, 3) == FALSE);
+}
+
+void test3_inventory_containsObject(){
+  Inventory *in;
+  in = inventory_create(1);
+  PRINT_TEST_RESULT(inventory_containsObject(in, 3) == FALSE);
+}
+
+void test4_inventory_containsObject(){
+  Inventory *in;
+  in = inventory_create(3);
+  inventory_addId(in, 2);
+  inventory_addId(in, 1);
+  PRINT_TEST_RESULT(inventory_containsObject(in, 1) == TRUE);
+}
+
+void test5_inventory_containsObject(){
+  Inventory *in;
+  in = inventory_create(3);
+  inventory_addId(in, 2);
+  inventory_addId(in, 1);
+  inventory_delId(in, 2);
+  PRINT_TEST_RESULT(inventory_containsObject(in, 2) == FALSE);
+}
+
+void test1_inventory_isEmpty(){
+  Inventory *in;
+  in = inventory_create(1);
+  inventory_addId(in, 1);
+  PRINT_TEST_RESULT(inventory_isEmpty(in) == FALSE);
+}
+
+void test2_inventory_isEmpty(){
+  Inventory *in;
+  in = inventory_create(1);
+  PRINT_TEST_RESULT(inventory_isEmpty(in) == TRUE);
 }

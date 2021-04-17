@@ -38,4 +38,18 @@ void test1_inventory_setMaxInv();
 
 void test2_inventory_setMaxInv();
 
+void test1_inventory_containsObject();
+
+void test2_inventory_containsObject();
+
+void test3_inventory_containsObject();
+
+void test4_inventory_containsObject();
+
+void test5_inventory_containsObject();
+
+void test1_inventory_isEmpty();
+
+void test2_inventory_isEmpty();
+
 #endif
