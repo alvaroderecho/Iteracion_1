@@ -194,9 +194,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   /* Paint in the description area */
   screen_area_clear(ge->descript);
   num_o = game_num_o(game);
+  
   sprintf(str, "  Objects locations:");
   screen_area_puts(ge->descript, str);
-
+  
+  sprintf(str, " ");
+  screen_area_puts(ge->descript, str);
   for (i = 0; i < num_o; i++)
   {
     objects = game_get_objects(game);

@@ -328,3 +328,7 @@ BOOL space_if_connected(Space *sp1, Space *sp2)
 
   return FALSE;
 }
+Set *space_get_objects(Space *s){
+  if (s == NULL) return NULL;
+  return s->objects;
+}

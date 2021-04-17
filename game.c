@@ -403,26 +403,33 @@ void game_callback_back(Game *game,char * arg)
 void game_callback_take(Game *game,char * arg)
 {
   
-  Id space_id = NO_ID;
+  Id space_id = NO_ID, object_id = NO_ID;
   int i;
   space_id = game_player_get_location(game);
-
+  BOOL b;
   
 
   if (space_id == NO_ID)
     return;
-
+  for(i=0;i<OBJECTS;i++){
+    if (strcmp(arg,object_get_name(game->objects[i])) == 0){
+      object_id = object_get_id(game->objects[i]);
+      break;
+    }
+  }
   
-inventory_print(player_get_objects(game_get_player(game)));
-for (i=0;i<OBJECTS && game->objects[i] != NULL;i++){
-  if (strcmp(object_get_name(game->objects[i]),arg) == 0){
+b = set_containsId(space_get_objects(game_get_space(game,space_id)),object_id);
+if (b == TRUE){
+for (i=0;i<space_number_of_objects(game_get_space(game,space_id)) && game->objects[i] != NULL;i++){
+  if (strcmp(object_get_name(game->objects[i]),arg) == 0 ){
   player_add_object(game_get_player(game), object_get_id(game->objects[i]));
   space_del_object(game_get_space(game, space_id), object_get_id(game->objects[i]));
   return ;
   }
+}
 
 }
-inventory_print(player_get_objects(game_get_player(game)));
+
   return;
 }
 
@@ -444,8 +451,9 @@ void game_callback_drop(Game *game,char * arg)
   object_id = inventory_getIds(player_get_objects(game_get_player(game))); //id del objeto del jugador
 for (i=0;i < inventory_getNumids(player_get_objects(game_get_player(game)));i++){
   if (strcmp(object_get_name(game_get_object(game,object_id[i])),arg) == 0){
-  player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
   space_add_object(game_get_space(game, space_id), object_id[i]);
+  player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
+  
   }
   
 }

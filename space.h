@@ -278,4 +278,5 @@ STATUS space_del_object(Space *space, Id id);
  * @return BOOL
  */
 BOOL space_if_connected (Space *sp1, Space *sp2);
+Set *space_get_objects(Space *s);
 #endif

@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "set.h"
 
-#define MAX_ID 32
+#define MAX_ID 16
 
 struct _Set {
     Id id[MAX_ID];              //Conjunto de Ids de objetos
