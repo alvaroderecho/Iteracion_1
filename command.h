@@ -12,7 +12,7 @@
 #define COMMAND_H
 
 #define N_CMDT 2
-#define N_CMD 10
+#define N_CMD 11
 
 typedef enum enum_CmdType
 {
@@ -31,7 +31,8 @@ typedef enum enum_Command
   DROP,
   LEFT,
   RIGHT,
-  ROLL
+  ROLL,
+  MOVE
 } T_Command;
 
 /**
@@ -43,6 +44,6 @@ typedef enum enum_Command
  * @date 13-01-2015
  * @return T_Command
  */
-T_Command command_get_user_input();
+T_Command command_get_user_input(char *arg);
 
 #endif

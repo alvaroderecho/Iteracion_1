@@ -65,11 +65,14 @@ STATUS space_destroy(Space *space)
   free(space->gDesc);
   set_destroy(space->objects);
 
-  
   link_destroy(space->north);
+  space->north = NULL;
   link_destroy(space->south);
+  space->south = NULL;
   link_destroy(space->east);
+  space->east = NULL;
   link_destroy(space->west);
+  space->west = NULL;
   free(space); //libera memoria
   space = NULL;
 

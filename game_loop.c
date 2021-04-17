@@ -60,13 +60,15 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
 void game_loop_run(Game *game, Graphic_engine *gengine)
 {
   T_Command command = NO_CMD;
-
+  char *arg;
+  arg = (char*) malloc (sizeof(char)*(WORD_SIZE +1));
   while ((command != EXIT) && !game_is_over(game))
   {
     graphic_engine_paint_game(gengine, game);
-    command = command_get_user_input();
-    game_update(game, command);
+    command = command_get_user_input(arg);
+    game_update(game, command,arg);
   }
+  free(arg);
 }
 
 void game_loop_cleanup(Game *game, Graphic_engine *gengine)

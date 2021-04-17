@@ -9,8 +9,10 @@
  */
 
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
+#include <stdlib.h>
 #include "command.h"
+#include "types.h"
 
 #define CMD_LENGHT 30
 
@@ -25,7 +27,8 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"d", "Drop"},
 {"l", "Left"},
 {"r", "Right"},
-{"rl", "Roll"}};
+{"rl", "Roll"},
+{"m", "move"}};
 
 //Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
@@ -34,12 +37,12 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 
 //T_Command es una enumeración definida en command.h
 
-T_Command command_get_user_input()
+T_Command command_get_user_input(char *arg)
 {
 	T_Command cmd = NO_CMD;	  // == -1
 	char input[CMD_LENGHT] = "";  //variable input tipo char, tamaño 30
 	int i = UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
-
+	char *aux2;
 	// cmd == -1, input = "", i == 2
 
 	/*si input <=0, cmd == -1 que devolvería el primer apartado de la enumeración
@@ -50,8 +53,14 @@ T_Command command_get_user_input()
 	si es "n" de "next", "e" de "exit", o escribe algo sin sentido,
 	o algo desconocido o "b" de "back".
 	*/
-
-	if (scanf("%s", input) > 0)
+	strcpy(arg,"");
+	fgets(input,32,stdin);
+	aux2 = strtok(input," \t\r\n");
+	strcpy(input,aux2);
+	aux2 = strtok (NULL," \t\r\n");
+	if (aux2 != NULL){
+		strcpy(arg,aux2);
+	}
 	{
 		cmd = UNKNOWN; // == 0
 		while (cmd == UNKNOWN && i < N_CMD)

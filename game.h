@@ -58,7 +58,7 @@ STATUS game_create(Game *game);
  * @param cmd Comando Introducido
  * @return STATUS
  */
-STATUS game_update(Game *game, T_Command cmd);
+STATUS game_update(Game *game, T_Command cmd,char *arg);
 
 /**
  * @brief Destruye un juego

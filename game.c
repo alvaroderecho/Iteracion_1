@@ -14,7 +14,7 @@
 #include <string.h>
 #include "game.h"
 
-#define N_CALLBACK 9
+#define N_CALLBACK 10
 
 struct _Game
 {
@@ -28,20 +28,21 @@ struct _Game
 /**
    Define the function type for the callbacks
 */
-typedef void (*callback_fn)(Game *game);
+typedef void (*callback_fn)(Game *game, char *arg);
 
 /**
    List of callbacks for each command in the game
 */
-void game_callback_unknown(Game *game);
-void game_callback_exit(Game *game);
-void game_callback_next(Game *game);
-void game_callback_back(Game *game);
-void game_callback_take(Game *game);
-void game_callback_drop(Game *game);
-void game_callback_left(Game *game);
-void game_callback_right(Game *game);
-void game_callback_roll(Game *game);
+void game_callback_unknown(Game *game,char * arg);
+void game_callback_exit(Game *game,char * arg);
+void game_callback_next(Game *game,char * arg);
+void game_callback_back(Game *game,char * arg);
+void game_callback_take(Game *game,char * arg);
+void game_callback_drop(Game *game,char * arg);
+void game_callback_left(Game *game,char * arg);
+void game_callback_right(Game *game,char * arg);
+void game_callback_roll(Game *game,char * arg);
+void game_callback_move (Game *game, char * arg);
 
 static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_unknown,
@@ -52,7 +53,8 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_drop,
     game_callback_left,
     game_callback_right,
-    game_callback_roll};
+    game_callback_roll,
+    game_callback_move};
 
 /**
    Private functions
@@ -297,10 +299,10 @@ Id game_get_object_location(Game *game, Id id)
   return NO_ID;
 }
 
-STATUS game_update(Game *game, T_Command cmd)
+STATUS game_update(Game *game, T_Command cmd, char * arg)
 {
   game->last_cmd = cmd;
-  (*game_callback_fn_list[cmd])(game);
+  (*game_callback_fn_list[cmd])(game,arg);
   return OK;
 }
 
@@ -335,15 +337,15 @@ BOOL game_is_over(Game *game)
    Callbacks implementation for each action
 */
 
-void game_callback_unknown(Game *game)
+void game_callback_unknown(Game *game,char * arg)
 {
 }
 
-void game_callback_exit(Game *game)
+void game_callback_exit(Game *game,char * arg)
 {
 }
 
-void game_callback_next(Game *game)
+void game_callback_next(Game *game,char * arg)
 {
   int i = 0;
   Id current_id = NO_ID;
@@ -370,7 +372,7 @@ void game_callback_next(Game *game)
   }
 }
 
-void game_callback_back(Game *game)
+void game_callback_back(Game *game,char * arg)
 {
   int i = 0;
   Id current_id = NO_ID;
@@ -398,14 +400,14 @@ void game_callback_back(Game *game)
   }
 }
 
-void game_callback_take(Game *game)
+void game_callback_take(Game *game,char * arg)
 {
-  Id object_id = NO_ID;
+  
   Id space_id = NO_ID;
-
+  int i;
   space_id = game_player_get_location(game);
 
-  scanf(" O%ld", &object_id);
+  
 
   if (space_id == NO_ID)
     return;
@@ -415,13 +417,18 @@ void game_callback_take(Game *game)
     return;
   }
 
-  player_set_object(game_get_player(game), object_id);
-  space_del_object(game_get_space(game, space_id), object_id);
+for (i=0;i<OBJECTS && game->objects[i] != NULL;i++){
+  if (strcmp(object_get_name(game->objects[i]),arg) == 0){
+  player_set_object(game_get_player(game), object_get_id(game->objects[i]));
+  space_del_object(game_get_space(game, space_id), object_get_id(game->objects[i]));
+  return ;
+  }
 
+}
   return;
 }
 
-void game_callback_drop(Game *game)
+void game_callback_drop(Game *game,char * arg)
 {
   Id object_id = NO_ID;
   Id space_id = NO_ID;
@@ -444,7 +451,7 @@ void game_callback_drop(Game *game)
   return;
 }
 
-void game_callback_left(Game *game)
+void game_callback_left(Game *game,char * arg)
 {
   int i = 0;
   Id current_id = NO_ID;
@@ -475,7 +482,7 @@ void game_callback_left(Game *game)
   }
 }
 
-void game_callback_right(Game *game)
+void game_callback_right(Game *game,char * arg)
 {
   int i = 0;
   Id current_id = NO_ID;
@@ -502,7 +509,7 @@ void game_callback_right(Game *game)
   }
 }
 
-void game_callback_roll(Game *game)
+void game_callback_roll(Game *game,char * arg)
 {
   if (die_roll(game_get_die(game)) == ERROR)
   {
@@ -521,4 +528,82 @@ STATUS game_add_player(Game *game, Player *player)
     return ERROR;
   game->player = player;
   return OK;
+}
+
+void game_callback_move (Game *game, char *arg){
+  
+  Id current_id = NO_ID;
+  Id space_id = NO_ID;
+  int i;
+
+  space_id = game_player_get_location(game);
+  
+  if (strcmp(arg,"north") == 0||strcmp(arg,"n") == 0){
+    for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      current_id = link_get_sp1(space_get_north(game->spaces[i]));
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+  }
+  }
+  else if (strcmp(arg,"south") == 0||strcmp(arg,"s") == 0){
+    for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      current_id = link_get_sp2(space_get_south(game->spaces[i]));
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+  }
+  }
+  else if (strcmp(arg,"east") == 0||strcmp(arg,"e") == 0){
+    for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      current_id = link_get_sp2(space_get_east(game->spaces[i]));
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+
+  }
+  }
+  else if (strcmp(arg,"west") == 0||strcmp(arg,"w") == 0){
+    for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == space_id)
+    {
+      if (link_getId(space_get_west(game->spaces[i])) == 31)
+        current_id = link_get_sp2(space_get_west(game->spaces[i]));
+      else
+        current_id = link_get_sp1(space_get_west(game->spaces[i]));
+
+      if (current_id != NO_ID)
+      {
+        game_player_set_location(game, current_id);
+      }
+      return;
+    }
+  }
+  }
+  
+  return;
+  
 }
