@@ -49,6 +49,12 @@ space_test: space_test.o space.o set.o
 space_test.o: space_test.c space_test.h test.h space.h set.h
 	$(CC) $(CFLAGS) -c space_test.c
 
+inventory_test: inventory_test.o inventory.o set.o
+	$(CC) $(CFLAGS) -oinventory_test inventory_test.o inventory.o set.o
+
+inventory_test.o: inventory_test.c inventory_test.h test.h inventory.h set.h
+	$(CC) $(CFLAGS) -c inventory_test.c
+
 set.o: set.c set.h types.h
 	$(CC) $(CFLAGS) -c set.c
 
@@ -56,10 +62,10 @@ die.o: die.c die.h types.h
 	$(CC) $(CFALGS) -c die.c
 
 link.o: link.c link.h types.h
-	$(CC) $(CFALGS) -c link.c	
+	$(CC) $(CFALGS) -c link.c
 
 inventory.o: inventory.c inventory.h types.h set.h
-	$(CC) $(CFALGS) -c inventory.c 
+	$(CC) $(CFALGS) -c inventory.c
 
 link_test: link_test.o link.o
 	$(CC) $(CFLAGS) -olink_test link_test.o link.o
