@@ -419,8 +419,9 @@ void game_callback_take(Game *game,char * arg)
   }
   
 b = set_containsId(space_get_objects(game_get_space(game,space_id)),object_id);
+printf ("%d",b);
 if (b == TRUE){
-for (i=0;i<space_number_of_objects(game_get_space(game,space_id)) && game->objects[i] != NULL;i++){
+for (i=0;i<OBJECTS && game->objects[i] != NULL;i++){
   if (strcmp(object_get_name(game->objects[i]),arg) == 0 ){
   player_add_object(game_get_player(game), object_get_id(game->objects[i]));
   space_del_object(game_get_space(game, space_id), object_get_id(game->objects[i]));

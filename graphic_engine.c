@@ -21,11 +21,11 @@ Graphic_engine *graphic_engine_create()
   if (ge == NULL)
     return NULL;
 
-  ge->map = screen_area_init(1, 1, 48, /*13*/ 21);
-  ge->descript = screen_area_init(50, 1, 29, /*13*/ 21);
-  ge->banner = screen_area_init(28, /*15*/ 23, 23, 1);
-  ge->help = screen_area_init(1, /*16*/ 24, 78, 2);
-  ge->feedback = screen_area_init(1, /*19*/ 27, 78, 3);
+  ge->map = screen_area_init(1, 1, 48,  21);
+  ge->descript = screen_area_init(50, 1, 29, 21);
+  ge->banner = screen_area_init(28, 23, 23, 1);
+  ge->help = screen_area_init(1, 24, 78, 2);
+  ge->feedback = screen_area_init(1, 27, 78, 3);
 
   return ge;
 }
@@ -50,7 +50,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, obj_loc = NO_ID, id_left = NO_ID, id_right = NO_ID;
   Id *objects_id;
   Space *space_act = NULL, *space_next = NULL, *space_back = NULL;
-  char obj = '\0';
+  char obj = '\0', aux[255] = " ";
   char str[255];
   T_Command last_cmd = UNKNOWN;
   extern char *cmd_to_str[N_CMD][N_CMDT];
@@ -200,15 +200,24 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
+  objects = game_get_objects(game);
   for (i = 0; i < num_o; i++)
   {
-    objects = game_get_objects(game);
-    if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
+   if (i == num_o -1){
+     if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
     {
       sprintf(str, "%s:%d", object_get_name(objects[i]), (int)obj_loc);
+      strcat(aux,str);
     }
-    screen_area_puts(ge->descript, str);
+    break;
+   }
+    if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
+    {
+      sprintf(str, "%s:%d,", object_get_name(objects[i]), (int)obj_loc);
+      strcat(aux,str);
+    }
   }
+  screen_area_puts(ge->descript, aux);
 
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
