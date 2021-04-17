@@ -413,7 +413,7 @@ void game_callback_take(Game *game,char * arg)
     return;
 
   
-
+inventory_print(player_get_objects(game_get_player(game)));
 for (i=0;i<OBJECTS && game->objects[i] != NULL;i++){
   if (strcmp(object_get_name(game->objects[i]),arg) == 0){
   player_add_object(game_get_player(game), object_get_id(game->objects[i]));
@@ -422,6 +422,7 @@ for (i=0;i<OBJECTS && game->objects[i] != NULL;i++){
   }
 
 }
+inventory_print(player_get_objects(game_get_player(game)));
   return;
 }
 
@@ -439,15 +440,16 @@ void game_callback_drop(Game *game,char * arg)
   {
     return;
   }
-
+  inventory_print(player_get_objects(game_get_player(game)));
   object_id = inventory_getIds(player_get_objects(game_get_player(game))); //id del objeto del jugador
 for (i=0;i < inventory_getNumids(player_get_objects(game_get_player(game)));i++){
   if (strcmp(object_get_name(game_get_object(game,object_id[i])),arg) == 0){
   player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
   space_add_object(game_get_space(game, space_id), object_id[i]);
   }
+  
 }
-
+inventory_print(player_get_objects(game_get_player(game)));
   return;
 }
 

@@ -67,9 +67,9 @@ STATUS set_del_values (Set* set, Id id) {
         if (set->id[i] == id) { //i == posición del ID
             
             set->id[i] = NO_ID;
-            if (i == set->num_id - 1) return OK;
+            
         
-            flag = set->id[set->num_id];
+            flag = set->id[set->num_id -1];
             set->id[i] = flag;
             set->id[set->num_id] = NO_ID;
             set->num_id--;
@@ -88,6 +88,7 @@ STATUS set_print(Set* set) {
 
     fprintf(stdout,"Set of %d Id(s): ",set->num_id);
     for (i=0;i<set->num_id;i++) {
+        if (set->id[i]!= NO_ID)
         fprintf(stdout,"%ld ",set->id[i]);        
     }
 

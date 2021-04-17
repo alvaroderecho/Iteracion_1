@@ -215,11 +215,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 
   objects_id = inventory_getIds(player_get_objects(game_get_player(game)));
 for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game)));i++){
-  if (inventory_isEmpty(player_get_objects(game_get_player(game))) != TRUE)
+  if (inventory_isEmpty(player_get_objects(game_get_player(game))) != TRUE && objects_id[i] != NO_ID)
   {
-    sprintf(str, "%s", object_get_name (game_get_object (game,objects_id[i]))); //nombre del objeto que lleva el jugador
+    sprintf(str, "%s", object_get_name (game_get_object (game,objects_id[i])) ); //nombre del objeto que lleva el jugador
     screen_area_puts(ge->descript, str);
   }
+  
 }
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
