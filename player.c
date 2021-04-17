@@ -18,7 +18,7 @@ struct _Player
     Id id;                              //Id del jugador
     char name[WORD_SIZE + 1];           //Nombre del jugador
     Id location;                        //Localización del jugador (su espacio)
-    Id object;                          //Id del objeto que lleva el jugador
+    Inventory *inventory;               //Inventario de objetos que lleva el jugador
 };
 
 Player *player_create(Id id)
@@ -35,7 +35,10 @@ Player *player_create(Id id)
     new_player->id = id;
     new_player->name[0] = '\0';
     new_player->location = NO_ID;
-    new_player->object = NO_ID;
+    new_player->inventory = inventory_create(6);
+    if (new_player->inventory == NULL){
+      return NULL;
+    }
 
     return new_player;
 }
@@ -78,14 +81,28 @@ STATUS player_set_location(Player *player, Id id)
     return OK;
 }
 
-STATUS player_set_object(Player *player, Id id)
+STATUS player_add_object(Player *player, Id id)
 {
     if (!player)
     {
         return ERROR;
     }
-    player->object = id;
+    if (inventory_addId(player->inventory, id) == ERROR){
+      return ERROR;
+    }
     return OK;
+}
+
+STATUS player_del_object(Player *player, Id id)
+{
+  if (!player)
+  {
+    return ERROR;
+  }
+  if (inventory_delId(player->inventory, id) == ERROR){
+    return ERROR;
+  }
+  return OK;
 }
 
 Id player_get_id(Player *player)
@@ -109,11 +126,18 @@ Id player_get_location(Player *player)
     return player->location;
 }
 
-Id player_get_object(Player *player)
+Inventory* player_get_objects(Player *player)
 {
     if (!player)
-        return NO_ID;
-    return player->object;
+        return NULL;
+    return player->inventory;
+}
+
+BOOL player_containsObject (Player *player, Id id){
+  if (!player || id == NO_ID){
+    return FALSE;
+  }
+  return inventory_containsObject(player->inventory, id);
 }
 
 STATUS player_print(Player *player)
@@ -121,6 +145,7 @@ STATUS player_print(Player *player)
     if (!player)
         return ERROR;
     fprintf(stdout, "Player (Id: %ld; Name: %s)\n", player->id, player->name);
-    fprintf(stdout, "Location Id: %ld, Object Id: %ld", player->location, player->object);
+    fprintf(stdout, "Location Id: %ld, ", player->location);
+    inventory_print(player->inventory);
     return OK;
 }

@@ -100,4 +100,17 @@ Id * set_get_ids(Set* set);
  */
 int set_get_numids(Set* set);
 
+/**
+ * @brief Devuelve True si el set contiene el id, en otro caso o caso de error devuelve False
+ *
+ * @file set.c
+ * @author Sergio Domínguez
+ * @version 1.0
+ * @date 17/04/2021
+ * @param Set set a usar
+ * @param Id a buscar
+ * @return Bool
+ */
+BOOL set_containsId(Set *set, Id id);
+
 #endif

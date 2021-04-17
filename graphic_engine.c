@@ -48,6 +48,7 @@ void graphic_engine_destroy(Graphic_engine *ge)
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 {
   Id id_act = NO_ID, id_back = NO_ID, id_next = NO_ID, obj_loc = NO_ID, id_left = NO_ID, id_right = NO_ID;
+  Id *objects_id;
   Space *space_act = NULL, *space_next = NULL, *space_back = NULL;
   char obj = '\0';
   char str[255];
@@ -212,12 +213,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   sprintf(str, "Player object:");
   screen_area_puts(ge->descript, str);
 
-  if (player_get_object(game_get_player(game)) != NO_ID)
+  objects_id = inventory_getIds(player_get_objects(game_get_player(game)));
+for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game)));i++){
+  if (inventory_isEmpty(player_get_objects(game_get_player(game))) != TRUE)
   {
-    sprintf(str, "%s", object_get_name (game_get_object (game,player_get_object(game_get_player(game))))); //nombre del objeto que lleva el jugador
+    sprintf(str, "%s", object_get_name (game_get_object (game,objects_id[i]))); //nombre del objeto que lleva el jugador
     screen_area_puts(ge->descript, str);
   }
-
+}
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
 

@@ -1,19 +1,19 @@
 CFLAGS = -g -Wall -pedantic
 CC = gcc
 
-exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o
-	$(CC) $(CFLAGS) -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o
+exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o inventory.o
+	$(CC) $(CFLAGS) -oexe game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o inventory.o
 
 game_loop.o: game_loop.c graphic_engine.h game.h command.h space.h types.h object.h player.h screen.h game_reader.h
 	$(CC) $(CFLAGS) -c game_loop.c
 
-graphic_engine.o: graphic_engine.c graphic_engine.h game.h command.h space.h types.h object.h player.h screen.h
+graphic_engine.o: graphic_engine.c graphic_engine.h game.h command.h space.h types.h object.h player.h screen.h inventory.h
 	$(CC) $(CFLAGS) -c graphic_engine.c
 
-game.o: game.c game.h command.h space.h types.h object.h player.h set.h
+game.o: game.c game.h command.h space.h types.h object.h player.h set.h inventory.h
 	$(CC) $(CFLAGS) -c game.c
 
-game_reader.o: game_reader.c game_reader.h game.h command.h space.h types.h object.h player.h link.h
+game_reader.o: game_reader.c game_reader.h game.h command.h space.h types.h object.h player.h link.h inventory.h
 	$(CC) $(CFLAGS) -c game_reader.c
 
 object.o: object.c object.h types.h
@@ -28,7 +28,7 @@ space.o: space.c space.h types.h set.h link.h
 command.o: command.c command.h
 	$(CC) $(CFLAGS) -c command.c
 
-player.o: player.c player.h types.h
+player.o: player.c player.h types.h inventory.h
 	$(CC) $(CFLAGS) -c player.c
 
 set_test: set_test.o set.o
@@ -57,6 +57,9 @@ die.o: die.c die.h types.h
 
 link.o: link.c link.h types.h
 	$(CC) $(CFALGS) -c link.c	
+
+inventory.o: inventory.c inventory.h types.h set.h
+	$(CC) $(CFALGS) -c inventory.c 
 
 link_test: link_test.o link.o
 	$(CC) $(CFLAGS) -olink_test link_test.o link.o

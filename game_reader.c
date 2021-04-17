@@ -213,7 +213,7 @@ STATUS game_reader_load_player(Game *game, char *filename){
         player_set_name(player, name);
         player_set_id(player,id);
         player_set_location(player,location);
-        player_set_object(player,object);
+        player_add_object(player,object);
         game_add_player(game,player);
       }
     }

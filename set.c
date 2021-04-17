@@ -102,3 +102,16 @@ int set_get_numids(Set* set){
     if (set == NULL) return 0;
     return set->num_id;
 }
+BOOL set_containsId(Set *set, Id id){
+  int i = 0;
+  if (!set || id == NO_ID){
+    return FALSE;
+  }
+  for (i = 0; i < set->num_id; i++){
+    if (set->id[i] == id){
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
