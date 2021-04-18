@@ -61,7 +61,7 @@ die_test: die_test.o die.o
 die_test.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-space_test: space_test.o space.o set.o
+space_test: space_test.o space.o set.o link.o
 	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
 
 space_test.o:
