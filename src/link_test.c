@@ -6,8 +6,9 @@
 #include "link.h"
 #include "test.h"
 #include "link_test.h"
+#include "types.h"
 
-#define MAX_TESTS 25
+#define MAX_TESTS 27
 
 int main(int argc, char **argv)
 {
@@ -58,6 +59,8 @@ if (all || test == 22) test1_link_get_state();
 if (all || test == 23) test2_link_get_state();
 if (all || test == 24) test1_link_print();
 if (all || test == 25) test2_link_print();
+if (all || test == 26) test1_link_set_sate();
+if (all || test == 27) test2_link_set_sate();
 
 
   PRINT_PASSED_PERCENTAGE;
@@ -213,4 +216,16 @@ void test2_link_print()
 {
   Link *l = NULL;
   PRINT_TEST_RESULT(link_print(l) == ERROR);
+}
+
+void test1_link_set_sate() {
+  Link *l = link_create(5);
+  BOOL st = TRUE;
+  PRINT_TEST_RESULT(link_set_state(l,st) == OK);
+}
+
+void test2_link_set_sate() {
+  Link *l = NULL;
+  BOOL st = TRUE;
+  PRINT_TEST_RESULT(link_set_state(l,st) == ERROR);
 }

@@ -35,4 +35,6 @@ void test1_link_get_state();
 void test2_link_get_state();
 void test1_link_print();
 void test2_link_print();
+void test1_link_set_sate();
+void test2_link_set_sate();
 #endif
