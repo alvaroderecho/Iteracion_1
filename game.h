@@ -19,6 +19,7 @@
 #include "die.h"
 
 #define OBJECTS 120
+#define LINKS 128
 
 typedef struct _Game Game;
 
@@ -229,7 +230,7 @@ Id game_get_space_id_at(Game *game, int position);
  * @version 1.0
  * @date 20/03/2021
  * @param game Juego usado
- * @param objet Objeto a añadir
+ * @param object Objeto a añadir
  * @return STATUS
  */
 STATUS game_add_object(Game *game, Object* object);
@@ -279,5 +280,18 @@ STATUS game_add_player(Game *game, Player *player);
  * @return Game
  */
 Game * game_init();
+
+/**
+ * @brief Añade un Enlace
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 18/04/2021
+ * @param game Juego usado
+ * @param link Enlace a añadir
+ * @return STATUS
+ */
+STATUS game_add_link(Game *game, Link *link);
 
 #endif

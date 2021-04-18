@@ -15,7 +15,7 @@ struct _Link
 Link *link_create(Id id)
 {
 
-    Link *link;
+    Link *link = NULL;
 
     if (id == NO_ID) return NULL;
     

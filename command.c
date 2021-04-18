@@ -41,8 +41,10 @@ T_Command command_get_user_input(char *arg)
 {
 	T_Command cmd = NO_CMD;	  // == -1
 	char input[CMD_LENGHT] = "";  //variable input tipo char, tamaño 30
+	char aux[CMD_LENGHT] = "";
 	int i = UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
-	char *aux2;
+	char *aux2 = NULL;
+	
 	// cmd == -1, input = "", i == 2
 
 	/*si input <=0, cmd == -1 que devolvería el primer apartado de la enumeración
@@ -54,8 +56,8 @@ T_Command command_get_user_input(char *arg)
 	o algo desconocido o "b" de "back".
 	*/
 	strcpy(arg,"");
-	fgets(input,32,stdin);
-	aux2 = strtok(input," \t\r\n");
+	fgets(aux,CMD_LENGHT,stdin);
+	aux2 = strtok(aux," \t\r\n");
 	strcpy(input,aux2);
 	aux2 = strtok (NULL," \t\r\n");
 	if (aux2 != NULL){

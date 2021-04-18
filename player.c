@@ -47,6 +47,7 @@ STATUS player_destroy(Player *player)
 {
     if (!player) // == 0
         return ERROR;
+    inventory_destroy(player->inventory);
     free(player);
     player = NULL;
     return OK; //destruido

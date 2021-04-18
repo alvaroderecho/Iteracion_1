@@ -283,6 +283,7 @@ STATUS game_reader_load_links(Game *game, char *filename)
       else {//muerte
         space_set_west(game_get_space(game,sp1),link);
       }
+      game_add_link(game,link);
     }
 
   }

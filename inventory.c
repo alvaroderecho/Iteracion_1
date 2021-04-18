@@ -18,7 +18,7 @@ struct _Inventory{
 
  Inventory * inventory_create (int max){
    Inventory *i;
-   if (max < 0){
+   if (max <= 0){
      return NULL;
    }
    i = (Inventory*)malloc(sizeof(Inventory));

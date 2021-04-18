@@ -19,7 +19,8 @@
 struct _Game
 {
   Player *player;                //Puntero al jugador del juego
-  Object *objects[OBJECTS];      //Puntero al objeto
+  Object *objects[OBJECTS];  
+  Link * links[LINKS];    //Puntero al objeto
   Space *spaces[MAX_SPACES + 1]; //Espacios de un juego
   T_Command last_cmd;            //Último comando escrito por pantalla
   Die *die;                      //Dado usado en el juego
@@ -130,6 +131,10 @@ STATUS game_create(Game *game)
     game->objects[i] = NULL;
   }
 
+  for (i=0; i< LINKS; i++) {
+    game->links[i] = NULL;
+  }
+
   game->player = player_create(1);
 
   game->last_cmd = NO_CMD;
@@ -150,6 +155,10 @@ STATUS game_destroy(Game *game)
   for (i = 0; (i < OBJECTS) && (game->spaces[i] != NULL); i++)
   {
     object_destroy(game->objects[i]);
+  }
+
+  for (i=0;(i < LINKS) && (game->links[i] != NULL);i++) {
+    link_destroy(game->links[i]);
   }
 
   player_destroy(game_get_player(game));
@@ -199,6 +208,25 @@ STATUS game_add_object(Game *game, Object *object)
   }
 
   game->objects[i] = object;
+  return OK;
+}
+
+STATUS game_add_link(Game *game, Link *link) {
+  int i = 0;
+
+  if (link == NULL)
+    return ERROR;
+
+  while ((i < LINKS) && (game->links[i] != NULL))
+  {
+    i++;
+  }
+  if (i >= LINKS)
+  {
+    return ERROR;
+  }
+
+  game->links[i] = link;
   return OK;
 }
 
