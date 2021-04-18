@@ -1,0 +1,315 @@
+\hypertarget{link_8c}{}\doxysection{link.\+c File Reference}
+\label{link_8c}\index{link.c@{link.c}}
+
+
+Define el Manejo de Enlaces.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}link.\+h\char`\"{}}\newline
+Include dependency graph for link.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Link}{\+\_\+\+Link}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{link_8c_a8090d7f529cfd6a2fc5df3dd379fe514}\label{link_8c_a8090d7f529cfd6a2fc5df3dd379fe514}} 
+\mbox{\hyperlink{struct__Link}{Link}} $\ast$ {\bfseries link\+\_\+create} (Id id)
+\item 
+\mbox{\Hypertarget{link_8c_a85c4dd77887bf31f651ea1162144d712}\label{link_8c_a85c4dd77887bf31f651ea1162144d712}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+destroy} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_a6c7a3bd7a856288c377edbcd045912e6}\label{link_8c_a6c7a3bd7a856288c377edbcd045912e6}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+set\+\_\+name} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link, char $\ast$name)
+\item 
+\mbox{\Hypertarget{link_8c_a03bc8ba31951cf5b910b6db70f3c2d38}\label{link_8c_a03bc8ba31951cf5b910b6db70f3c2d38}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+set\+\_\+sp1} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link, Id id)
+\item 
+\mbox{\Hypertarget{link_8c_ad42ccb7b97e382bdbd77e0d86bd0c472}\label{link_8c_ad42ccb7b97e382bdbd77e0d86bd0c472}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+set\+\_\+sp2} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link, Id id)
+\item 
+\mbox{\Hypertarget{link_8c_acb70d168454d241efd74e31ff8815897}\label{link_8c_acb70d168454d241efd74e31ff8815897}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+change\+\_\+state} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_aa35098ab82459ae1cae5c171af6e7da1}\label{link_8c_aa35098ab82459ae1cae5c171af6e7da1}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+set\+\_\+state} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$l, B\+O\+OL st)
+\item 
+\mbox{\Hypertarget{link_8c_aa7a45d08046fa173240e96700c340639}\label{link_8c_aa7a45d08046fa173240e96700c340639}} 
+Id {\bfseries link\+\_\+get\+Id} (const \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_a9747ee8201a323e112e67bdeacbc90d8}\label{link_8c_a9747ee8201a323e112e67bdeacbc90d8}} 
+char $\ast$ {\bfseries link\+\_\+get\+\_\+name} (\mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_a13114658e040d0c415b21976f7c6f6c4}\label{link_8c_a13114658e040d0c415b21976f7c6f6c4}} 
+Id {\bfseries link\+\_\+get\+\_\+sp1} (const \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_adab59e0ac838bd3b768ac7054ebfdbff}\label{link_8c_adab59e0ac838bd3b768ac7054ebfdbff}} 
+Id {\bfseries link\+\_\+get\+\_\+sp2} (const \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_aa2f3e04967588fe8fc43a4e57210a87b}\label{link_8c_aa2f3e04967588fe8fc43a4e57210a87b}} 
+B\+O\+OL {\bfseries link\+\_\+get\+\_\+state} (const \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{link_8c_aefeb3617f68a158478db2f76828818ee}\label{link_8c_aefeb3617f68a158478db2f76828818ee}} 
+S\+T\+A\+T\+US {\bfseries link\+\_\+print} (const \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define el Manejo de Enlaces. 
+
+Establece un estado al enlace.
+
+Imprime los datos de un enlace.
+
+Devuelve el estado de un enlace.
+
+Devuelve el Id del espacio 2.
+
+Devuelve el Id del espacio 1 de un enlace.
+
+Devuelve el nombre de un enlace.
+
+Devuelve el Id de un enlace.
+
+Cambia el estado de un enlace.
+
+Establece el id del espacio 2 de un enlace.
+
+Establece el id del espacio 1 de un enlace.
+
+Establece el nombre de un enlace.
+
+Destruye un enlace.
+
+Crea un enlace.
+
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id del enlace \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Link$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace a destruir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace a modificar \\
+\hline
+{\em name} & Nombre del enlace \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace a modificar \\
+\hline
+{\em id} & Id del primer espacio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace a modificar \\
+\hline
+{\em id} & Id del segundo espacio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace a modificar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+OL
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em link} & Enlace de interés \\
+\hline
+{\em st} & Estado del enlace \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US 
+\end{DoxyReturn}

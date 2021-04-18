@@ -1,0 +1,244 @@
+\hypertarget{set_8c}{}\doxysection{set.\+c File Reference}
+\label{set_8c}\index{set.c@{set.c}}
+
+
+Define el Manejo de Conjuntos.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}set.\+h\char`\"{}}\newline
+Include dependency graph for set.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Set}{\+\_\+\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{set_8c_a1cdef4472847c938fc165b7d2737c4e4}{M\+A\+X\+\_\+\+ID}}~16
+\begin{DoxyCompactList}\small\item\em Define el Manejo de Conjuntos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{set_8c_abcc73b7ad3913fc92dd95d366c9c8687}\label{set_8c_abcc73b7ad3913fc92dd95d366c9c8687}} 
+\mbox{\hyperlink{struct__Set}{Set}} $\ast$ {\bfseries set\+\_\+create} ()
+\item 
+\mbox{\Hypertarget{set_8c_a17fa263a49d6fe209c040e9ca5e0132a}\label{set_8c_a17fa263a49d6fe209c040e9ca5e0132a}} 
+S\+T\+A\+T\+US {\bfseries set\+\_\+destroy} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set)
+\item 
+\mbox{\Hypertarget{set_8c_a9a7343021572a0a1c8433f548929ec23}\label{set_8c_a9a7343021572a0a1c8433f548929ec23}} 
+S\+T\+A\+T\+US {\bfseries set\+\_\+add\+\_\+values} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set, Id id)
+\item 
+\mbox{\Hypertarget{set_8c_a3a115e1bed81e8459119aec5d5c9ff48}\label{set_8c_a3a115e1bed81e8459119aec5d5c9ff48}} 
+S\+T\+A\+T\+US {\bfseries set\+\_\+del\+\_\+values} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set, Id id)
+\item 
+\mbox{\Hypertarget{set_8c_a8db105a25618f0ae56fe171acce1efec}\label{set_8c_a8db105a25618f0ae56fe171acce1efec}} 
+S\+T\+A\+T\+US {\bfseries set\+\_\+print} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set)
+\item 
+\mbox{\Hypertarget{set_8c_aae1ee77f54957b77e5df4a04dac42ebf}\label{set_8c_aae1ee77f54957b77e5df4a04dac42ebf}} 
+Id $\ast$ {\bfseries set\+\_\+get\+\_\+ids} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set)
+\item 
+\mbox{\Hypertarget{set_8c_a7c9cf5c8c4bfe628887e3820c2460f04}\label{set_8c_a7c9cf5c8c4bfe628887e3820c2460f04}} 
+int {\bfseries set\+\_\+get\+\_\+numids} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set)
+\item 
+\mbox{\Hypertarget{set_8c_ac64e675df4f4f0f5cae24dc6352afd70}\label{set_8c_ac64e675df4f4f0f5cae24dc6352afd70}} 
+B\+O\+OL {\bfseries set\+\_\+contains\+Id} (\mbox{\hyperlink{struct__Set}{Set}} $\ast$set, Id id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define el Manejo de Conjuntos. 
+
+Devuelve True si el set contiene el id, en otro caso o caso de error devuelve False.
+
+Devuelve el número de objetos de un set.
+
+Devuelve las Ids de los objetos de un set.
+
+Imprime los datos de un set.
+
+Elimina un objeto a un set.
+
+Añade un objeto a un set.
+
+Destruye un set de objetos.
+
+Crea un set de objetos.
+
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01-\/03-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07/03/2021 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+Set$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a destruir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a modificar \\
+\hline
+{\em id} & Id del objeto a añadir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a modificar \\
+\hline
+{\em id} & Id del objeto a eliminar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a imprimir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$\ast$\+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+17/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Set} & set a usar \\
+\hline
+{\em Id} & a buscar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bool 
+\end{DoxyReturn}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{set_8c_a1cdef4472847c938fc165b7d2737c4e4}\label{set_8c_a1cdef4472847c938fc165b7d2737c4e4}} 
+\index{set.c@{set.c}!MAX\_ID@{MAX\_ID}}
+\index{MAX\_ID@{MAX\_ID}!set.c@{set.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_ID}{MAX\_ID}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+ID~16}
+
+
+
+Define el Manejo de Conjuntos. 
+
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+01-\/03-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License 
+\end{DoxyCopyright}

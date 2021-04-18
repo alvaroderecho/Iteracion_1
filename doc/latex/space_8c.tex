@@ -1,0 +1,418 @@
+\hypertarget{space_8c}{}\doxysection{space.\+c File Reference}
+\label{space_8c}\index{space.c@{space.c}}
+
+
+Crea un espacio.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}space.\+h\char`\"{}}\newline
+Include dependency graph for space.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Space}{\+\_\+\+Space}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{space_8c_a162866fcea156b800fd546d0ffd271c9}\label{space_8c_a162866fcea156b800fd546d0ffd271c9}} 
+\mbox{\hyperlink{struct__Space}{Space}} $\ast$ {\bfseries space\+\_\+create} (Id id)
+\item 
+\mbox{\Hypertarget{space_8c_a5c70c70398923693ddbe4dfac8d72a0d}\label{space_8c_a5c70c70398923693ddbe4dfac8d72a0d}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+destroy} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_aab5b468f9822ab78dbe16d1321870d93}\label{space_8c_aab5b468f9822ab78dbe16d1321870d93}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+name} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, char $\ast$name)
+\item 
+\mbox{\Hypertarget{space_8c_a7bb471624e34ada843337a3f7a9fc48d}\label{space_8c_a7bb471624e34ada843337a3f7a9fc48d}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+north} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{space_8c_ad286442d3000046a0704d08c9bb018ce}\label{space_8c_ad286442d3000046a0704d08c9bb018ce}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+south} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{space_8c_a187b52d1c27494b6de5767ffc4a90a59}\label{space_8c_a187b52d1c27494b6de5767ffc4a90a59}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+east} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{space_8c_a8a6ba364ae5ac698023c840cd794e7ea}\label{space_8c_a8a6ba364ae5ac698023c840cd794e7ea}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+west} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{space_8c_a69b9e22046b7b44dc5aa2afe7cc0a1b9}\label{space_8c_a69b9e22046b7b44dc5aa2afe7cc0a1b9}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+add\+\_\+object} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, Id id)
+\item 
+\mbox{\Hypertarget{space_8c_a32c30f0aa89f3f28c06802f1c72c1fdc}\label{space_8c_a32c30f0aa89f3f28c06802f1c72c1fdc}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+del\+\_\+object} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, Id id)
+\item 
+\mbox{\Hypertarget{space_8c_a310c540cd6e11073f7328add1f927001}\label{space_8c_a310c540cd6e11073f7328add1f927001}} 
+const char $\ast$ {\bfseries space\+\_\+get\+\_\+name} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_ac8ddfd0d8692fd852ee49698c446cb50}\label{space_8c_ac8ddfd0d8692fd852ee49698c446cb50}} 
+Id {\bfseries space\+\_\+get\+\_\+id} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_adbc010984595d103f79919e7bd41edca}\label{space_8c_adbc010984595d103f79919e7bd41edca}} 
+\mbox{\hyperlink{struct__Link}{Link}} $\ast$ {\bfseries space\+\_\+get\+\_\+north} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_ac14710031471b5c593f8f269478d2d73}\label{space_8c_ac14710031471b5c593f8f269478d2d73}} 
+\mbox{\hyperlink{struct__Link}{Link}} $\ast$ {\bfseries space\+\_\+get\+\_\+south} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_a7ce7daa8152786d85cca4ab04d698f76}\label{space_8c_a7ce7daa8152786d85cca4ab04d698f76}} 
+\mbox{\hyperlink{struct__Link}{Link}} $\ast$ {\bfseries space\+\_\+get\+\_\+east} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_a3dfc6c3c3ff571a4fe168383bb8ef6e5}\label{space_8c_a3dfc6c3c3ff571a4fe168383bb8ef6e5}} 
+\mbox{\hyperlink{struct__Link}{Link}} $\ast$ {\bfseries space\+\_\+get\+\_\+west} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_a556a7f0d31fb11ed9ce8704c9e35d93f}\label{space_8c_a556a7f0d31fb11ed9ce8704c9e35d93f}} 
+Id {\bfseries space\+\_\+get\+\_\+object} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, int x)
+\item 
+\mbox{\Hypertarget{space_8c_a512c7115e047c1df5c7de197e05a7c02}\label{space_8c_a512c7115e047c1df5c7de197e05a7c02}} 
+char $\ast$$\ast$ {\bfseries space\+\_\+get\+\_\+g\+Desc} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_aa39d3bd5b96326c0e8f6c9ef4b751fab}\label{space_8c_aa39d3bd5b96326c0e8f6c9ef4b751fab}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+set\+\_\+g\+Desc} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space, char $\ast$$\ast$desc)
+\item 
+\mbox{\Hypertarget{space_8c_a18eca058da6cdf20ae5eda9d122d992e}\label{space_8c_a18eca058da6cdf20ae5eda9d122d992e}} 
+S\+T\+A\+T\+US {\bfseries space\+\_\+print} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{space_8c_af4ae72f474b532b759e46bf387bf3df6}\label{space_8c_af4ae72f474b532b759e46bf387bf3df6}} 
+int {\bfseries space\+\_\+number\+\_\+of\+\_\+objects} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$s)
+\item 
+\mbox{\Hypertarget{space_8c_a3ea0a40b436b66309a95076a7ea34e4e}\label{space_8c_a3ea0a40b436b66309a95076a7ea34e4e}} 
+B\+O\+OL {\bfseries space\+\_\+if\+\_\+connected} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$sp1, \mbox{\hyperlink{struct__Space}{Space}} $\ast$sp2)
+\item 
+\mbox{\Hypertarget{space_8c_a130a211e01c2e86dbeeb2c627b830488}\label{space_8c_a130a211e01c2e86dbeeb2c627b830488}} 
+\mbox{\hyperlink{struct__Set}{Set}} $\ast$ {\bfseries space\+\_\+get\+\_\+objects} (\mbox{\hyperlink{struct__Space}{Space}} $\ast$s)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Crea un espacio. 
+
+Comprueba si dos espacios están conectados.
+
+Elimina un objeto de un espacio.
+
+Establece la descripcion de un espacio.
+
+Devuelve la descripcion del espacio.
+
+Devuelve el número de objetos de un espacio.
+
+Imprime los datos de un espacio.
+
+Devuelve la Id del objeto.
+
+Establece la id de un objeto.
+
+Devuelve el oeste de un espacio.
+
+Establece el oeste de un espacio.
+
+Devuelve el este de un espacio.
+
+Establece el este de un espacio.
+
+Devuelve el sur de un espacio.
+
+Establece el sur de un espacio.
+
+Devuelve el norte de un espacio.
+
+Establece el norte de un espacio.
+
+Establece el nombre de un espacio.
+
+Devuelve la Id de un espacio.
+
+Destruye un espacio.
+
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Id del espacio a crear \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Space$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio a destruir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em name} & Nombre del espacio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char $\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & Id del norte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & Id del sur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & Id del este \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & Id del oeste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & Id del objeto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em space} & Espacio usado \\
+\hline
+{\em id} & id del objeto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho y Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em sp1} & Espacio 1 \\
+\hline
+{\em sp2} & Espacio 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+OL 
+\end{DoxyReturn}

@@ -1,0 +1,65 @@
+\hypertarget{object_8h}{}\doxysection{object.\+h File Reference}
+\label{object_8h}\index{object.h@{object.h}}
+
+
+Define Las estructuras y funciones de los objetos.  
+
+
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+Include dependency graph for object.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{object_8h_a6e00f6c945bcc13a418c8c9e7dada001}\label{object_8h_a6e00f6c945bcc13a418c8c9e7dada001}} 
+\#define {\bfseries Max\+\_\+\+Objects}~100
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{object_8h_a7f8bbcda919b65ce67f92fba08e0212f}\label{object_8h_a7f8bbcda919b65ce67f92fba08e0212f}} 
+typedef struct \mbox{\hyperlink{struct__Object}{\+\_\+\+Object}} {\bfseries Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{object_8h_abb0cd30fca5fbddf137c6c04df66bbc7}\label{object_8h_abb0cd30fca5fbddf137c6c04df66bbc7}} 
+\mbox{\hyperlink{struct__Object}{Object}} $\ast$ {\bfseries object\+\_\+create} (Id id)
+\item 
+\mbox{\Hypertarget{object_8h_a19d6d51fee809e3801893eefc789f4b4}\label{object_8h_a19d6d51fee809e3801893eefc789f4b4}} 
+S\+T\+A\+T\+US {\bfseries object\+\_\+destroy} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\item 
+\mbox{\Hypertarget{object_8h_adef925f66272a23a1ec2842bffb50e3e}\label{object_8h_adef925f66272a23a1ec2842bffb50e3e}} 
+S\+T\+A\+T\+US {\bfseries object\+\_\+set\+\_\+id} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object, Id ide)
+\item 
+\mbox{\Hypertarget{object_8h_ac15dc062c857503ec0ca66037caffd80}\label{object_8h_ac15dc062c857503ec0ca66037caffd80}} 
+S\+T\+A\+T\+US {\bfseries object\+\_\+set\+\_\+name} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object, char $\ast$name)
+\item 
+\mbox{\Hypertarget{object_8h_ac5af152381a21853c6a28cc120e8e7fe}\label{object_8h_ac5af152381a21853c6a28cc120e8e7fe}} 
+Id {\bfseries object\+\_\+get\+\_\+id} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\item 
+\mbox{\Hypertarget{object_8h_adebb77fb5d33fc70616ab3b2b64c27ce}\label{object_8h_adebb77fb5d33fc70616ab3b2b64c27ce}} 
+S\+T\+A\+T\+US {\bfseries object\+\_\+print} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\item 
+\mbox{\Hypertarget{object_8h_a19320eebcbbd38533a18c741b804b584}\label{object_8h_a19320eebcbbd38533a18c741b804b584}} 
+const char $\ast$ {\bfseries object\+\_\+get\+\_\+name} (\mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define Las estructuras y funciones de los objetos. 
+
+\begin{DoxyAuthor}{Author}
+2111\+\_\+10 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15-\/02-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License 
+\end{DoxyCopyright}

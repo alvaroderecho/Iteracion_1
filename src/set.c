@@ -45,7 +45,7 @@ STATUS set_add_values (Set* set, Id id) {
     int i;
 
     if (!set || set->num_id == MAX_ID) return ERROR;
-
+    if (id == NO_ID) return ERROR;
     for (i=0;i<set->num_id;i++) { //comprobación el valor no se repite
         if (set->id[i] == id)
             return ERROR;

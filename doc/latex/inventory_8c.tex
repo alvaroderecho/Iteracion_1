@@ -1,0 +1,230 @@
+\hypertarget{inventory_8c}{}\doxysection{inventory.\+c File Reference}
+\label{inventory_8c}\index{inventory.c@{inventory.c}}
+
+
+Define el inventario del jugador.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}inventory.\+h\char`\"{}}\newline
+Include dependency graph for inventory.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Inventory}{\+\_\+\+Inventory}}
+\begin{DoxyCompactList}\small\item\em Define el inventario del jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{inventory_8c_ac26bd13545d29c54be88fe881fffbf04}\label{inventory_8c_ac26bd13545d29c54be88fe881fffbf04}} 
+\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$ {\bfseries inventory\+\_\+create} (int max)
+\item 
+\mbox{\Hypertarget{inventory_8c_a367c80dbb3873094f1018b878c9a8d5a}\label{inventory_8c_a367c80dbb3873094f1018b878c9a8d5a}} 
+S\+T\+A\+T\+US {\bfseries inventory\+\_\+destroy} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\item 
+\mbox{\Hypertarget{inventory_8c_ade5104a0b759042dd584c9e22006e58e}\label{inventory_8c_ade5104a0b759042dd584c9e22006e58e}} 
+Id $\ast$ {\bfseries inventory\+\_\+get\+Ids} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\item 
+\mbox{\Hypertarget{inventory_8c_aaa3e76a2c2ee309395d1c7a7cfad2c6f}\label{inventory_8c_aaa3e76a2c2ee309395d1c7a7cfad2c6f}} 
+int {\bfseries inventory\+\_\+get\+Max\+Inv} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\item 
+\mbox{\Hypertarget{inventory_8c_a9271861e241fb6180adc6b6d3063cebb}\label{inventory_8c_a9271861e241fb6180adc6b6d3063cebb}} 
+S\+T\+A\+T\+US {\bfseries inventory\+\_\+add\+Id} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i, Id id)
+\item 
+\mbox{\Hypertarget{inventory_8c_a7ded729f5306a748337c2e794d59028c}\label{inventory_8c_a7ded729f5306a748337c2e794d59028c}} 
+S\+T\+A\+T\+US {\bfseries inventory\+\_\+del\+Id} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i, Id id)
+\item 
+\mbox{\Hypertarget{inventory_8c_a919956bb2942592455d17f85753816bb}\label{inventory_8c_a919956bb2942592455d17f85753816bb}} 
+S\+T\+A\+T\+US {\bfseries inventory\+\_\+set\+Max\+Inv} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i, int max)
+\item 
+\mbox{\Hypertarget{inventory_8c_aaefd8fd71be1d7dd485eb48ef61bd625}\label{inventory_8c_aaefd8fd71be1d7dd485eb48ef61bd625}} 
+int {\bfseries inventory\+\_\+get\+Numids} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\item 
+\mbox{\Hypertarget{inventory_8c_a9717b71b77d1cc9867016b540ad15745}\label{inventory_8c_a9717b71b77d1cc9867016b540ad15745}} 
+B\+O\+OL {\bfseries inventory\+\_\+contains\+Object} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i, Id id)
+\item 
+\mbox{\Hypertarget{inventory_8c_a84e149f9d68e5c57cac77c0137e71868}\label{inventory_8c_a84e149f9d68e5c57cac77c0137e71868}} 
+S\+T\+A\+T\+US {\bfseries inventory\+\_\+print} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\item 
+\mbox{\Hypertarget{inventory_8c_abf2cab66e6613edaaf8164810ef7d6b2}\label{inventory_8c_abf2cab66e6613edaaf8164810ef7d6b2}} 
+B\+O\+OL {\bfseries inventory\+\_\+is\+Empty} (\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$i)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define el inventario del jugador. 
+
+comprueba si el inventory está vacio
+
+Imprime los datos del inventario.
+
+Devuelve True si el inventario contiene el id, en otro caso o caso de error devuelve False.
+
+Devuelve el numero de ids en el inventario.
+
+Actualiza el tamaño del inventario.
+
+Elimina un objeto del inventario.
+
+Añade un objeto al inventario.
+
+Devuelve el tamaño del inventario.
+
+Devuelve el array de ids del inventario.
+
+Destruye el inventario.
+
+Crea el inventario.
+
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em max} & Valor máximo del inventario \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+puntero al inventario
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Inventario a destruir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK si no hay fallo y E\+R\+R\+OR en caso de fallo.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Inventario a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Inventario a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Inventario a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+07-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Inventario a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+17/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em Inventory} & Inventario a usar \\
+\hline
+{\em Id} & a buscar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bool
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Sergio Domínguez
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+23-\/03-\/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Inventario a usar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US 
+\end{DoxyReturn}

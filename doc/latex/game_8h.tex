@@ -1,0 +1,131 @@
+\hypertarget{game_8h}{}\doxysection{game.\+h File Reference}
+\label{game_8h}\index{game.h@{game.h}}
+
+
+It defines the game interface for each command.  
+
+
+{\ttfamily \#include \char`\"{}command.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}space.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}object.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}player.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}die.\+h\char`\"{}}\newline
+Include dependency graph for game.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8h_a4a067492d681fbbce4157face2f51c27}\label{game_8h_a4a067492d681fbbce4157face2f51c27}} 
+\#define {\bfseries O\+B\+J\+E\+C\+TS}~120
+\item 
+\mbox{\Hypertarget{game_8h_ac1b78e3a8bd2c322343a411b4adacf09}\label{game_8h_ac1b78e3a8bd2c322343a411b4adacf09}} 
+\#define {\bfseries L\+I\+N\+KS}~128
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8h_a57156d39c530aec3fba3a9dad8c2dc6a}\label{game_8h_a57156d39c530aec3fba3a9dad8c2dc6a}} 
+typedef struct \mbox{\hyperlink{struct__Game}{\+\_\+\+Game}} {\bfseries Game}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{game_8h_ae5ad86de0a92d9eccb234948458da7f1}{game\+\_\+add\+\_\+space}} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{game_8h_abed482f7a6cbbb66d095510973074388}\label{game_8h_abed482f7a6cbbb66d095510973074388}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+create} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_ae1f5d77606aaddac47a611ffd0a1f2b5}\label{game_8h_ae1f5d77606aaddac47a611ffd0a1f2b5}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+update} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, T\+\_\+\+Command cmd, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8h_a0736924a1235c0e6fe9b6d91c2a12af8}\label{game_8h_a0736924a1235c0e6fe9b6d91c2a12af8}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+destroy} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_aa6efe0650af110bbd84e742cc8046d93}\label{game_8h_aa6efe0650af110bbd84e742cc8046d93}} 
+B\+O\+OL {\bfseries game\+\_\+is\+\_\+over} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_a33a5ed8937423f8c012df3cedad4fa4c}\label{game_8h_a33a5ed8937423f8c012df3cedad4fa4c}} 
+void {\bfseries game\+\_\+print\+\_\+data} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_a69d94da9d27b542d3ebdeb8b60f1f2dc}\label{game_8h_a69d94da9d27b542d3ebdeb8b60f1f2dc}} 
+\mbox{\hyperlink{struct__Space}{Space}} $\ast$ {\bfseries game\+\_\+get\+\_\+space} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8h_af46efd507d797aec6da90d08aa592e32}\label{game_8h_af46efd507d797aec6da90d08aa592e32}} 
+\mbox{\hyperlink{struct__Player}{Player}} $\ast$ {\bfseries game\+\_\+get\+\_\+player} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_a5753a09313b092a52c0cea742c40f3cf}\label{game_8h_a5753a09313b092a52c0cea742c40f3cf}} 
+\mbox{\hyperlink{struct__Die}{Die}} $\ast$ {\bfseries game\+\_\+get\+\_\+die} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_a9dca92a603769c72a708a7d042e76dfa}\label{game_8h_a9dca92a603769c72a708a7d042e76dfa}} 
+\mbox{\hyperlink{struct__Object}{Object}} $\ast$ {\bfseries game\+\_\+get\+\_\+object} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8h_a9cb61bf66f8c3c07174b17a4beaa0be8}\label{game_8h_a9cb61bf66f8c3c07174b17a4beaa0be8}} 
+Id {\bfseries game\+\_\+player\+\_\+get\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_aa84eca5a1131daafd7acbf74263b6f82}\label{game_8h_aa84eca5a1131daafd7acbf74263b6f82}} 
+Id {\bfseries game\+\_\+get\+\_\+object\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8h_ac35df1afdade2b7659ebbcfeca1f0c35}\label{game_8h_ac35df1afdade2b7659ebbcfeca1f0c35}} 
+T\+\_\+\+Command {\bfseries game\+\_\+get\+\_\+last\+\_\+command} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{game_8h_a20cfb9fe7f47fc00e3b0249f58ae98f1}{game\+\_\+player\+\_\+set\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8h_ae0146556b7d90f6b65633d7bef85fbc0}\label{game_8h_ae0146556b7d90f6b65633d7bef85fbc0}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+set\+\_\+object\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id, Id id2)
+\item 
+\mbox{\Hypertarget{game_8h_ad2dfd865e2bd2c545a15d33f4d1cf3ae}\label{game_8h_ad2dfd865e2bd2c545a15d33f4d1cf3ae}} 
+Id {\bfseries game\+\_\+get\+\_\+space\+\_\+id\+\_\+at} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, int position)
+\item 
+\mbox{\Hypertarget{game_8h_a9597a8e456aa74db536e87d56f56c3b4}\label{game_8h_a9597a8e456aa74db536e87d56f56c3b4}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+object} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\item 
+\mbox{\Hypertarget{game_8h_ad554a47064fb6385d605a8f305f94a11}\label{game_8h_ad554a47064fb6385d605a8f305f94a11}} 
+int {\bfseries game\+\_\+num\+\_\+o} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_aacbf28320fd70aa492a722ad1789f479}\label{game_8h_aacbf28320fd70aa492a722ad1789f479}} 
+\mbox{\hyperlink{struct__Object}{Object}} $\ast$$\ast$ {\bfseries game\+\_\+get\+\_\+objects} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8h_a4280b7ee7ac0d4575d0aa88e8b7f921b}\label{game_8h_a4280b7ee7ac0d4575d0aa88e8b7f921b}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+player} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{game_8h_a057a83fa209fb1cca41eec8ab4e5776b}\label{game_8h_a057a83fa209fb1cca41eec8ab4e5776b}} 
+\mbox{\hyperlink{struct__Game}{Game}} $\ast$ {\bfseries game\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{game_8h_a4691bee17d5784ad6eb257dfbb252c27}\label{game_8h_a4691bee17d5784ad6eb257dfbb252c27}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+link} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It defines the game interface for each command. 
+
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8h_ae5ad86de0a92d9eccb234948458da7f1}\label{game_8h_ae5ad86de0a92d9eccb234948458da7f1}} 
+\index{game.h@{game.h}!game\_add\_space@{game\_add\_space}}
+\index{game\_add\_space@{game\_add\_space}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_add\_space()}{game\_add\_space()}}
+{\footnotesize\ttfamily S\+T\+A\+T\+US game\+\_\+add\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{struct__Space}{Space}} $\ast$}]{space }\end{DoxyParamCaption})}
+
+Private functions \mbox{\Hypertarget{game_8h_a20cfb9fe7f47fc00e3b0249f58ae98f1}\label{game_8h_a20cfb9fe7f47fc00e3b0249f58ae98f1}} 
+\index{game.h@{game.h}!game\_player\_set\_location@{game\_player\_set\_location}}
+\index{game\_player\_set\_location@{game\_player\_set\_location}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_player\_set\_location()}{game\_player\_set\_location()}}
+{\footnotesize\ttfamily S\+T\+A\+T\+US game\+\_\+player\+\_\+set\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} $\ast$}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+Game interface implementation 

@@ -1,0 +1,587 @@
+\hypertarget{game_8c}{}\doxysection{game.\+c File Reference}
+\label{game_8c}\index{game.c@{game.c}}
+
+
+It implements the game interface and all the associated callbacks for each command.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+Include dependency graph for game.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__Game}{\+\_\+\+Game}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8c_a8366e5ad74afbbea0cd0a414770c304a}\label{game_8c_a8366e5ad74afbbea0cd0a414770c304a}} 
+\#define {\bfseries N\+\_\+\+C\+A\+L\+L\+B\+A\+CK}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{game_8c_a2eb40e0173e90ba3e6d933a7a64b09ec}{callback\+\_\+fn}}) (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game_8c_af2a4b0e66527503d7fa886141a9275e0}{game\+\_\+callback\+\_\+unknown}} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a51957f55b2bd116504dc7e03bcc7f50e}\label{game_8c_a51957f55b2bd116504dc7e03bcc7f50e}} 
+void {\bfseries game\+\_\+callback\+\_\+exit} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a3f3ae77638e6fdd1a45d624c7e094323}\label{game_8c_a3f3ae77638e6fdd1a45d624c7e094323}} 
+void {\bfseries game\+\_\+callback\+\_\+next} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_aeb54512b6778136b9280157f9c69cbb8}\label{game_8c_aeb54512b6778136b9280157f9c69cbb8}} 
+void {\bfseries game\+\_\+callback\+\_\+back} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_ad0537828518be81f18b7e5f01a371b62}\label{game_8c_ad0537828518be81f18b7e5f01a371b62}} 
+void {\bfseries game\+\_\+callback\+\_\+take} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a9e3ac0c203a7fd99cc96a2e15651a044}\label{game_8c_a9e3ac0c203a7fd99cc96a2e15651a044}} 
+void {\bfseries game\+\_\+callback\+\_\+drop} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a3c765c4d0c10781dab141a888cca89ec}\label{game_8c_a3c765c4d0c10781dab141a888cca89ec}} 
+void {\bfseries game\+\_\+callback\+\_\+left} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a8ba540c961dca3dfc5d00e8f989142e7}\label{game_8c_a8ba540c961dca3dfc5d00e8f989142e7}} 
+void {\bfseries game\+\_\+callback\+\_\+right} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_a70160565808f7b84fb2f84ec25aa22ea}\label{game_8c_a70160565808f7b84fb2f84ec25aa22ea}} 
+void {\bfseries game\+\_\+callback\+\_\+roll} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_ae30291cc778a05a57a7ec29a4301b54f}\label{game_8c_ae30291cc778a05a57a7ec29a4301b54f}} 
+void {\bfseries game\+\_\+callback\+\_\+move} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)
+\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{game_8c_ae5ad86de0a92d9eccb234948458da7f1}{game\+\_\+add\+\_\+space}} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Space}{Space}} $\ast$space)
+\item 
+\mbox{\Hypertarget{game_8c_ad2dfd865e2bd2c545a15d33f4d1cf3ae}\label{game_8c_ad2dfd865e2bd2c545a15d33f4d1cf3ae}} 
+Id {\bfseries game\+\_\+get\+\_\+space\+\_\+id\+\_\+at} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, int position)
+\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{game_8c_a20cfb9fe7f47fc00e3b0249f58ae98f1}{game\+\_\+player\+\_\+set\+\_\+location}} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8c_ae0146556b7d90f6b65633d7bef85fbc0}\label{game_8c_ae0146556b7d90f6b65633d7bef85fbc0}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+set\+\_\+object\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id, Id id2)
+\item 
+\mbox{\Hypertarget{game_8c_a057a83fa209fb1cca41eec8ab4e5776b}\label{game_8c_a057a83fa209fb1cca41eec8ab4e5776b}} 
+\mbox{\hyperlink{struct__Game}{Game}} $\ast$ {\bfseries game\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{game_8c_ad554a47064fb6385d605a8f305f94a11}\label{game_8c_ad554a47064fb6385d605a8f305f94a11}} 
+int {\bfseries game\+\_\+num\+\_\+o} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_abed482f7a6cbbb66d095510973074388}\label{game_8c_abed482f7a6cbbb66d095510973074388}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+create} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a0736924a1235c0e6fe9b6d91c2a12af8}\label{game_8c_a0736924a1235c0e6fe9b6d91c2a12af8}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+destroy} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a9597a8e456aa74db536e87d56f56c3b4}\label{game_8c_a9597a8e456aa74db536e87d56f56c3b4}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+object} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Object}{Object}} $\ast$object)
+\item 
+\mbox{\Hypertarget{game_8c_a4691bee17d5784ad6eb257dfbb252c27}\label{game_8c_a4691bee17d5784ad6eb257dfbb252c27}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+link} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Link}{Link}} $\ast$link)
+\item 
+\mbox{\Hypertarget{game_8c_a69d94da9d27b542d3ebdeb8b60f1f2dc}\label{game_8c_a69d94da9d27b542d3ebdeb8b60f1f2dc}} 
+\mbox{\hyperlink{struct__Space}{Space}} $\ast$ {\bfseries game\+\_\+get\+\_\+space} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8c_af46efd507d797aec6da90d08aa592e32}\label{game_8c_af46efd507d797aec6da90d08aa592e32}} 
+\mbox{\hyperlink{struct__Player}{Player}} $\ast$ {\bfseries game\+\_\+get\+\_\+player} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a5753a09313b092a52c0cea742c40f3cf}\label{game_8c_a5753a09313b092a52c0cea742c40f3cf}} 
+\mbox{\hyperlink{struct__Die}{Die}} $\ast$ {\bfseries game\+\_\+get\+\_\+die} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a9dca92a603769c72a708a7d042e76dfa}\label{game_8c_a9dca92a603769c72a708a7d042e76dfa}} 
+\mbox{\hyperlink{struct__Object}{Object}} $\ast$ {\bfseries game\+\_\+get\+\_\+object} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8c_a9cb61bf66f8c3c07174b17a4beaa0be8}\label{game_8c_a9cb61bf66f8c3c07174b17a4beaa0be8}} 
+Id {\bfseries game\+\_\+player\+\_\+get\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_aa84eca5a1131daafd7acbf74263b6f82}\label{game_8c_aa84eca5a1131daafd7acbf74263b6f82}} 
+Id {\bfseries game\+\_\+get\+\_\+object\+\_\+location} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, Id id)
+\item 
+\mbox{\Hypertarget{game_8c_ae1f5d77606aaddac47a611ffd0a1f2b5}\label{game_8c_ae1f5d77606aaddac47a611ffd0a1f2b5}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+update} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, T\+\_\+\+Command cmd, char $\ast$arg)
+\item 
+\mbox{\Hypertarget{game_8c_ac35df1afdade2b7659ebbcfeca1f0c35}\label{game_8c_ac35df1afdade2b7659ebbcfeca1f0c35}} 
+T\+\_\+\+Command {\bfseries game\+\_\+get\+\_\+last\+\_\+command} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a33a5ed8937423f8c012df3cedad4fa4c}\label{game_8c_a33a5ed8937423f8c012df3cedad4fa4c}} 
+void {\bfseries game\+\_\+print\+\_\+data} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_aa6efe0650af110bbd84e742cc8046d93}\label{game_8c_aa6efe0650af110bbd84e742cc8046d93}} 
+B\+O\+OL {\bfseries game\+\_\+is\+\_\+over} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_aacbf28320fd70aa492a722ad1789f479}\label{game_8c_aacbf28320fd70aa492a722ad1789f479}} 
+\mbox{\hyperlink{struct__Object}{Object}} $\ast$$\ast$ {\bfseries game\+\_\+get\+\_\+objects} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game)
+\item 
+\mbox{\Hypertarget{game_8c_a4280b7ee7ac0d4575d0aa88e8b7f921b}\label{game_8c_a4280b7ee7ac0d4575d0aa88e8b7f921b}} 
+S\+T\+A\+T\+US {\bfseries game\+\_\+add\+\_\+player} (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, \mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+It implements the game interface and all the associated callbacks for each command. 
+
+Define un Objeto.
+
+Añade un Enlace.
+
+Reserva memoria para un Game.
+
+Añade un jugador.
+
+Devuelve el array de objetos.
+
+Devuelve el número de objetos de un juego.
+
+Añade un Objeto.
+
+Devuelve la id de un espacio.
+
+Establece la localización de un objeto.
+
+Establece la localización de un jugador.
+
+Devuelve el último comando.
+
+Devuelve la localización del objeto.
+
+Devuelve la localización del jugador.
+
+Devuelve el objeto del juego.
+
+Devuelve el dado del juego.
+
+Devuelve el jugador del juego.
+
+Devuelve un espacio del juego.
+
+Imprime los datos del juego.
+
+Indica el final del juego.
+
+Destruye un juego.
+
+Actualiza el juego.
+
+Crea un espacio.
+
+Añade un espacio.
+
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em space} & Espacio a añadir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em cmd} & Comando Introducido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em id} & Id del espacio deseado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Space$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Player$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+18/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Player$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em id} & Id del objeto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Object$\ast$
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em Id} & del objeto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+\_\+\+Command
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em id} & Localización del jugador \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em id} & Localización del objeto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Profesores P\+P\+R\+OG 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+13-\/01-\/2015 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em int} & Posición del espacio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em object} & Objeto a añadir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20/03/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$\ast$$\ast$ Object
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em player} & Jugador a añadir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho y Joseba Arranz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+16/04/2021 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+Game
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+18/04/2021 
+\end{DoxyDate}
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Juego usado \\
+\hline
+{\em link} & Enlace a añadir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+US
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Álvaro Derecho 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15/02/2021 
+\end{DoxyDate}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{game_8c_a2eb40e0173e90ba3e6d933a7a64b09ec}\label{game_8c_a2eb40e0173e90ba3e6d933a7a64b09ec}} 
+\index{game.c@{game.c}!callback\_fn@{callback\_fn}}
+\index{callback\_fn@{callback\_fn}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{callback\_fn}{callback\_fn}}
+{\footnotesize\ttfamily typedef void($\ast$ callback\+\_\+fn) (\mbox{\hyperlink{struct__Game}{Game}} $\ast$game, char $\ast$arg)}
+
+Define the function type for the callbacks 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8c_ae5ad86de0a92d9eccb234948458da7f1}\label{game_8c_ae5ad86de0a92d9eccb234948458da7f1}} 
+\index{game.c@{game.c}!game\_add\_space@{game\_add\_space}}
+\index{game\_add\_space@{game\_add\_space}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_add\_space()}{game\_add\_space()}}
+{\footnotesize\ttfamily S\+T\+A\+T\+US game\+\_\+add\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{struct__Space}{Space}} $\ast$}]{space }\end{DoxyParamCaption})}
+
+Private functions \mbox{\Hypertarget{game_8c_af2a4b0e66527503d7fa886141a9275e0}\label{game_8c_af2a4b0e66527503d7fa886141a9275e0}} 
+\index{game.c@{game.c}!game\_callback\_unknown@{game\_callback\_unknown}}
+\index{game\_callback\_unknown@{game\_callback\_unknown}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_callback\_unknown()}{game\_callback\_unknown()}}
+{\footnotesize\ttfamily void game\+\_\+callback\+\_\+unknown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} $\ast$}]{game,  }\item[{char $\ast$}]{arg }\end{DoxyParamCaption})}
+
+List of callbacks for each command in the game
+
+Callbacks implementation for each action \mbox{\Hypertarget{game_8c_a20cfb9fe7f47fc00e3b0249f58ae98f1}\label{game_8c_a20cfb9fe7f47fc00e3b0249f58ae98f1}} 
+\index{game.c@{game.c}!game\_player\_set\_location@{game\_player\_set\_location}}
+\index{game\_player\_set\_location@{game\_player\_set\_location}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_player\_set\_location()}{game\_player\_set\_location()}}
+{\footnotesize\ttfamily S\+T\+A\+T\+US game\+\_\+player\+\_\+set\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Game}{Game}} $\ast$}]{game,  }\item[{Id}]{id }\end{DoxyParamCaption})}
+
+Game interface implementation 

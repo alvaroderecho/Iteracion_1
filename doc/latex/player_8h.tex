@@ -1,0 +1,78 @@
+\hypertarget{player_8h}{}\doxysection{player.\+h File Reference}
+\label{player_8h}\index{player.h@{player.h}}
+
+
+Define Las estructuras y funciones de los jugadores.  
+
+
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inventory.\+h\char`\"{}}\newline
+Include dependency graph for player.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{player_8h_af30e2030635a69690f85e48bc6ef202f}\label{player_8h_af30e2030635a69690f85e48bc6ef202f}} 
+typedef struct \mbox{\hyperlink{struct__Player}{\+\_\+\+Player}} {\bfseries Player}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{player_8h_a97ea1d0deda3c51ef6ce63a13dab7a38}\label{player_8h_a97ea1d0deda3c51ef6ce63a13dab7a38}} 
+\mbox{\hyperlink{struct__Player}{Player}} $\ast$ {\bfseries player\+\_\+create} (Id id)
+\item 
+\mbox{\Hypertarget{player_8h_a68e324aa5064e27d0a2f38aafb6809ad}\label{player_8h_a68e324aa5064e27d0a2f38aafb6809ad}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+destroy} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{player_8h_a22734e74365fc70ec0f22c9bd7801415}\label{player_8h_a22734e74365fc70ec0f22c9bd7801415}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+set\+\_\+id} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, Id ide)
+\item 
+\mbox{\Hypertarget{player_8h_a6a30809f7775f5c2d3bef47d92769e59}\label{player_8h_a6a30809f7775f5c2d3bef47d92769e59}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+set\+\_\+name} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, char $\ast$name)
+\item 
+\mbox{\Hypertarget{player_8h_ac8ace1a1b6b11bc7f92a71a3922e4b83}\label{player_8h_ac8ace1a1b6b11bc7f92a71a3922e4b83}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+set\+\_\+location} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, Id id)
+\item 
+\mbox{\Hypertarget{player_8h_a2fc269feb0641f59daab5e6b77cb1a75}\label{player_8h_a2fc269feb0641f59daab5e6b77cb1a75}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+add\+\_\+object} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, Id id)
+\item 
+\mbox{\Hypertarget{player_8h_a68871bc282449eb64b977acbdbd7565a}\label{player_8h_a68871bc282449eb64b977acbdbd7565a}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+del\+\_\+object} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, Id id)
+\item 
+\mbox{\Hypertarget{player_8h_af5a101ec91427951c5875569a8709956}\label{player_8h_af5a101ec91427951c5875569a8709956}} 
+Id {\bfseries player\+\_\+get\+\_\+id} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{player_8h_a6622c02be2fe230a5c0df66385a13ece}\label{player_8h_a6622c02be2fe230a5c0df66385a13ece}} 
+const char $\ast$ {\bfseries player\+\_\+get\+\_\+name} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{player_8h_aa50ce77ab79af7166d749619fd60acfe}\label{player_8h_aa50ce77ab79af7166d749619fd60acfe}} 
+Id {\bfseries player\+\_\+get\+\_\+location} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{player_8h_a128b1fbcca0b4b1795094626d3bb7d62}\label{player_8h_a128b1fbcca0b4b1795094626d3bb7d62}} 
+\mbox{\hyperlink{struct__Inventory}{Inventory}} $\ast$ {\bfseries player\+\_\+get\+\_\+objects} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\item 
+\mbox{\Hypertarget{player_8h_a89510eaf761c558afdd8412c5696f242}\label{player_8h_a89510eaf761c558afdd8412c5696f242}} 
+B\+O\+OL {\bfseries player\+\_\+contains\+Object} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player, Id id)
+\item 
+\mbox{\Hypertarget{player_8h_aa0f2f8b4d1b63a60ef927d47aa45dbd1}\label{player_8h_aa0f2f8b4d1b63a60ef927d47aa45dbd1}} 
+S\+T\+A\+T\+US {\bfseries player\+\_\+print} (\mbox{\hyperlink{struct__Player}{Player}} $\ast$player)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define Las estructuras y funciones de los jugadores. 
+
+\begin{DoxyAuthor}{Author}
+2111\+\_\+10 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+15-\/02-\/2021 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Public License 
+\end{DoxyCopyright}
