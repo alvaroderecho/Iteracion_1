@@ -15,5 +15,10 @@ void test3_set_del_values();
 void test4_set_del_values();
 void test1_set_print();
 void test2_set_print();
+void test1_set_get_ids();
+void test1_set_get_numids();
+void test1_set_containsId();
+void test2_set_containsId();
+void test3_set_containsId();
 
 #endif

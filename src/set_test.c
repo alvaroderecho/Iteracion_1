@@ -4,7 +4,7 @@
 #include "test.h"
 #include "set_test.h"
 
-#define MAX_TESTS 13
+#define MAX_TESTS 20
 #define MAX_SET 1024
 
 int main(int argc, char** argv) {
@@ -36,7 +36,12 @@ int main(int argc, char** argv) {
   if (all || test == 11) test4_set_del_values();
   if (all || test == 12) test1_set_print();
   if (all || test == 13) test2_set_print();
-
+  if (all || test == 14) test1_set_get_ids();
+  if (all || test == 15) test1_set_get_numids();
+  if (all || test == 16) test1_set_containsId();
+  if (all || test == 17) test2_set_containsId();
+  if (all || test == 18) test3_set_containsId();
+  
   PRINT_PASSED_PERCENTAGE;
 
   return 1;
@@ -112,4 +117,27 @@ void test1_set_print() {
 void test2_set_print() {
     Set *s = set_create();
     PRINT_TEST_RESULT(set_print(s) == OK);
+}
+
+void test1_set_get_ids(){
+    Set *s = NULL;
+    PRINT_TEST_RESULT(set_get_ids(s) == NULL);
+}
+
+void test1_set_get_numids(){
+    Set *s = NULL;
+    PRINT_TEST_RESULT(set_get_numids(s) == 0);
+}
+
+void test1_set_containsId(){
+    Set *s = NULL;
+    PRINT_TEST_RESULT(set_containsId(s,1) == FALSE);
+}
+void test2_set_containsId(){
+    Set *s = NULL;
+    PRINT_TEST_RESULT(set_containsId(s,-1) == FALSE);
+}
+void test3_set_containsId(){
+    Set *s = set_create();
+    PRINT_TEST_RESULT(set_containsId(s,-1) == FALSE);
 }
