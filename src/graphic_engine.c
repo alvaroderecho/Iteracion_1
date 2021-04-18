@@ -240,6 +240,15 @@ for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game)));i++){
   sprintf(str, "Last die value: %d", die_getLastThrow(game_get_die(game)));
   screen_area_puts(ge->descript, str);
 
+  sprintf(str, " ");
+  screen_area_puts(ge->descript, str);
+
+  sprintf(str, "Descriptions: ");
+  screen_area_puts(ge->descript, str);
+
+  if (game_get_last_command(game) == INSPECT) {
+    
+  }
   /* Paint in the banner area */
   screen_area_puts(ge->banner, " The game of the Goose ");
 
