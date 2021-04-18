@@ -13,6 +13,7 @@ struct _Space
   Link *west;               //link oeste
   Set *objects;             //puntero a conjunto de objetos
   char **gDesc;             //doble puntero a descripción gráfica del espacio
+  char description[WORD_SIZE + 1]; //descripción del espacio
 };
 
 Space *space_create(Id id)
@@ -39,6 +40,8 @@ Space *space_create(Id id)
 
   newSpace->objects = set_create();
 
+  newSpace->description[0] = '\0';
+
   if ((newSpace->gDesc = (char **)malloc(3 * sizeof(char *))) == NULL)
     return NULL; //tres filas
   if ((newSpace->gDesc[0] = (char *)malloc(9 * sizeof(char))) == NULL)
@@ -63,7 +66,7 @@ STATUS space_destroy(Space *space)
     free(space->gDesc[i]);
   }
   free(space->gDesc);
-  
+
   set_destroy(space->objects);
 
   free(space); //libera memoria
@@ -81,6 +84,21 @@ STATUS space_set_name(Space *space, char *name)
 
   if (!strcpy(space->name, name))
   {               //cambia el nombre
+    return ERROR; //no hay cambio si se llaman igual
+  }
+
+  return OK; //completado
+}
+
+STATUS space_set_description(Space *space, char *dscr)
+{
+  if (!space || !dscr)
+  {               //si la descripcion es 0, o el espacio
+    return ERROR; //error
+  }
+
+  if (!strcpy(space->description, dscr))
+  {               //cambia la descripcion
     return ERROR; //no hay cambio si se llaman igual
   }
 
@@ -138,6 +156,7 @@ STATUS space_add_object(Space *space, Id id)
     return ERROR;
   return OK;
 } //establecer un objeto
+
 STATUS space_del_object(Space *space, Id id)
 {
   if (!space)
@@ -157,6 +176,15 @@ const char *space_get_name(Space *space)
     return NULL;
   }
   return space->name;
+} //solicitar nombre
+
+const char *space_get_description(Space *space)
+{
+  if (!space)
+  {
+    return NULL;
+  }
+  return space->description;
 } //solicitar nombre
 
 Id space_get_id(Space *space)

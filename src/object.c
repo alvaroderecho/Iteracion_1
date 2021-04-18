@@ -17,6 +17,7 @@ struct _Object
 {
     Id id;                       //Id del objeto
     char name[WORD_SIZE + 1];    //Nombre del objeto
+    char description[WORD_SIZE + 1];
 };
 
 Object *object_create(Id id)
@@ -35,6 +36,7 @@ Object *object_create(Id id)
 
     new_object->id = id;
     new_object->name[0] = '\0';
+    new_object->description[0] = '\0';
 
     return new_object;
 }
@@ -67,6 +69,16 @@ STATUS object_set_name(Object *object, char *name)
     return OK; //nombre cambiado
 }
 
+STATUS object_set_description(Object *object, char *dscr)
+{
+    if (!object || !descr)
+        return ERROR;
+    if (!strcpy(object->description, dscr)) //cambia la descripcion
+        return ERROR;                //no hay cambia si es el la misma descripcion
+
+    return OK; //descripcion cambiado
+}
+
 Id object_get_id(Object *object)
 {
     if (!object)
@@ -80,6 +92,13 @@ const char *object_get_name(Object *object)
         return NULL;
     return object->name;
 } //solicitar nombre
+
+const char *object_get_description(Object *object)
+{
+    if (!object)
+        return NULL;
+    return object->description;
+}
 
 STATUS object_print(Object *object)
 {

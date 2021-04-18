@@ -14,13 +14,13 @@
 #include <string.h>
 #include "game.h"
 
-#define N_CALLBACK 10
+#define N_CALLBACK 11
 
 struct _Game
 {
   Player *player;                //Puntero al jugador del juego
-  Object *objects[OBJECTS];  
-  Link * links[LINKS];    //Puntero al objeto
+  Object *objects[OBJECTS];      //Puntero al objeto
+  Link * links[LINKS];           //Puntero a los enlaces
   Space *spaces[MAX_SPACES + 1]; //Espacios de un juego
   T_Command last_cmd;            //Último comando escrito por pantalla
   Die *die;                      //Dado usado en el juego
@@ -44,6 +44,7 @@ void game_callback_left(Game *game,char * arg);
 void game_callback_right(Game *game,char * arg);
 void game_callback_roll(Game *game,char * arg);
 void game_callback_move (Game *game, char * arg);
+void game_callback_inspect (Game *game, char * arg);
 
 static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_unknown,
@@ -55,7 +56,8 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_left,
     game_callback_right,
     game_callback_roll,
-    game_callback_move};
+    game_callback_move,
+    game_callback_inspect};
 
 /**
    Private functions
@@ -430,12 +432,12 @@ void game_callback_back(Game *game,char * arg)
 
 void game_callback_take(Game *game,char * arg)
 {
-  
+
   Id space_id = NO_ID, object_id = NO_ID;
   int i;
   space_id = game_player_get_location(game);
   BOOL b;
-  
+
 
   if (space_id == NO_ID)
     return;
@@ -445,7 +447,7 @@ void game_callback_take(Game *game,char * arg)
       break;
     }
   }
-  
+
 b = set_containsId(space_get_objects(game_get_space(game,space_id)),object_id);
 printf ("%d",b);
 if (b == TRUE){
@@ -482,9 +484,9 @@ for (i=0;i < inventory_getNumids(player_get_objects(game_get_player(game)));i++)
   if (strcmp(object_get_name(game_get_object(game,object_id[i])),arg) == 0){
   space_add_object(game_get_space(game, space_id), object_id[i]);
   player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
-  
+
   }
-  
+
 }
 inventory_print(player_get_objects(game_get_player(game)));
   return;
@@ -555,12 +557,53 @@ void game_callback_roll(Game *game,char * arg)
     return;
   }
 }
+
+void game_callback_inspect(Game *game, char * arg)
+{
+  int i = 0;
+  Id space_id;
+  Id object_id;
+
+
+
+  space_id = game_player_get_location(game);
+  if (space_id == NO_ID){
+    return;
+  }
+
+  if (strcmp(arg, "space") == 0 || strcmp(arg, "s"))
+  {
+    fprintf(stdout, "Descripción del espacio %s: %s", arg, space_get_description(game_get_space(game, space_id))); 
+  }
+
+  //MIRAMOS SI EL ARGUMENTO ES UN OBJETO
+  for(i=0;i<OBJECTS;i++){
+    if (strcmp(arg,object_get_name(game->objects[i])) == 0){
+      object_id = object_get_id(game->objects[i]);
+
+      if (set_containsId(space_get_objects(game_get_space(game,space_id)), object_id) == TRUE)
+      {
+        fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+      }
+      else if (inventory_containsObject(player_get_objects(game_get_player(game)), object_id) == TRUE)
+      {
+        fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+      }
+      else {
+        return;
+      }
+    }
+  }
+
+}
+
 Object **game_get_objects(Game *game)
 {
   if (game == NULL)
     return NULL;
   return game->objects;
 }
+
 STATUS game_add_player(Game *game, Player *player)
 {
   if (player == NULL)
@@ -570,13 +613,13 @@ STATUS game_add_player(Game *game, Player *player)
 }
 
 void game_callback_move (Game *game, char *arg){
-  
+
   Id current_id = NO_ID;
   Id space_id = NO_ID;
   int i;
 
   space_id = game_player_get_location(game);
-  
+
   if (strcmp(arg,"north") == 0||strcmp(arg,"n") == 0){
     for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
@@ -642,7 +685,7 @@ void game_callback_move (Game *game, char *arg){
     }
   }
   }
-  
+
   return;
-  
+
 }

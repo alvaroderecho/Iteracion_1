@@ -28,9 +28,10 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"l", "Left"},
 {"r", "Right"},
 {"rl", "Roll"},
-{"m", "move"}};
+{"m", "move"},
+{"i", "inspect"}};
 
-//Puntero tipo char de dimensiones 7x2, 7 filas, 2 columnas.
+//Puntero tipo char de dimensiones 12x2, 12 filas, 2 columnas.
 //Comandos que puede utlizar el jugador
 
 //*************************************************
@@ -44,7 +45,7 @@ T_Command command_get_user_input(char *arg)
 	char aux[CMD_LENGHT] = "";
 	int i = UNKNOWN - NO_CMD + 1; // == 0 - (-1) +1 = 2
 	char *aux2 = NULL;
-	
+
 	// cmd == -1, input = "", i == 2
 
 	/*si input <=0, cmd == -1 que devolvería el primer apartado de la enumeración

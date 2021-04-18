@@ -17,6 +17,7 @@
 #include "object.h"
 #include "player.h"
 #include "die.h"
+#include "inventory.h"
 
 #define OBJECTS 120
 #define LINKS 128
@@ -250,7 +251,7 @@ int game_num_o(Game *game);
  * @brief Devuelve el array de objetos
  *
  * @file game.c
- * @author Joseba Arranz 
+ * @author Joseba Arranz
  * @version 1.0
  * @date 2021
  * @param game Juego usado
@@ -261,7 +262,7 @@ Object ** game_get_objects(Game *game);
  * @brief Añade un jugador
  *
  * @file game.c
- * @author Joseba Arranz 
+ * @author Joseba Arranz
  * @version 1.0
  * @date 12/04/2021
  * @param game Juego usado
@@ -274,7 +275,7 @@ STATUS game_add_player(Game *game, Player *player);
  * @brief Reserva memoria para un Game
  *
  * @file game.c
- * @author Álvaro Derecho y Joseba Arranz 
+ * @author Álvaro Derecho y Joseba Arranz
  * @version 1.0
  * @date 16/04/2021
  * @return Game

@@ -67,6 +67,18 @@ STATUS object_set_id(Object *object, Id ide);
 STATUS object_set_name(Object *object, char *name);
 
 /**
+ * @brief Establece la descripcion de un objeto
+ *
+ * @file object.c
+ * @author Sergio Dominguez
+ * @version 1.0
+ * @date 17/04/2021
+ * @param object Objeto usado
+ * @param dscr Descripción del objeto
+ * @return STATUS
+ */
+STATUS object_set_description(Object *object, char *dscr);
+/**
  * @brief Devuelve la id de un objeto
  *
  * @file object.c
@@ -77,6 +89,18 @@ STATUS object_set_name(Object *object, char *name);
  * @return Id
  */
 Id object_get_id(Object *object);
+
+/**
+ * @brief Devuelve la descripción de un objeto
+ *
+ * @file object.c
+ * @author Sergio Dominguez
+ * @version 1.0
+ * @date 15/02/2021
+ * @param object Objeto usado
+ * @return const char *
+ */
+const char *object_get_description(Object *object);
 
 /**
  * @brief Imprime los datos de un objeto

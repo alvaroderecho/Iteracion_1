@@ -84,6 +84,31 @@ STATUS space_set_name(Space *space, char *name);
 const char *space_get_name(Space *space);
 
 /**
+ * @brief Establece la descripcion de un espacio
+ *
+ * @file space.c
+ * @author Profesores PPROG
+ * @version 1.0
+ * @date 17-04-2021
+ * @param space Espacio usado
+ * @param dscr Descripcion del espacio
+ * @return STATUS
+ */
+STATUS space_set_description(Space *space, char *dscr);
+
+/**
+ * @brief Devuelve la descripcion de un espacio
+ *
+ * @file space.c
+ * @author Profesores PPROG
+ * @version 1.0
+ * @date 17-04-2021
+ * @param space Espacio usado
+ * @return const char *
+ */
+const char *space_get_description(Space *space);
+
+/**
  * @brief Establece el norte de un espacio
  *
  * @file space.c
