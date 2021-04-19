@@ -1,32 +1,32 @@
-#s:1|Casilla 1|Vacía|-1|-1|1|-1|       |       |       |
-#s:2|Casilla 2|Vacía|1|-1|2|-1|       |       |       |
-#s:3|Casilla 3|Vacía|2|-1|3|-1|       |       |       |
-#s:4|Casilla 4|Vacía|3|-1|4|-1|       |       |       |
+#s:1|Casilla 1|Vacia|-1|-1|1|-1|       |       |       |
+#s:2|Casilla 2|Vacia|1|-1|2|-1|       |       |       |
+#s:3|Casilla 3|Vacia|2|-1|3|-1|       |       |       |
+#s:4|Casilla 4|Vacia|3|-1|4|-1|       |       |       |
 #s:5|Casilla 5|Oca|4|25|5|-1|       |<o)__/ | \_-/  |
-#s:6|Casilla 6|Vacía|5|-1|6|-1|       |       |       |
-#s:7|Casilla 7|Vacía|6|-1|7|-1|       |       |       |
+#s:6|Casilla 6|Vacia|5|-1|6|-1|       |       |       |
+#s:7|Casilla 7|Vacia|6|-1|7|-1|       |       |       |
 #s:8|Casilla 8|Puente|7|30|8|-1|  ___  | / _ \ |/ / \ \|
 #s:9|Casilla 9|Oca|8|26|9|-1|       |<o)__/ | \_-/  |
-#s:10|Casilla 10|Vacía|9|-1|10|-1|       |       |       |
-#s:11|Casilla 11|Vacía|10|-1|11|-1|       |       |       |
-#s:12|Casilla 12|Vacía|11|-1|12|-1|       |       |       |
+#s:10|Casilla 10|Vacia|9|-1|10|-1|       |       |       |
+#s:11|Casilla 11|Vacia|10|-1|11|-1|       |       |       |
+#s:12|Casilla 12|Vacia|11|-1|12|-1|       |       |       |
 #s:13|Casilla 13|Oca|12|27|13|-1|       |<o)__/ | \_-/  |
-#s:14|Casilla 14|Vacía|13|-1|14|-1|       |       |       |
-#s:15|Casilla 15|Vacía|14|-1|15|-1|       |       |       |
+#s:14|Casilla 14|Vacia|13|-1|14|-1|       |       |       |
+#s:15|Casilla 15|Vacia|14|-1|15|-1|       |       |       |
 #s:16|Casilla 16|Puente|15|-1|16|30|  ___  | / _ \ |/ / \ \|
 #s:17|Casilla 17|Oca|16|28|17|-1|       |<o)__/ | \_-/  |
-#s:18|Casilla 18|Vacía|17|-1|18|-1|       |       |       |
-#s:19|Casilla 19|Vacía|18|-1|19|-1|       |       |       |
-#s:20|Casilla 20|Vacía|19|-1|20|-1|       |       |       |
+#s:18|Casilla 18|Vacia|17|-1|18|-1|       |       |       |
+#s:19|Casilla 19|Vacia|18|-1|19|-1|       |       |       |
+#s:20|Casilla 20|Vacia|19|-1|20|-1|       |       |       |
 #s:21|Casilla 21|Oca|20|29|21|-1|       |<o)__/ | \_-/  |
 #s:22|Casilla 22|Muerte|21|-1|22|1|  ___  | (O O) |  \m/  |
-#s:23|Casilla 23|Vacía|22|-1|23|-1|       |       |       |
-#s:24|Casilla 24|Vacía|23|-1|24|-1|       |       |       |
+#s:23|Casilla 23|Vacia|22|-1|23|-1|       |       |       |
+#s:24|Casilla 24|Vacia|23|-1|24|-1|       |       |       |
 #s:25|Casilla 25|Final|24|-1|-1|-1|       |<o)__/ | \_-/  |
 #o:1|uno|pelota|1
 #o:2|dos|linterna|4
 #o:3|tres|pistola|5
-#o:4|cuatro|maletín|10
+#o:4|cuatro|maletin|10
 #l:1|Lnk 1|1|2|0|
 #l:2|Lnk 2|2|3|0|
 #l:3|Lnk 3|3|4|0|

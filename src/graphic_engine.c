@@ -56,6 +56,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   extern char *cmd_to_str[N_CMD][N_CMDT];
   int i, num_o;
   Object **objects = NULL;
+  char *last_descr = NULL;
 
   /* Paint the in the map area */
   screen_area_clear(ge->map);
@@ -246,9 +247,14 @@ for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game)));i++){
   sprintf(str, "Descriptions: ");
   screen_area_puts(ge->descript, str);
 
-  if (game_get_last_command(game) == INSPECT) {
-    
+  last_descr = game_get_last_description(game);
+  if (last_descr != NULL) {
+    sprintf(str, "%s", last_descr);
+    screen_area_puts(ge->descript, str);
+
   }
+
+  
   /* Paint in the banner area */
   screen_area_puts(ge->banner, " The game of the Goose ");
 

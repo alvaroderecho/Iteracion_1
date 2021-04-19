@@ -295,4 +295,16 @@ Game * game_init();
  */
 STATUS game_add_link(Game *game, Link *link);
 
+/**
+ * @brief Devuelve la última descripción
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 19/04/2021
+ * @param game Juego usado
+ * @return char
+ */
+char * game_get_last_description (Game * game);
+
 #endif

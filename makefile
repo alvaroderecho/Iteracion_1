@@ -85,6 +85,7 @@ object_test: object_test.o object.o
 object_test.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
+.PHONY: clean
 clean:
 	@echo "Cleaning: "
-	rm -rf *.o exe space_test die_test set_test link_test inventory_test player_test object_test
+	rm -rf obj/*.o exe space_test die_test set_test link_test inventory_test player_test object_test

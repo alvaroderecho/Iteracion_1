@@ -24,6 +24,7 @@ struct _Game
   Space *spaces[MAX_SPACES + 1]; //Espacios de un juego
   T_Command last_cmd;            //Último comando escrito por pantalla
   Die *die;                      //Dado usado en el juego
+  char last_descr[WORD_SIZE];    //Última descripción              
 };
 
 /**
@@ -142,6 +143,8 @@ STATUS game_create(Game *game)
   game->last_cmd = NO_CMD;
 
   game->die = die_create(1, 1, 6);
+
+  game->last_descr[0] = '\0';
 
   return OK;
 }
@@ -573,7 +576,7 @@ void game_callback_inspect(Game *game, char * arg)
 
   if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
   {
-    fprintf(stdout, "Descripción del espacio %s: %s", arg, space_get_description(game_get_space(game, space_id))); 
+    strcpy(game->last_descr,space_get_description(game_get_space(game,space_id)));
     return;
   }
 
@@ -584,12 +587,12 @@ void game_callback_inspect(Game *game, char * arg)
 
       if (set_containsId(space_get_objects(game_get_space(game,space_id)), object_id) == TRUE)
       {
-        fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+        strcpy(game->last_descr,object_get_description(game->objects[i]));
         return;
       }
       else if (inventory_containsObject(player_get_objects(game_get_player(game)), object_id) == TRUE)
       {
-        fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+        strcpy(game->last_descr,object_get_description(game->objects[i]));
         return;
       }
       else {
@@ -598,6 +601,12 @@ void game_callback_inspect(Game *game, char * arg)
     }
   }
 
+}
+
+char * game_get_last_description (Game * game) {
+  if (!game) return NULL;
+
+  return game->last_descr;
 }
 
 Object **game_get_objects(Game *game)
