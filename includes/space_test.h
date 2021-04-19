@@ -1,9 +1,9 @@
-/** 
+/**
  * @brief It declares the tests for the space module
- * 
+ *
  * @file space_test_en.h
  * @author Profesores Pprog
- * @version 2.0 
+ * @version 2.0
  * @date 19-01-2016
  * @copyright GNU Public License
  */
@@ -13,14 +13,14 @@
 
 /**
  * @test Test space creation
- * @pre Space ID 
- * @post Non NULL pointer to space 
+ * @pre Space ID
+ * @post Non NULL pointer to space
  */
 void test1_space_create();
 
 /**
  * @test Test space creation
- * @pre Space ID 
+ * @pre Space ID
  * @post Space_ID == Supplied Space Id
  */
 void test2_space_create();
@@ -28,20 +28,20 @@ void test2_space_create();
 /**
  * @test Test function for space_name setting
  * @pre String with space name
- * @post Ouput==OK 
+ * @post Ouput==OK
  */
 void test1_space_set_name();
 
 /**
  * @test Test function for space_name setting
- * @pre pointer to space = NULL 
+ * @pre pointer to space = NULL
  * @post Output==ERROR
  */
 void test2_space_set_name();
 
 /**
  * @test Test function for space_name setting
- * @pre pointer to space_name = NULL (point to space = NON NULL) 
+ * @pre pointer to space_name = NULL (point to space = NON NULL)
  * @post Output==ERROR
  */
 void test3_space_set_name();
@@ -78,5 +78,8 @@ void test2_space_get_west();
 void test1_space_get_object();
 void test2_space_get_object();
 void test3_space_get_object();
-
+void test1_space_set_description();
+void test2_space_set_description();
+void test1_space_get_description();
+void test2_space_get_description();
 #endif

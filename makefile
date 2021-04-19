@@ -16,19 +16,19 @@ game.o:
 game_reader.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-object.o: 
+object.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-screen.o: 
+screen.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-space.o: 
+space.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
 command.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-player.o: 
+player.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
 set.o:
@@ -73,6 +73,18 @@ inventory_test: inventory_test.o inventory.o set.o
 inventory_test.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
+player_test: player_test.o player.o inventory.o
+	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+
+player_test.o:
+	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+
+object_test: object_test.o object.o
+	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+
+object_test.o:
+	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+
 clean:
 	@echo "Cleaning: "
-	rm -rf *.o exe space_test die_test set_test link_test inventory_test
+	rm -rf *.o exe space_test die_test set_test link_test inventory_test player_test object_test

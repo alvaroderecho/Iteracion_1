@@ -1,32 +1,32 @@
-/** 
+/**
  * @brief It tests space module
- * 
+ *
  * @file space_test_en.c
  * @author Profesores Pprog
- * @version 2.0 
+ * @version 2.0
  * @date 16-01-2015
  * @updated 19-01-2016
  * @copyright GNU Public License
  */
 
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <string.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "space.h"
 #include "space_test.h"
 #include "test.h"
 #include "link.h"
 
-#define MAX_TESTS 28
+#define MAX_TESTS 32
 
-/** 
- * @brief Main function for SPACE unit tests. 
- * 
+/**
+ * @brief Main function for SPACE unit tests.
+ *
  * You may execute ALL or a SINGLE test
- *   1.- No parameter -> ALL test are executed 
- *   2.- A number means a particular test (the one identified by that number) 
+ *   1.- No parameter -> ALL test are executed
+ *   2.- A number means a particular test (the one identified by that number)
  *       is executed
- *  
+ *
  */
 int main(int argc, char** argv) {
 
@@ -74,6 +74,10 @@ int main(int argc, char** argv) {
   if (all || test == 26) test2_space_get_west();
   if (all || test == 27) test1_space_get_id();
   if (all || test == 28) test2_space_get_id();
+  if (all || test == 29) test1_space_set_description();
+  if (all || test == 30) test2_space_set_description();
+  if (all || test == 31) test1_space_get_description();
+  if (all || test == 32) test2_space_get_description();
 
   PRINT_PASSED_PERCENTAGE;
 
@@ -156,7 +160,7 @@ void test1_space_set_west() {
   Link * l = link_create(1);
 
   s = space_create(5);
-  
+
   PRINT_TEST_RESULT(space_set_west(s, l) == OK);
 }
 
@@ -196,7 +200,7 @@ void test1_space_get_object() {
   Space *s;
   s = space_create(1);
   PRINT_TEST_RESULT(space_get_object(s,0) == NO_ID);
-     
+
 }
 
 void test2_space_get_object() {
@@ -204,7 +208,7 @@ void test2_space_get_object() {
   s = space_create(1);
   space_add_object(s,1);
   PRINT_TEST_RESULT(space_get_object(s,0) == 1);
-     
+
 }
 
 void test3_space_get_object() {
@@ -277,4 +281,28 @@ void test1_space_get_id() {
 void test2_space_get_id() {
   Space *s = NULL;
   PRINT_TEST_RESULT(space_get_id(s) == NO_ID);
+}
+
+void test1_space_set_description() {
+  Space *s;
+  s = space_create(5);
+  PRINT_TEST_RESULT(space_set_description(s, "hola") == OK);
+}
+
+void test2_space_set_description() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_set_description(s, "hola") == ERROR);
+}
+
+void test1_space_get_description() {
+  Space *s;
+  s = space_create(1);
+  space_set_description(s, "adios");
+  PRINT_TEST_RESULT(strcmp(space_get_description(s), "adios") == 0);
+
+}
+
+void test2_space_get_description() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_get_description(s) == NULL);
 }

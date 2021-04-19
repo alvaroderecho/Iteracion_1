@@ -17,7 +17,7 @@ struct _Object
 {
     Id id;                       //Id del objeto
     char name[WORD_SIZE + 1];    //Nombre del objeto
-    char description[WORD_SIZE + 1];
+    char description[WORD_SIZE + 1]; //Descripcion del objeto
 };
 
 Object *object_create(Id id)
