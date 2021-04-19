@@ -71,7 +71,7 @@ STATUS object_set_name(Object *object, char *name)
 
 STATUS object_set_description(Object *object, char *dscr)
 {
-    if (!object || !descr)
+    if (!object || !dscr)
         return ERROR;
     if (!strcpy(object->description, dscr)) //cambia la descripcion
         return ERROR;                //no hay cambia si es el la misma descripcion

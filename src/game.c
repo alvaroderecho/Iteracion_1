@@ -571,9 +571,10 @@ void game_callback_inspect(Game *game, char * arg)
     return;
   }
 
-  if (strcmp(arg, "space") == 0 || strcmp(arg, "s"))
+  if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
   {
     fprintf(stdout, "Descripción del espacio %s: %s", arg, space_get_description(game_get_space(game, space_id))); 
+    return;
   }
 
   //MIRAMOS SI EL ARGUMENTO ES UN OBJETO
@@ -584,10 +585,12 @@ void game_callback_inspect(Game *game, char * arg)
       if (set_containsId(space_get_objects(game_get_space(game,space_id)), object_id) == TRUE)
       {
         fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+        return;
       }
       else if (inventory_containsObject(player_get_objects(game_get_player(game)), object_id) == TRUE)
       {
         fprintf(stdout, "Descripción del objeto %s: %s", arg, object_get_description(game->objects[i]));
+        return;
       }
       else {
         return;
