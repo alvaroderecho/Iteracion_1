@@ -14,6 +14,7 @@
 #include <string.h>
 #include "player.h"
 #include "player_test.h"
+#include "inventory.h"
 #include "test.h"
 
 #define MAX_TESTS 22
@@ -154,12 +155,12 @@ void test1_player_getName(){
   Player *p = player_create(2);
   char *aux = "Pablo";
   player_set_name(p, aux);
-  PRINT_TEST_RESULT(player_get_name(p) == aux);
+  PRINT_TEST_RESULT(strcmp(player_get_name(p),aux) == 0);
 }
 
 void test2_player_getName(){
   Player *p = player_create(2);
-  PRINT_TEST_RESULT(player_get_name(p) == NULL);
+  PRINT_TEST_RESULT(strcmp(player_get_name(p),"") == 0);
 }
 
 void test1_player_getLocation(){

@@ -73,7 +73,7 @@ inventory_test: inventory_test.o inventory.o set.o
 inventory_test.o:
 	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
 
-player_test: player_test.o player.o inventory.o
+player_test: player_test.o player.o inventory.o set.o
 	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
 
 player_test.o:
