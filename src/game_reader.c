@@ -242,6 +242,7 @@ STATUS game_reader_load_links(Game *game, char *filename)
   char name[WORD_SIZE+1] = "";
   char line[WORD_SIZE] = "";
   char *toks = NULL;
+  char type = '\0';
   Link *link;
   STATUS status = OK;
 
@@ -263,6 +264,8 @@ STATUS game_reader_load_links(Game *game, char *filename)
         sp2 = atol(toks);
         toks= strtok(NULL,"|");
         l_st = atoi(toks);
+        toks = strtok(NULL,"|");
+        type = toks[0];
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld|%ld|%ld|", id, name, sp1, sp2, l_st);
 #endif
@@ -274,17 +277,17 @@ STATUS game_reader_load_links(Game *game, char *filename)
       link_set_sp2(link,sp2);
       link_set_state(link,l_st);
 
-      if (sp2 == sp1 + 1) { //casillas contiguas
+      if (type == 'n') { //casillas contiguas
         space_set_north(game_get_space(game,sp2),link);
         space_set_south(game_get_space(game,sp1),link);
        
         //space_print(game_get_space(game,sp2));
 
       }
-      else if (sp2 == sp1 + 4) { //ocas
+      else if (type == 'o') { //ocas
         space_set_east(game_get_space(game,sp1),link); //oca, solo ida
       }
-      else if (sp2 == sp1 + 8) { //puente ida y vuelta
+      else if (type == 'p') { //puente ida y vuelta
         space_set_east(game_get_space(game,sp1),link);
         space_set_west(game_get_space(game,sp2),link);
       }
