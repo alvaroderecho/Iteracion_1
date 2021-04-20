@@ -307,4 +307,18 @@ STATUS game_add_link(Game *game, Link *link);
  */
 char * game_get_last_description (Game * game);
 
+/**
+ * @brief Devuelve el estado de iluminación de un espacio según su Id
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param game Juego usado
+ * @param id Id del espacio buscado
+ * @return STATUS
+ */
+BOOL game_get_space_illuminate (Game * game, Id id);
+
+
 #endif

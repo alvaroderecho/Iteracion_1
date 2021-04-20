@@ -14,6 +14,7 @@ struct _Space
   Set *objects;             //puntero a conjunto de objetos
   char **gDesc;             //doble puntero a descripción gráfica del espacio
   char description[WORD_SIZE + 1]; //descripción del espacio
+  BOOL illuminated; //espacio iluminado
 };
 
 Space *space_create(Id id)
@@ -37,6 +38,8 @@ Space *space_create(Id id)
   newSpace->south = NULL;
   newSpace->east = NULL;
   newSpace->west = NULL;
+
+  newSpace->illuminated = TRUE;
 
   newSpace->objects = set_create();
 
@@ -325,6 +328,7 @@ STATUS space_print(Space *space)
   for (i = 0; i < MAX_LINES; i++)
     fprintf(stdout, "%s\n", space->gDesc[i]);
 
+  fprintf(stdout, "Iluminado(1) / Apagado(0): %d\n", space->illuminated);
   return OK;
 } //Pasar todo por pantalla
 int space_number_of_objects(Space *s)
@@ -354,4 +358,19 @@ BOOL space_if_connected(Space *sp1, Space *sp2)
 Set *space_get_objects(Space *s){
   if (s == NULL) return NULL;
   return s->objects;
+}
+
+
+BOOL space_get_illuminate (Space *s) {
+  if (!s) return FALSE;
+
+  return s->illuminated;
+}
+
+STATUS space_set_illuminate (Space *s, BOOL st) {
+  if (!s) return ERROR;
+
+  s->illuminated = st;
+
+  return OK;
 }

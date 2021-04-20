@@ -576,6 +576,9 @@ void game_callback_inspect(Game *game, char * arg)
 
   if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
   {
+    if (game_get_space_illuminate(game,space_id) == FALSE) 
+      return;
+
     strcpy(game->last_descr,space_get_description(game_get_space(game,space_id)));
     return;
   }
@@ -584,9 +587,12 @@ void game_callback_inspect(Game *game, char * arg)
   for(i=0;i<OBJECTS;i++){
     if (strcmp(arg,object_get_name(game->objects[i])) == 0){
       object_id = object_get_id(game->objects[i]);
-
+    if (game_get_space_illuminate(game,space_id) == FALSE){ //si no está iluminado el espacio
+      return;      
+    }
       if (set_containsId(space_get_objects(game_get_space(game,space_id)), object_id) == TRUE)
       {
+
         strcpy(game->last_descr,object_get_description(game->objects[i]));
         return;
       }
@@ -700,4 +706,17 @@ void game_callback_move (Game *game, char *arg){
 
   return;
 
+}
+
+BOOL game_get_space_illuminate (Game * game, Id id) {
+  int i;
+
+  if (!game) return FALSE;
+
+  for (i=0;i<MAX_SPACES;i++) {
+    if (game_get_space_id_at(game,i) == id) {
+      return space_get_illuminate(game->spaces[i]);
+    }
+  }
+  return FALSE;
 }

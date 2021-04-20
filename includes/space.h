@@ -303,5 +303,34 @@ STATUS space_del_object(Space *space, Id id);
  * @return BOOL
  */
 BOOL space_if_connected (Space *sp1, Space *sp2);
+
+
 Set *space_get_objects(Space *s);
+
+/**
+ * @brief Devuelve el estado de iluminación de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param s Espacio usado
+ * @return BOOL
+ */
+BOOL space_get_illuminate (Space *s);
+
+/**
+ * @brief Establece el estado de iluminación de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param s Espacio usado
+ * @param st Estado de iluminación
+ * @return STATUS
+ */
+STATUS space_set_illuminate (Space *s, BOOL st);
+
+
 #endif
