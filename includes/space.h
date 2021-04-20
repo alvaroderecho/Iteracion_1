@@ -209,6 +209,56 @@ STATUS space_set_west(Space *space, Link * link);
 Link * space_get_west(Space *space);
 
 /**
+ * @brief Establece el arriba de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param space Espacio usado
+ * @param id Id de arriba
+ * @return STATUS
+ */
+STATUS space_set_up(Space *space, Link * link);
+
+/**
+ * @brief Devuelve el arriba de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param space Espacio usado
+ * @return Link
+ */
+Link * space_get_up(Space *space);
+
+/**
+ * @brief Establece el abajo de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param space Espacio usado
+ * @param id Id de abajo
+ * @return STATUS
+ */
+STATUS space_set_down(Space *space, Link * link);
+
+/**
+ * @brief Devuelve el abajo de un espacio
+ *
+ * @file space.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param space Espacio usado
+ * @return Link
+ */
+Link * space_get_down(Space *space);
+
+/**
  * @brief Establece la id de un objeto
  *
  * @file space.c

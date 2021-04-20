@@ -11,6 +11,8 @@ struct _Space
   Link *south;              //link sur
   Link *east;               //link este
   Link *west;               //link oeste
+  Link *up;                 //link arriba
+  Link *down;               //link abajo
   Set *objects;             //puntero a conjunto de objetos
   char **gDesc;             //doble puntero a descripción gráfica del espacio
   char description[WORD_SIZE + 1]; //descripción del espacio
@@ -38,6 +40,8 @@ Space *space_create(Id id)
   newSpace->south = NULL;
   newSpace->east = NULL;
   newSpace->west = NULL;
+  newSpace->up = NULL;
+  newSpace->down = NULL;
 
   newSpace->illuminated = TRUE;
 
@@ -148,6 +152,26 @@ STATUS space_set_west(Space *space, Link *link)
   return OK;
 } //oeste del espacio
 
+STATUS space_set_up(Space *space, Link *link)
+{
+  if (!space || !link)
+  {
+    return ERROR;
+  }
+  space->up = link;
+  return OK;
+} //arriba del espacio
+
+STATUS space_set_down(Space *space, Link *link)
+{
+  if (!space || !link)
+  {
+    return ERROR;
+  }
+  space->down = link;
+  return OK;
+} //debajo del espacio
+
 STATUS space_add_object(Space *space, Id id)
 {
   if (!space)
@@ -234,6 +258,24 @@ Link *space_get_west(Space *space)
   }
   return space->west;
 } //solicitar oeste
+
+Link *space_get_up(Space *space)
+{
+  if (!space)
+  {
+    return NULL;
+  }
+  return space->up;
+} //solicitar arriba
+
+Link *space_get_down(Space *space)
+{
+  if (!space)
+  {
+    return NULL;
+  }
+  return space->down;
+} //solicitar abajo
 
 Id space_get_object(Space *space, int x)
 {

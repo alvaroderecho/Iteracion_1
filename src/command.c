@@ -21,12 +21,8 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"", "No command"},
 {"", "Unknown"},
 {"e", "Exit"},
-{"n", "Next"},
-{"b", "Back"},
 {"t", "Take"},
 {"d", "Drop"},
-{"l", "Left"},
-{"r", "Right"},
 {"rl", "Roll"},
 {"m", "move"},
 {"i", "inspect"}};
@@ -56,10 +52,10 @@ T_Command command_get_user_input(char *arg)
 	si es "n" de "next", "e" de "exit", o escribe algo sin sentido,
 	o algo desconocido o "b" de "back".
 	*/
-	strcpy(arg,"");
-	fgets(aux,CMD_LENGHT,stdin);
+	strcpy(arg," ");
+	fgets(aux,CMD_LENGHT,stdin); 
 	aux2 = strtok(aux," \t\r\n");
-	strcpy(input,aux2);
+	strcpy(input,aux2); //ERROR EN ESTA PARTE, AL METER SOLO ENTER EN LA CONSOLA
 	aux2 = strtok (NULL," \t\r\n");
 	if (aux2 != NULL){
 		strcpy(arg,aux2);
