@@ -17,7 +17,7 @@
 #include "test.h"
 #include "link.h"
 
-#define MAX_TESTS 32
+#define MAX_TESTS 46
 
 /**
  * @brief Main function for SPACE unit tests.
@@ -78,6 +78,20 @@ int main(int argc, char** argv) {
   if (all || test == 30) test2_space_set_description();
   if (all || test == 31) test1_space_get_description();
   if (all || test == 32) test2_space_get_description();
+  if (all || test == 33) test1_space_add_object();
+  if (all || test == 34) test2_space_add_object();
+  if (all || test == 35) test1_space_get_up();
+  if (all || test == 36) test2_space_get_up();
+  if (all || test == 37) test1_space_get_down();
+  if (all || test == 38) test2_space_get_down();
+  if (all || test == 39) test1_space_set_up();
+  if (all || test == 40) test2_space_set_up();
+  if (all || test == 41) test1_space_set_down();
+  if (all || test == 42) test2_space_set_down();
+  if (all || test == 43) test1_space_get_illuminate();
+  if (all || test == 44) test2_space_get_illuminate();
+  if (all || test == 45) test1_space_set_illuminate();
+  if (all || test == 46) test2_space_set_illuminate();
 
   PRINT_PASSED_PERCENTAGE;
 
@@ -169,6 +183,38 @@ void test2_space_set_west() {
   Link * l = link_create(1);
 
   PRINT_TEST_RESULT(space_set_west(s, l) == ERROR);
+}
+
+void test1_space_set_up() {
+  Space *s;
+  Link * l = link_create(1);
+
+  s = space_create(5);
+
+  PRINT_TEST_RESULT(space_set_up(s, l) == OK);
+}
+
+void test2_space_set_up() {
+  Space *s = NULL;
+  Link * l = link_create(1);
+
+  PRINT_TEST_RESULT(space_set_up(s, l) == ERROR);
+}
+
+void test1_space_set_down() {
+  Space *s;
+  Link * l = link_create(1);
+
+  s = space_create(5);
+
+  PRINT_TEST_RESULT(space_set_down(s, l) == OK);
+}
+
+void test2_space_set_down() {
+  Space *s = NULL;
+  Link * l = link_create(1);
+
+  PRINT_TEST_RESULT(space_set_down(s, l) == ERROR);
 }
 
 void test1_space_add_object() {
@@ -272,6 +318,34 @@ void test2_space_get_west() {
   PRINT_TEST_RESULT(space_get_west(s) == NULL);
 }
 
+void test1_space_get_up() {
+  Space *s;
+    Link *l = link_create(1);
+
+  s = space_create(5);
+  space_set_up(s, l);
+  PRINT_TEST_RESULT(space_get_up(s) == l);
+}
+
+void test2_space_get_up() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_get_up(s) == NULL);
+}
+
+void test1_space_get_down() {
+  Space *s;
+    Link *l = link_create(1);
+
+  s = space_create(5);
+  space_set_down(s, l);
+  PRINT_TEST_RESULT(space_get_down(s) == l);
+}
+
+void test2_space_get_down() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_get_up(s) == NULL);
+}
+
 void test1_space_get_id() {
   Space *s;
   s = space_create(25);
@@ -305,4 +379,24 @@ void test1_space_get_description() {
 void test2_space_get_description() {
   Space *s = NULL;
   PRINT_TEST_RESULT(space_get_description(s) == NULL);
+}
+
+void test1_space_get_illuminate() {
+  Space *s = space_create(1);
+  PRINT_TEST_RESULT(space_get_illuminate(s) == TRUE);
+}
+
+void test2_space_get_illuminate() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_get_illuminate(s) == FALSE);
+}
+
+void test1_space_set_illuminate() {
+  Space *s = space_create(1);
+  PRINT_TEST_RESULT(space_set_illuminate(s,TRUE) == OK);
+}
+
+void test2_space_set_illuminate() {
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_set_illuminate(s,TRUE) == ERROR);
 }

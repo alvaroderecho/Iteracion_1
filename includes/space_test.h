@@ -45,41 +45,65 @@ void test2_space_set_name();
  * @post Output==ERROR
  */
 void test3_space_set_name();
+
 void test1_space_set_north();
 void test2_space_set_north();
-void test3_space_set_north();
-void test4_space_set_north();
+
 void test1_space_set_south();
 void test2_space_set_south();
-void test3_space_set_south();
-void test4_space_set_south();
+
 void test1_space_set_east();
 void test2_space_set_east();
-void test3_space_set_east();
-void test4_space_set_east();
+
 void test1_space_set_west();
 void test2_space_set_west();
-void test3_space_set_west();
-void test4_space_set_west();
+
 void test1_space_get_id();
 void test2_space_get_id();
+
 void test1_space_add_object();
 void test2_space_add_object();
+
 void test1_space_get_name();
 void test2_space_get_name();
+
 void test1_space_get_north();
 void test2_space_get_north();
+
 void test1_space_get_south();
 void test2_space_get_south();
+
 void test1_space_get_east();
 void test2_space_get_east();
+
 void test1_space_get_west();
 void test2_space_get_west();
+
 void test1_space_get_object();
 void test2_space_get_object();
 void test3_space_get_object();
+
 void test1_space_set_description();
 void test2_space_set_description();
+
 void test1_space_get_description();
 void test2_space_get_description();
+
+void test1_space_get_up();
+void test2_space_get_up();
+
+void test1_space_get_down();
+void test2_space_get_down();
+
+void test1_space_set_up();
+void test2_space_set_up();
+
+void test1_space_set_down();
+void test2_space_set_down();
+
+void test1_space_get_illuminate();
+void test2_space_get_illuminate();
+
+void test1_space_set_illuminate();
+void test2_space_set_illuminate();
 #endif
