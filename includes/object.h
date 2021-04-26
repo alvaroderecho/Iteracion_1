@@ -125,5 +125,98 @@ STATUS object_print(Object *object);
  * @return const char *
  */
 const char *object_get_name(Object *object);
+/**
+ * @brief Establece la dependencia del objeto
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @param id_dependency id del objecto que depende
+ * @return STATUS
+ */
+STATUS object_set_dependency (Object *object, Id id_dependency);
+/**
+ * @brief Establece la id del link que puede abrir un objeto
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @param link id del objecto que puede abrir
+ * @return STATUS
+ */
+STATUS object_set_open (Object *object, Id link);
+/**
+ * @brief Establece si un objecto puede iluminar un espacio
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @param il indica si puede iluminar o no
+ * @return STATUS
+ */
+STATUS object_set_ilumninate(Object *object, BOOL il);
+/**
+ * @brief Establece si un objecto que puede ilumiar esta encendido o no
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @param il indica si está encendido o no
+ * @return STATUS
+ */
+STATUS object_set_turnedon (Object *object , BOOL il);
+/**
+ * @brief Establece si un objecto que puede ilumiar esta encendido o no
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @return BOOL
+ */
+BOOL object_can_iluminate (Object *object);
+/**
+ * @brief devuelve si un objecto esta encendido o no 
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @return BOOL
+ */
+BOOL object_is_on(Object *object);
+/**
+ * @brief devuelve el id del objeto del que depende
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @return Id  
+ */
+Id object_get_dependency(Object *object);
+/**
+ * @brief devuelve el id del link que puede abrir
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @return Id 
+ */
+Id object_get_open(Object *object);
+
 
 #endif

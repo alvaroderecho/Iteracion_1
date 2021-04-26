@@ -18,6 +18,11 @@ struct _Object
     Id id;                       //Id del objeto
     char name[WORD_SIZE + 1];    //Nombre del objeto
     char description[WORD_SIZE + 1]; //Descripcion del objeto
+    BOOL movable;
+    Id dependency;
+    Id open;
+    BOOL illuminate;
+    BOOL turnedon;
 };
 
 Object *object_create(Id id)
@@ -37,6 +42,11 @@ Object *object_create(Id id)
     new_object->id = id;
     new_object->name[0] = '\0';
     new_object->description[0] = '\0';
+    new_object->movable = FALSE;
+    new_object->dependency = NO_ID;
+    new_object->open = NO_ID;
+    new_object->illuminate = FALSE;
+    new_object->turnedon = FALSE;
 
     return new_object;
 }
@@ -107,4 +117,52 @@ STATUS object_print(Object *object)
     fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", object->id, object->name);
     //Muestra Id y nombre
     return OK;
+}
+
+STATUS object_set_dependency (Object *object, Id id_dependency){
+    if (object == NULL) return ERROR;
+
+    object->dependency = id_dependency;
+
+    return OK;
+}
+STATUS object_set_open (Object *object, Id link){
+    if (object == NULL) return ERROR;
+
+    object->open = link;
+
+    return OK;
+
+}
+STATUS object_set_ilumninate(Object *object, BOOL il){
+    if (object == NULL) return ERROR;
+
+    object->illuminate = il;
+
+    return OK;
+
+}
+STATUS object_set_turnedon (Object *object , BOOL il){
+    if (object = NULL) return ERROR;
+    
+    object->turnedon = il;
+
+    return ERROR;
+}
+BOOL object_can_iluminate (Object *object){
+    if (object == NULL) return FALSE;
+
+    return object->illuminate;
+}
+BOOL object_is_on(Object *object){
+    if (object == NULL) return FALSE;
+    return object->turnedon;
+}
+Id object_get_dependency(Object *object){
+    if (object == NULL) return NO_ID;
+    return object->dependency;
+}
+Id object_get_open(Object *object){
+    if (object == NULL) return NO_ID;
+    return object->open;
 }
