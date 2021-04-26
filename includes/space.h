@@ -87,7 +87,7 @@ const char *space_get_name(Space *space);
  * @brief Establece la descripcion de un espacio
  *
  * @file space.c
- * @author Profesores PPROG
+ * @author Sergio Dominguez
  * @version 1.0
  * @date 17-04-2021
  * @param space Espacio usado
@@ -100,13 +100,38 @@ STATUS space_set_description(Space *space, char *dscr);
  * @brief Devuelve la descripcion de un espacio
  *
  * @file space.c
- * @author Profesores PPROG
+ * @author Sergio Dominguez
  * @version 1.0
  * @date 17-04-2021
  * @param space Espacio usado
  * @return const char *
  */
 const char *space_get_description(Space *space);
+
+/**
+ * @brief Establece la descripcion detallada de un espacio
+ *
+ * @file space.c
+ * @author Sergio Dominguez
+ * @version 1.0
+ * @date 26-04-2021
+ * @param space Espacio usado
+ * @param dscr Descripcion del espacio
+ * @return STATUS
+ */
+STATUS space_set_descr_detail(Space *space, char *dscr);
+
+/**
+ * @brief Devuelve la descripcion detalalda de un espacio
+ *
+ * @file space.c
+ * @author Sergio Dominguez
+ * @version 1.0
+ * @date 26-04-2021
+ * @param space Espacio usado
+ * @return const char *
+ */
+const char *space_get_descr_detail(Space *space);
 
 /**
  * @brief Establece el norte de un espacio

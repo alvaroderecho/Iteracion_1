@@ -463,7 +463,7 @@ void game_callback_inspect(Game *game, char *arg)
     if (game_get_space_illuminate(game, space_id) == FALSE)
       return;
 
-    strcpy(game->last_descr, space_get_description(game_get_space(game, space_id)));
+    strcpy(game->last_descr, space_get_descr_detail(game_get_space(game, space_id)));
     return;
   }
 

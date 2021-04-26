@@ -16,6 +16,7 @@ struct _Space
   Set *objects;             //puntero a conjunto de objetos
   char **gDesc;             //doble puntero a descripción gráfica del espacio
   char description[WORD_SIZE + 1]; //descripción del espacio
+  char descr_detail[WORD_SIZE +1]; //descripción detallada del espacio
   BOOL illuminated; //espacio iluminado
 };
 
@@ -48,6 +49,7 @@ Space *space_create(Id id)
   newSpace->objects = set_create();
 
   newSpace->description[0] = '\0';
+  newSpace->descr_detail[0] = '\0';
 
   if ((newSpace->gDesc = (char **)malloc(3 * sizeof(char *))) == NULL)
     return NULL; //tres filas
@@ -105,6 +107,21 @@ STATUS space_set_description(Space *space, char *dscr)
   }
 
   if (!strcpy(space->description, dscr))
+  {               //cambia la descripcion
+    return ERROR; //no hay cambio si se llaman igual
+  }
+
+  return OK; //completado
+}
+
+STATUS space_set_descr_detail(Space *space, char *dscr)
+{
+  if (!space || !dscr)
+  {               //si la descripcion es 0, o el espacio
+    return ERROR; //error
+  }
+
+  if (!strcpy(space->descr_detail, dscr))
   {               //cambia la descripcion
     return ERROR; //no hay cambio si se llaman igual
   }
@@ -212,7 +229,16 @@ const char *space_get_description(Space *space)
     return NULL;
   }
   return space->description;
-} //solicitar nombre
+} //solicitar descripcion
+
+const char *space_get_descr_detail(Space *space)
+{
+  if (!space)
+  {
+    return NULL;
+  }
+  return space->descr_detail;
+} //solicitar descripcion detallada
 
 Id space_get_id(Space *space)
 {
@@ -316,8 +342,8 @@ STATUS space_print(Space *space)
     return ERROR;
   }
 
-  fprintf(stdout, "--> Space (Id: %ld; Name: %s)\n", space->id, space->name);
-  //Muestra ID y nombre del espacio
+  fprintf(stdout, "--> Space (Id: %ld; Name: %s; Description: %s; Detail description: %s)\n", space->id, space->name, space->description, space->descr_detail);
+  //Muestra ID y nombre del espacio, descripción y descripcion detallada
 
   link = space_get_north(space);
   if (NULL != link)
