@@ -14,7 +14,7 @@
 #include <string.h>
 #include "game.h"
 
-#define N_CALLBACK 7
+#define N_CALLBACK 8
 
 struct _Game
 {
@@ -42,6 +42,7 @@ void game_callback_drop(Game *game, char *arg);
 void game_callback_roll(Game *game, char *arg);
 void game_callback_move(Game *game, char *arg);
 void game_callback_inspect(Game *game, char *arg);
+void game_callback_open(Game *game, char *arg);
 
 static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_unknown,
@@ -50,7 +51,8 @@ static callback_fn game_callback_fn_list[N_CALLBACK] = {
     game_callback_drop,
     game_callback_roll,
     game_callback_move,
-    game_callback_inspect};
+    game_callback_inspect,
+    game_callback_open};
 
 /**
    Private functions
@@ -649,4 +651,75 @@ BOOL game_get_space_illuminate(Game *game, Id id)
     }
   }
   return FALSE;
+}
+
+void game_callback_open(Game *game, char *arg)
+{
+  char link_name[WORD_SIZE] = "";
+  char obj_name[WORD_SIZE] = "";
+  char *toks = NULL;
+  int i;
+  Link *link = NULL;
+  Object *object = NULL;
+
+  BOOL link_st = FALSE;
+  BOOL obj_st = FALSE;
+
+  if (!game || !arg)
+    return;
+
+  toks = strtok(arg, " \t\r\n"); // open link with obj
+  strcpy(link_name, toks);
+  toks = strtok(NULL, " \t\r\n");
+  toks = strtok(NULL, " \t\r\n");
+  strcpy(obj_name, toks);
+
+  for (i = 0; i < LINKS; i++)
+  {
+    if (link_get_name(game->links[i]) != NULL)
+    {
+      if (strcmp(link_name, link_get_name(game->links[i])) == 0)
+      { //link existe
+        link_st = TRUE;
+        link = game->links[i];
+        break;
+      }
+    }
+  }
+
+  if (link_st == FALSE)
+    return;
+
+  for (i = 0; i < OBJECTS; i++)
+  {
+    if (object_get_name(game->objects[i]) != NULL)
+    {
+      if (strcmp(obj_name, object_get_name(game->objects[i])) == 0)
+      { //obj existe
+        if (inventory_containsObject(player_get_objects(game_get_player(game)), object_get_id(game->objects[i])) == TRUE)
+        { //obj en el inventario
+          obj_st = TRUE;
+          object = game->objects[i];
+          break;
+        }
+      }
+    }
+  }
+
+  if (obj_st == FALSE)
+    return;
+
+  //si link existe, y obj en el inventario, hay que comprobar la dependencia
+
+  if (link_st == TRUE && obj_st == TRUE)
+  {
+    //si el link entre espacios depende del objeto, se abrirá el link
+
+    if (link_get_sp2(link) == object_get_open(object) || link_get_sp1(link) == object_get_open(object))
+    {
+      link_set_state(link, FALSE); //abres el enlace
+    }
+  }
+
+  return;
 }

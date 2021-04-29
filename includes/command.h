@@ -12,7 +12,7 @@
 #define COMMAND_H
 
 #define N_CMDT 2
-#define N_CMD 8
+#define N_CMD 9
 
 typedef enum enum_CmdType
 {
@@ -29,7 +29,8 @@ typedef enum enum_Command
   DROP,
   ROLL,
   MOVE,
-  INSPECT
+  INSPECT,
+  OPEN
 } T_Command;
 
 /**

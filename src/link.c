@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "link.h"
+#include "types.h"
 
 struct _Link
 {
     Id id;                     //Id del enlace
-    char name[WORD_SIZE + 1]; //nombre del enlace
+    char name[WORD_SIZE]; //nombre del enlace
     Id sp1;                    //Id espacio inicial
     Id sp2;                    //Id espacio que conecta con el inicial
     BOOL link_st;              //TRUE cerrado, FALSE abierto
