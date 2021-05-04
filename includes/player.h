@@ -179,4 +179,16 @@ BOOL player_containsObject (Player *player, Id id);
  */
 STATUS player_print(Player *player);
 
+/**
+ * @brief Crea un inventario de un jugador
+ *
+ * @file player.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 04/05/2021
+ * @param player Jugador a usar
+ * @param max Tamaño de inventario
+ * @return STATUS
+ */
+STATUS player_create_inventory(Player *player, int max);
 #endif

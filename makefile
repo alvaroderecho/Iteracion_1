@@ -1,89 +1,92 @@
 CFLAGS = -g -Wall -pedantic
 CC = gcc
+OBJ = obj/
+SRC = src/
+INC = inlcudes/
 
-exe: game_loop.o graphic_engine.o game.o screen.o space.o command.o game_reader.o object.o player.o set.o die.o link.o inventory.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+exe: $(OBJ)game_loop.o $(OBJ)graphic_engine.o $(OBJ)game.o $(OBJ)screen.o $(OBJ)space.o $(OBJ)command.o $(OBJ)game_reader.o $(OBJ)object.o $(OBJ)player.o $(OBJ)set.o $(OBJ)die.o $(OBJ)link.o $(OBJ)inventory.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-game_loop.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)game_loop.o:
+	$(CC) $(CFLAGS) -c $(SRC)game_loop.c -I includes -o $@
 
-graphic_engine.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)graphic_engine.o:
+	$(CC) $(CFLAGS) -c $(SRC)graphic_engine.c -I includes -o $@
 
-game.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)game.o: 
+	$(CC) $(CFLAGS) -c $(SRC)game.c -I includes -o $@
 
-game_reader.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)game_reader.o:
+	$(CC) $(CFLAGS) -c $(SRC)game_reader.c -I includes -o $@
 
-object.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)object.o:
+	$(CC) $(CFLAGS) -c $(SRC)object.c -I includes -o $@
 
-screen.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)screen.o:
+	$(CC) $(CFLAGS) -c $(SRC)screen.c -I includes -o $@
 
-space.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)space.o:
+	$(CC) $(CFLAGS) -c $(SRC)space.c -I includes -o $@
 
-command.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)command.o:
+	$(CC) $(CFLAGS) -c $(SRC)command.c -I includes -o $@
 
-player.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)player.o:
+	$(CC) $(CFLAGS) -c $(SRC)player.c -I includes -o $@
 
-set.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)set.o:
+	$(CC) $(CFLAGS) -c $(SRC)set.c -I includes -o $@
 
-die.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)die.o:
+	$(CC) $(CFLAGS) -c $(SRC)die.c -I includes -o $@
 
-link.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)link.o:
+	$(CC) $(CFLAGS) -c $(SRC)link.c -I includes -o $@
 
-inventory.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)inventory.o:
+	$(CC) $(CFLAGS) -c $(SRC)inventory.c -I includes -o $@
 
-link_test: link_test.o link.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+link_test: $(OBJ)link_test.o $(OBJ)link.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-link_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)link_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)link_test.c -I includes -o $@
 
-set_test: set_test.o set.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+set_test: $(OBJ)set_test.o $(OBJ)set.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-set_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)set_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)set_test.c -I includes -o $@
 
-die_test: die_test.o die.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+die_test: $(OBJ)die_test.o $(OBJ)die.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-die_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)die_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)die_test.c -I includes -o $@
 
-space_test: space_test.o space.o set.o link.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+space_test: $(OBJ)space_test.o $(OBJ)space.o $(OBJ)set.o $(OBJ)link.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-space_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)space_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)space_test.c -I includes -o $@
 
-inventory_test: inventory_test.o inventory.o set.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+inventory_test: $(OBJ)inventory_test.o $(OBJ)inventory.o $(OBJ)set.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-inventory_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)inventory_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)inventory_test.c -I includes -o $@
 
-player_test: player_test.o player.o inventory.o set.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+player_test: $(OBJ)player_test.o $(OBJ)player.o $(OBJ)inventory.o $(OBJ)set.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-player_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)player_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)player_test.c -I includes -o $@
 
-object_test: object_test.o object.o
-	$(CC) $(CFLAGS) -o $@ $(addprefix obj/, $^)
+object_test: $(OBJ)object_test.o $(OBJ)object.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-object_test.o:
-	$(CC) $(CFLAGS) -c $(addprefix src/, $(addsuffix .c, $(basename $@))) -I includes -o $(addprefix obj/, $@)
+$(OBJ)object_test.o:
+	$(CC) $(CFLAGS) -c $(SRC)object_test.c -I includes -o $@
 
 .PHONY: clean
 clean:

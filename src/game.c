@@ -515,7 +515,7 @@ Object **game_get_objects(Game *game)
 
 STATUS game_add_player(Game *game, Player *player)
 {
-  if (player == NULL)
+  if (player == NULL || game == NULL)
     return ERROR;
   game->player = player;
   return OK;

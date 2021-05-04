@@ -35,12 +35,19 @@ Player *player_create(Id id)
     new_player->id = id;
     new_player->name[0] = '\0';
     new_player->location = NO_ID;
-    new_player->inventory = inventory_create(6);
-    if (new_player->inventory == NULL){
-      return NULL;
-    }
+    new_player->inventory = NULL;
 
     return new_player;
+}
+
+STATUS player_create_inventory(Player *player, int max) {
+    if (!player || max <= 0) return ERROR;
+
+    player->inventory = inventory_create(max);
+
+    if (player->inventory == NULL) return ERROR;
+
+    return OK;
 }
 
 STATUS player_destroy(Player *player)
