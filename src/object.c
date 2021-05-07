@@ -147,7 +147,7 @@ STATUS object_set_turnedon (Object *object , BOOL il){
     
     object->turnedon = il;
 
-    return ERROR;
+    return OK;
 }
 BOOL object_can_iluminate (Object *object){
     if (object == NULL) return FALSE;
@@ -165,4 +165,10 @@ Id object_get_dependency(Object *object){
 Id object_get_open(Object *object){
     if (object == NULL) return NO_ID;
     return object->open;
+}
+BOOL object_is_movable(Object *object)
+{
+    if (object == NULL) return FALSE;
+
+    return object->movable;
 }

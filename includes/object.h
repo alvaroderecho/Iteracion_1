@@ -217,6 +217,16 @@ Id object_get_dependency(Object *object);
  * @return Id 
  */
 Id object_get_open(Object *object);
-
+/**
+ * @brief determina si un objecto se puede mover o no 
+ *
+ * @file object.c
+ * @author Joseba Arranz 
+ * @version 1.0
+ * @date 26/04/2021
+ * @param object Objeto usado
+ * @return BOOL 
+ */
+BOOL object_is_movable(Object *object);
 
 #endif

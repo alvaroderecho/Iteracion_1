@@ -16,7 +16,7 @@
 #include "object_test.h"
 #include "test.h"
 
-#define MAX_TESTS 14
+#define MAX_TESTS 29
 
 /**
  * @brief Main function for OBJECT unit tests.
@@ -57,9 +57,22 @@ int main(int argc, char** argv) {
   if (all || test == 11) test1_object_get_name();
   if (all || test == 12) test2_object_get_name();
   if (all || test == 13) test1_object_get_description();
-  if (all || test == 14) test2_object_get_description();
-
-
+  if (all || test == 14) test1_object_get_description();
+  if (all || test == 15) test1_object_set_dependency();
+  if (all || test == 16) test2_object_set_dependency();
+  if (all || test == 17) test1_object_set_open();
+  if (all || test == 18) test2_object_set_open();
+  if (all || test == 19) test1_object_set_ilumninate();
+  if (all || test == 20) test2_object_set_ilumninate();
+  if (all || test == 21) test3_object_set_ilumninate();
+  if (all || test == 22) test1_object_set_turnedon();
+  if (all || test == 23) test2_object_set_turnedon();
+  if (all || test == 24) test3_object_set_turnedon();
+  if (all || test == 25) test1_object_can_iluminate();
+  if (all || test == 26) test1_object_is_on();
+  if (all || test == 27) test1_object_get_dependency();
+  if (all || test == 28) test1_object_get_open();
+  if (all || test == 29) test1_object_is_movable();
   PRINT_PASSED_PERCENTAGE;
 
   return 1;
@@ -141,4 +154,76 @@ void test1_object_get_description() {
 void test2_object_get_description() {
   Object *o = NULL;
   PRINT_TEST_RESULT(object_get_description(o) == NULL);
+}
+
+void test1_object_set_dependency(){
+  Object *object = NULL;
+  PRINT_TEST_RESULT(object_set_dependency(object,1) == ERROR);
+}
+
+void test2_object_set_dependency(){
+  Object *object;
+  object = object_create(8);
+  PRINT_TEST_RESULT(object_set_dependency(object,1) == OK);
+}
+
+void test1_object_set_open() {
+  Object *o = object_create(8);
+  PRINT_TEST_RESULT(object_set_open(o,1) == OK);
+}
+
+void test2_object_set_open() {
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_set_open(o,1) == ERROR);
+}
+
+void test1_object_set_ilumninate() {
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_set_ilumninate(o,FALSE) == ERROR);
+}
+
+void test2_object_set_ilumninate() {
+  Object *o = object_create(8);
+  PRINT_TEST_RESULT(object_set_ilumninate(o,TRUE) == OK);
+}
+
+void test3_object_set_ilumninate() {
+  Object *o = object_create(8);
+  PRINT_TEST_RESULT(object_set_ilumninate(o,FALSE) == OK);
+}
+
+void test1_object_set_turnedon() {
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_set_turnedon(o,FALSE) == ERROR);
+}
+
+void test2_object_set_turnedon() {
+  Object *o = object_create(8);
+  PRINT_TEST_RESULT(object_set_turnedon(o,TRUE) == OK);
+}
+
+void test3_object_set_turnedon() {
+  Object *o = object_create(8);
+  PRINT_TEST_RESULT(object_set_turnedon(o,FALSE) == OK);
+}
+
+void test1_object_can_iluminate(){
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_can_iluminate(o) == FALSE);
+}
+void test1_object_is_on(){
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_is_on(o) == FALSE);
+}
+void test1_object_get_dependency(){
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_get_dependency(o) == NO_ID);
+}
+void test1_object_get_open(){
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_get_open(o) == NO_ID);
+}
+void test1_object_is_movable(){
+  Object *o = NULL;
+  PRINT_TEST_RESULT(object_is_movable(o) == FALSE);
 }

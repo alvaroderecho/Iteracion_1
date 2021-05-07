@@ -378,25 +378,33 @@ void game_callback_exit(Game *game, char *arg)
 void game_callback_take(Game *game, char *arg)
 {
 
-  Id space_id = NO_ID, object_id = NO_ID;
+  Id space_id = NO_ID, object_id = NO_ID, *ids;
   int i;
   space_id = game_player_get_location(game);
-  BOOL b;
-
+  BOOL b,flag = FALSE;
+  Object *o_aux;
   if (space_id == NO_ID)
     return;
   for (i = 0; i < OBJECTS; i++)
   {
     if (strcmp(arg, object_get_name(game->objects[i])) == 0)
     {
+      o_aux = game->objects[i];
       object_id = object_get_id(game->objects[i]);
       break;
     }
   }
+  if (object_is_movable(o_aux) == FALSE) return;
+
+  ids = inventory_getIds(player_get_objects(game_get_player(game)));
+  for (i=0;i < inventory_getNumids(player_get_objects(game_get_player(game))) && flag == FALSE; i++){
+    if (ids[i] == object_get_dependency(o_aux))
+      flag = TRUE;
+  }
 
   b = set_containsId(space_get_objects(game_get_space(game, space_id)), object_id);
   printf("%d", b);
-  if (b == TRUE)
+  if (b == TRUE && flag == TRUE)
   {
     for (i = 0; i < OBJECTS && game->objects[i] != NULL; i++)
     {
@@ -414,11 +422,11 @@ void game_callback_take(Game *game, char *arg)
 
 void game_callback_drop(Game *game, char *arg)
 {
-  Id *object_id;
-  Id space_id = NO_ID;
-  int i;
+  Id *object_id , *ids;
+  Id space_id = NO_ID, dependency_id = NO_ID;
+  int i, j;
   space_id = game_player_get_location(game);
-
+  Object *o_aux;
   if (space_id == NO_ID)
     return;
 
@@ -432,6 +440,15 @@ void game_callback_drop(Game *game, char *arg)
   {
     if (strcmp(object_get_name(game_get_object(game, object_id[i])), arg) == 0)
     {
+      o_aux = game_get_object(game,object_id[i]);
+      dependency_id = object_get_dependency(o_aux);
+        ids = inventory_getIds(player_get_objects(game_get_player(game)));
+        for (j = 0; j < inventory_getNumids(player_get_objects(game_get_player(game))); j++){
+          if (dependency_id == ids [j]){
+            space_add_object(game_get_space(game, space_id), ids[j]);
+            player_del_object(game_get_player(game), ids[j]);
+          }
+        }
       space_add_object(game_get_space(game, space_id), object_id[i]);
       player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
     }

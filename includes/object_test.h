@@ -25,6 +25,22 @@ void test1_object_get_name();
 void test2_object_get_name();
 void test1_object_get_description();
 void test2_object_get_description();
+void test1_object_set_dependency();
+void test2_object_set_dependency();
+void test1_object_set_open();
+void test2_object_set_open();
+void test1_object_set_ilumninate();
+void test2_object_set_ilumninate();
+void test3_object_set_ilumninate();
+void test1_object_set_turnedon();
+void test2_object_set_turnedon();
+void test3_object_set_turnedon();
+void test1_object_can_iluminate();
+void test1_object_is_on();
+void test1_object_get_dependency();
+void test1_object_get_open();
+void test1_object_is_movable();
+
 
 
 
