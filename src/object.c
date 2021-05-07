@@ -144,7 +144,7 @@ STATUS object_set_ilumninate(Object *object, BOOL il){
 }
 STATUS object_set_turnedon (Object *object , BOOL il){
     if (object == NULL) return ERROR;
-    
+    if (object->illuminate == FALSE) return ERROR;
     object->turnedon = il;
 
     return OK;
