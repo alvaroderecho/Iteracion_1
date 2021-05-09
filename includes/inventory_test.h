@@ -52,4 +52,8 @@ void test1_inventory_isEmpty();
 
 void test2_inventory_isEmpty();
 
+void test1_inventory_get_Set();
+
+void test2_inventory_get_Set();
+
 #endif
