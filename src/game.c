@@ -749,6 +749,7 @@ void game_callback_open(Game *game, char *arg)
 
   //si link existe, y obj en el inventario, hay que comprobar la dependencia
 
+  
   if (link_st == TRUE && obj_st == TRUE)
   {
     if (link_get_sp1(link) == game_player_get_location(game))

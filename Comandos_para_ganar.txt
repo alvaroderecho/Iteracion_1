@@ -30,11 +30,13 @@ take Agua
 open Incendio with Agua
 move south
 drop Cubo Vacio
+drop Agua
 take Pistola
 take LLave3
+take Lanzallamas
 move south
 open Puerta9 with LLave3
 move south
-open Monstruo with Pistola
+open Monstruo with Lanzallamas
 move south
 exit
