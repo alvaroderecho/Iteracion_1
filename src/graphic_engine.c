@@ -56,7 +56,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   extern char *cmd_to_str[N_CMD][N_CMDT];
   int i;
   Object **objects = NULL;
-  char *last_descr = NULL;
+  char *last_detailed_descr = NULL;
 
   /* Paint the in the map area */
   screen_area_clear(ge->map);
@@ -195,6 +195,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   /* Paint in the description area */
   screen_area_clear(ge->descript);
 
+  sprintf(str, " %s", space_get_description(space_act)); ///FALTA
+  screen_area_puts(ge->descript, str);
+
+  sprintf(str, " ");
+  screen_area_puts(ge->descript, str);
+
   sprintf(str, "  Objetos en esta sala:");
   screen_area_puts(ge->descript, str);
 
@@ -214,7 +220,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
 
-  sprintf(str, "Player object:");
+  sprintf(str, " Player object:");
   screen_area_puts(ge->descript, str);
 
   objects_id = inventory_getIds(player_get_objects(game_get_player(game)));
@@ -229,18 +235,18 @@ for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game)));i++){
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
 
-  sprintf(str, "Last die value: %d", die_getLastThrow(game_get_die(game)));
+  sprintf(str, " Last die value: %d", die_getLastThrow(game_get_die(game)));
   screen_area_puts(ge->descript, str);
 
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
 
-  sprintf(str, "Descriptions: ");
+  sprintf(str, " Descriptions: ");
   screen_area_puts(ge->descript, str);
 
-  last_descr = game_get_last_description(game);
-  if (last_descr != NULL) {
-    sprintf(str, "%s", last_descr);
+  last_detailed_descr = game_get_last_detailed_description(game);
+  if (last_detailed_descr != NULL) {
+    sprintf(str, "%s", last_detailed_descr);
     screen_area_puts(ge->descript, str);
 
   }

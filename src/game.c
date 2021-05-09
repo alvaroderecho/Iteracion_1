@@ -24,7 +24,9 @@ struct _Game
   Space *spaces[MAX_SPACES];  //Espacios de un juego
   T_Command last_cmd;         //Último comando escrito por pantalla
   Die *die;                   //Dado usado en el juego
-  char last_descr[WORD_SIZE]; //Última descripción
+  char last_detail_descr[WORD_SIZE]; //Última descripción detallada
+
+  BOOL game_over;             //Final de partida
 };
 
 /**
@@ -142,8 +144,10 @@ STATUS game_create(Game *game)
   game->last_cmd = NO_CMD;
 
   game->die = die_create(1, 1, 6);
+  
+  game->last_detail_descr[0] = '\0';
 
-  game->last_descr[0] = '\0';
+  game->game_over = FALSE;
 
   return OK;
 }
@@ -364,7 +368,7 @@ void game_print_data(Game *game)
 
 BOOL game_is_over(Game *game)
 {
-  return FALSE;
+  return game->game_over;
 }
 
 /**
@@ -499,7 +503,7 @@ void game_callback_inspect(Game *game, char *arg)
     if (game_get_space_illuminate(game, space_id) == FALSE)
       return;
 
-    strcpy(game->last_descr, space_get_descr_detail(game_get_space(game, space_id)));
+    strcpy(game->last_detail_descr, space_get_descr_detail(game_get_space(game, space_id)));
     return;
   }
 
@@ -516,12 +520,12 @@ void game_callback_inspect(Game *game, char *arg)
       if (set_containsId(space_get_objects(game_get_space(game, space_id)), object_id) == TRUE)
       {
 
-        strcpy(game->last_descr, object_get_description(game->objects[i]));
+        strcpy(game->last_detail_descr, object_get_description(game->objects[i]));
         return;
       }
       else if (inventory_containsObject(player_get_objects(game_get_player(game)), object_id) == TRUE)
       {
-        strcpy(game->last_descr, object_get_description(game->objects[i]));
+        strcpy(game->last_detail_descr, object_get_description(game->objects[i]));
         return;
       }
       else
@@ -532,12 +536,12 @@ void game_callback_inspect(Game *game, char *arg)
   }
 }
 
-char *game_get_last_description(Game *game)
+char *game_get_last_detailed_description(Game *game)
 {
   if (!game)
     return NULL;
 
-  return game->last_descr;
+  return game->last_detail_descr;
 }
 
 Object **game_get_objects(Game *game)
@@ -747,11 +751,23 @@ void game_callback_open(Game *game, char *arg)
 
   if (link_st == TRUE && obj_st == TRUE)
   {
-    //si el link entre espacios depende del objeto, se abrirá el link
-
-    if (link_get_sp2(link) == object_get_open(object) || link_get_sp1(link) == object_get_open(object))
+    if (link_get_sp1(link) == game_player_get_location(game))
     {
-      link_set_state(link, FALSE); //abres el enlace
+
+      //Caso de muerte del jugador
+
+      if (!strcmp("Puerta10", link_name) && !strcmp("Lanzallamas", obj_name))
+      {
+        game->game_over = TRUE;
+        return;
+      }
+
+      //si el link entre espacios depende del objeto, se abrirá el link
+
+      if (link_get_sp2(link) == object_get_open(object) || link_get_sp1(link) == object_get_open(object))
+      {
+        link_set_state(link, FALSE); //abres el enlace
+      }
     }
   }
 
@@ -796,8 +812,7 @@ void game_callback_turnon(Game *game, char *arg)
       if (object_is_on(game_get_object(game, ids[i])) == FALSE)
       {
         object_set_turnedon(game_get_object(game, ids[i]), TRUE);
-        space_set_illuminate(space, TRUE);    
-        
+        space_set_illuminate(space, TRUE);
       }
       return;
     }

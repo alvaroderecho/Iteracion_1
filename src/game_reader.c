@@ -315,24 +315,10 @@ STATUS game_reader_load_links(Game *game, char *filename)
         link_set_state(link, l_st);
 
         if (type == 'n')
-        { //casillas contiguas
+        { 
           space_set_north(game_get_space(game, sp2), link);
           space_set_south(game_get_space(game, sp1), link);
 
-          //space_print(game_get_space(game,sp2));
-        }
-        else if (type == 'o')
-        {                                                  //ocas
-          space_set_east(game_get_space(game, sp1), link); //oca, solo ida
-        }
-        else if (type == 'p')
-        { //puente ida y vuelta
-          space_set_east(game_get_space(game, sp1), link);
-          space_set_west(game_get_space(game, sp2), link);
-        }
-        else
-        { //muerte
-          space_set_west(game_get_space(game, sp1), link);
         }
         game_add_link(game, link);
       }

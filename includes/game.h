@@ -296,7 +296,7 @@ Game * game_init();
 STATUS game_add_link(Game *game, Link *link);
 
 /**
- * @brief Devuelve la última descripción
+ * @brief Devuelve la última descripción detallada
  *
  * @file game.c
  * @author Álvaro Derecho
@@ -305,7 +305,7 @@ STATUS game_add_link(Game *game, Link *link);
  * @param game Juego usado
  * @return char
  */
-char * game_get_last_description (Game * game);
+char * game_get_last_detailed_description (Game * game);
 
 /**
  * @brief Devuelve el estado de iluminación de un espacio según su Id
@@ -319,6 +319,5 @@ char * game_get_last_description (Game * game);
  * @return STATUS
  */
 BOOL game_get_space_illuminate (Game * game, Id id);
-
 
 #endif
