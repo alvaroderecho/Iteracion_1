@@ -383,11 +383,17 @@ void game_callback_take(Game *game, char *arg)
 {
 
   Id space_id = NO_ID, object_id = NO_ID, *ids;
-  int i;
+  int i, player_obj = 0, max_inv = 0;
   space_id = game_player_get_location(game);
   BOOL b, flag = FALSE;
   Object *o_aux;
   if (space_id == NO_ID)
+    return;
+
+  player_obj = set_get_numids(inventory_get_Set(player_get_objects(game_get_player(game)))); //nḿero de objetos del jugador
+  max_inv = inventory_getMaxInv(player_get_objects(game_get_player(game)));
+
+  if (player_obj >= max_inv) //si tiene el inventario lleno
     return;
   for (i = 0; i < OBJECTS; i++)
   {
@@ -402,8 +408,7 @@ void game_callback_take(Game *game, char *arg)
     }
   }
 
-
-  if (object_is_movable(o_aux) == FALSE)
+  if (object_is_movable(o_aux) == FALSE) //no se puede coger
     return;
 
   ids = inventory_getIds(player_get_objects(game_get_player(game)));
@@ -414,7 +419,6 @@ void game_callback_take(Game *game, char *arg)
   }
 
   b = set_containsId(space_get_objects(game_get_space(game, space_id)), object_id);
-  printf("%d", b);
   if (b == TRUE && flag == TRUE)
   {
 

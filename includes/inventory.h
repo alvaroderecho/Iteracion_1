@@ -147,4 +147,17 @@ BOOL inventory_containsObject(Inventory *i, Id id);
  * @return STATUS
  */
  BOOL inventory_isEmpty(Inventory *i);
+
+/**
+ * @brief Devuelve el Set de Ids
+ *
+ * @author Álvaro Derecho
+ * @file inventory.c
+ * @version 1.0
+ * @date 09/08/2021
+ * @param i Inventario a usar
+ * @return Set
+ */
+Set * inventory_get_Set(Inventory *i);
+
 #endif

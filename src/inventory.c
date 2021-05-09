@@ -50,7 +50,7 @@ struct _Inventory{
 
   int inventory_getMaxInv (Inventory *i){
     if (i == NULL){
-      return -1;
+      return 0;
     }
     return i->max_inv;
   }
@@ -119,4 +119,12 @@ struct _Inventory{
     }
 
     return FALSE;
+  }
+
+  Set * inventory_get_Set(Inventory *i) {
+    if (!i) return NULL;
+
+    if (!i->ids) return NULL;
+
+    return i->ids;
   }
