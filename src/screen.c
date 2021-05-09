@@ -6,8 +6,8 @@
 
 #pragma GCC diagnostic ignored "-Wpedantic"
 
-#define ROWS 31
-#define COLUMNS 80
+#define ROWS 33
+#define COLUMNS 120
 #define TOTAL_DATA (ROWS * COLUMNS) + 1
 
 #define BG_CHAR '~'

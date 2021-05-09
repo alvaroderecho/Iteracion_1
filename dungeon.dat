@@ -1,12 +1,12 @@
-#s:1|Sala 1|Sala 1|Te despiertas en una habitación, en la que solo hay una linterna y una llave, la puerta esta cerrada.|1|-1|-1|1|-1|       |       |       |
+#s:1|Sala 1|Sala 1|Te despiertas en una habitacion, en la que solo hay una linterna y una llave, la puerta esta cerrada.|1|-1|-1|1|-1|       |       |       |
 #s:2|Sala 2|Sala 2|En esta sala hay una llave y una silla, la puerta esta cerrada.|1|1|-1|2|-1|       |       |       |
-#s:3|Sala 3|Sala 3|En esta sala encontrarás comida en una estanteria a la que no alcanzas, la puerta esta abierta.1|2|-1|3|-1|       |       |       |
+#s:3|Sala 3|Sala 3|En esta sala encontraras comida en una estanteria a la que no alcanzas, la puerta esta abierta.|1|2|-1|3|-1|       |       |       |
 #s:4|Sala 4|Sala 4|Hay un perro en la puerta que no te deja pasar, necesitas calmarlo.|1|3|-1|4|-1|       |       |       |
-#s:5|Sala 5|Sala 5|La luz está apagada, si consigues iluminar la sala encontraras una palanca, un liston de madera y un vagón, pero la puerta esta tapada con escombros, necesitas moverlos de alguna manera para pasar.|0|4|25|5|-1|       |<o)__/ | \_-/  |
-#s:6|Sala 6|Sala 6|En esta sala hay una grieta enorme en el medio, la puerta esta al otro lado. Ademas podemos encontrar un cubo vacio.|1|5|-1|6|-1|       |       |       |
+#s:5|Sala 5|Sala 5|La luz esta apagada, si consigues iluminar la sala encontraras una palanca, un liston de madera y un vagon, pero la puerta esta tapada con escombros, necesitas moverlos de alguna manera para pasar.|0|4|25|5|-1|       |       |       |
+#s:6|Sala 6|Sala 6|En esta sala hay una grieta enorme en el medio, la puerta esta al otro lado. Ademas podemos encontrar un cubo vacio.|1|5|-1|6|-1|__   __|  \  \ |   \  \|
 #s:7|Sala 7|Sala 7|La salida de esta sala esta en llamas, pero hay agua en la entrada, para poder cruzar necesitas apagar el fuego.|1|6|-1|7|-1|       |       |       |
-#s:8|Sala 8|Sala 8|Acabas de entrar en la sala de armas, puedes cojer un lanzallamas y una pistola, ademas de un llave, la puetrta esta abierta.|1|7|30|8|-1|  ___  | / _ \ |/ / \ \|
-#s:9|Sala 9|Sala 9|Esta sala esta vacía pero se escuchan unos ruidos terrorificos provenientes de la siguiente sala, la puerta está cerrada.|1|8|26|9|-1|       |<o)__/ | \_-/  |
+#s:8|Sala 8|Sala 8|Acabas de entrar en la sala de armas, puedes coger un lanzallamas y una pistola, ademas de un llave, la puerta esta abierta.|1|7|30|8|-1|       |       |       |
+#s:9|Sala 9|Sala 9|Esta sala esta vacia pero se escuchan unos ruidos terrorificos provenientes de la siguiente sala, la puerta esta cerrada.|1|8|26|9|-1|       |       |       |
 #s:10|Sala 10|Sala 10|Hay un insecto mutante que te bloquea la salida, usa una de tus armas para matarlo, solo tienes una oportunidad.a|1|9|-1|10|-1|  ___  | (O O) |  \m/  |
 #s:11|Sala 11|Sala 11|Has conseguido salir al exterior. Fin del juego.|1|10|-1|11|-1|       |       |       |
 #o:1|Antorcha1|Ilumina la sala|0|-1|-1|1|1|1
@@ -33,11 +33,11 @@
 #l:1|Puerta1|1|2|1|n|
 #l:2|Puerta2|2|3|1|n|
 #l:3|Puerta3|3|4|0|n|
-#l:4|Puerta4|4|5|1|n|
-#l:5|Puerta5|5|6|1|n|
-#l:6|Puerta6|6|7|1|n|
-#l:7|Puerta7|7|8|1|n|
+#l:4|Perro|4|5|1|n|
+#l:5|Escombros|5|6|1|n|
+#l:6|Barranco|6|7|1|n|
+#l:7|Incendio|7|8|1|n|
 #l:8|Puerta8|8|9|0|n|
 #l:9|Puerta9|9|10|1|n|
-#l:10|Puerta10|10|11|1|n|
+#l:10|Monstruo|10|11|1|n|
 #p:1|Player 1|1|3|
