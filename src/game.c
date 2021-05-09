@@ -783,9 +783,7 @@ void game_callback_turnon(Game *game, char *arg)
     {
       if (object_is_on(game_get_object(game, ids[i])) == FALSE)
       {
-        object_print(game_get_object(game, ids[i]));
         object_set_turnedon(game_get_object(game, ids[i]), TRUE);
-        object_print(game_get_object(game, ids[i]));
       }
       return;
     }
@@ -797,10 +795,9 @@ void game_callback_turnon(Game *game, char *arg)
     {
       if (object_is_on(game_get_object(game, ids[i])) == FALSE)
       {
-        object_print(game_get_object(game, ids[i]));
-
         object_set_turnedon(game_get_object(game, ids[i]), TRUE);
-        object_print(game_get_object(game, ids[i]));
+        space_set_illuminate(space, TRUE);    
+        
       }
       return;
     }
@@ -830,10 +827,7 @@ void game_callback_turnoff(Game *game, char *arg)
     {
       if (object_is_on(game_get_object(game, ids[i])) == TRUE)
       {
-        object_print(game_get_object(game, ids[i]));
-
         object_set_turnedon(game_get_object(game, ids[i]), FALSE);
-        object_print(game_get_object(game, ids[i]));
       }
       return;
     }
@@ -845,10 +839,7 @@ void game_callback_turnoff(Game *game, char *arg)
     {
       if (object_is_on(game_get_object(game, ids[i])) == TRUE)
       {
-        object_print(game_get_object(game, ids[i]));
-
         object_set_turnedon(game_get_object(game, ids[i]), FALSE);
-        object_print(game_get_object(game, ids[i]));
       }
       return;
     }
