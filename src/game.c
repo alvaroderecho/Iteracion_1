@@ -756,7 +756,7 @@ void game_callback_open(Game *game, char *arg)
 
       //Caso de muerte del jugador
 
-      if (!strcmp("Puerta10", link_name) && !strcmp("Lanzallamas", obj_name))
+      if (!strcmp("Monstruo", link_name) && !strcmp("Lanzallamas", obj_name))
       {
         game->game_over = TRUE;
         return;
