@@ -69,7 +69,6 @@ STATUS game_reader_load_spaces(Game *game, char *filename)
       toks = strtok(NULL, "|");
       strcpy(big_desc,toks);
       toks = strtok(NULL, "|");
-
       illuminated = atoi(toks);
       toks = strtok(NULL, "|");
       toks = strtok(NULL, "|");

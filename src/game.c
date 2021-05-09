@@ -387,22 +387,22 @@ void game_callback_take(Game *game, char *arg)
   space_id = game_player_get_location(game);
   BOOL b, flag = FALSE;
   Object *o_aux;
-  STATUS control = ERROR;
   if (space_id == NO_ID)
     return;
   for (i = 0; i < OBJECTS; i++)
   {
-    if (strcmp(arg, object_get_name(game->objects[i])) == 0)
+    if (game->objects[i] != NULL)
     {
-      o_aux = game->objects[i];
-      object_id = object_get_id(game->objects[i]);
-      control = OK;
-      break;
+      if (strcmp(arg, object_get_name(game->objects[i])) == 0)
+      {
+        o_aux = game->objects[i];
+        object_id = object_get_id(game->objects[i]);
+        break;
+      }
     }
   }
 
-  if (control == ERROR)
-    return;
+
   if (object_is_movable(o_aux) == FALSE)
     return;
 
