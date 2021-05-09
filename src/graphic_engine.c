@@ -54,7 +54,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   char str[255];
   T_Command last_cmd = UNKNOWN;
   extern char *cmd_to_str[N_CMD][N_CMDT];
-  int i, num_o;
+  int i;
   Object **objects = NULL;
   char *last_descr = NULL;
 
@@ -194,27 +194,18 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 
   /* Paint in the description area */
   screen_area_clear(ge->descript);
-  num_o = game_num_o(game);
 
-  sprintf(str, "  Objects locations:");
+  sprintf(str, "  Objetos en esta sala:");
   screen_area_puts(ge->descript, str);
 
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
   objects = game_get_objects(game);
-  for (i = 0; i < num_o; i++)
+  for (i = 0; i < OBJECTS; i++)
   {
-   if (i == num_o -1){
-     if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
+    if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) == space_get_id(space_act) && space_get_illuminate(space_act) == TRUE)
     {
-      sprintf(str, "%s:%d", object_get_name(objects[i]), (int)obj_loc);
-      strcat(aux,str);
-    }
-    break;
-   }
-    if ((obj_loc = game_get_object_location(game, object_get_id(objects[i]))) != NO_ID)
-    {
-      sprintf(str, "%s:%d,", object_get_name(objects[i]), (int)obj_loc);
+      sprintf(str, "%s  ", object_get_name(objects[i]));
       strcat(aux,str);
     }
   }

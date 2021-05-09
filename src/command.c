@@ -26,7 +26,9 @@ char *cmd_to_str[N_CMD][N_CMDT] =
 {"rl", "Roll"},
 {"m", "move"},
 {"i", "inspect"},
-{"o", "open"}};
+{"o", "open"},
+{"to","turnon"},
+{"tof","turnoff"}};
 
 //Puntero tipo char de dimensiones 12x2, 12 filas, 2 columnas.
 //Comandos que puede utlizar el jugador

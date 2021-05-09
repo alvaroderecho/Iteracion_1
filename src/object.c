@@ -115,6 +115,8 @@ STATUS object_print(Object *object)
     if (!object)
         return ERROR;
     fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", object->id, object->name);
+    fprintf(stdout, "Desc: %s, %d|%ld|%ld|%d|%d\n",object->description,object->movable,object->dependency,object->open,object->illuminate,object->turnedon);
+
     //Muestra Id y nombre
     return OK;
 }
@@ -171,4 +173,11 @@ BOOL object_is_movable(Object *object)
     if (object == NULL) return FALSE;
 
     return object->movable;
+}
+
+STATUS object_set_movable(Object * object, BOOL mov) {
+    if (!object) return ERROR;
+
+    object->movable = mov;
+    return OK;
 }

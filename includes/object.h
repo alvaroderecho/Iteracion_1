@@ -229,4 +229,17 @@ Id object_get_open(Object *object);
  */
 BOOL object_is_movable(Object *object);
 
+/**
+ * @brief Establece el campo movable de un objeto
+ *
+ * @file object.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 09/05/2021
+ * @param object Objeto usado
+ * @param mov Valor movable
+ * @return STATUS 
+ */
+STATUS object_set_movable(Object * object, BOOL mov);
+
 #endif

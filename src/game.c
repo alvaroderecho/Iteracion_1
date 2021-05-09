@@ -18,13 +18,13 @@
 
 struct _Game
 {
-  Player *player;                //Puntero al jugador del juego
-  Object *objects[OBJECTS];      //Puntero al objeto
-  Link *links[LINKS];            //Puntero a los enlaces
-  Space *spaces[MAX_SPACES + 1]; //Espacios de un juego
-  T_Command last_cmd;            //Último comando escrito por pantalla
-  Die *die;                      //Dado usado en el juego
-  char last_descr[WORD_SIZE];    //Última descripción
+  Player *player;             //Puntero al jugador del juego
+  Object *objects[OBJECTS];   //Puntero al objeto
+  Link *links[LINKS];         //Puntero a los enlaces
+  Space *spaces[MAX_SPACES];  //Espacios de un juego
+  T_Command last_cmd;         //Último comando escrito por pantalla
+  Die *die;                   //Dado usado en el juego
+  char last_descr[WORD_SIZE]; //Última descripción
 };
 
 /**
@@ -385,8 +385,9 @@ void game_callback_take(Game *game, char *arg)
   Id space_id = NO_ID, object_id = NO_ID, *ids;
   int i;
   space_id = game_player_get_location(game);
-  BOOL b,flag = FALSE;
+  BOOL b, flag = FALSE;
   Object *o_aux;
+  STATUS control = ERROR;
   if (space_id == NO_ID)
     return;
   for (i = 0; i < OBJECTS; i++)
@@ -395,40 +396,44 @@ void game_callback_take(Game *game, char *arg)
     {
       o_aux = game->objects[i];
       object_id = object_get_id(game->objects[i]);
+      control = OK;
       break;
     }
   }
-  if (object_is_movable(o_aux) == FALSE) return;
-  
+
+  if (control == ERROR)
+    return;
+  if (object_is_movable(o_aux) == FALSE)
+    return;
+
   ids = inventory_getIds(player_get_objects(game_get_player(game)));
-  for (i=0;i < inventory_getNumids(player_get_objects(game_get_player(game))) && flag == FALSE; i++){
+  for (i = 0; i < inventory_getNumids(player_get_objects(game_get_player(game))) && flag == FALSE; i++)
+  {
     if (ids[i] == object_get_dependency(o_aux))
       flag = TRUE;
   }
-  
 
   b = set_containsId(space_get_objects(game_get_space(game, space_id)), object_id);
   printf("%d", b);
   if (b == TRUE && flag == TRUE)
   {
-    
-        player_add_object(game_get_player(game), object_id);
-        space_del_object(game_get_space(game, space_id), object_id);
-        return;
-      
-    
+
+    player_add_object(game_get_player(game), object_id);
+    space_del_object(game_get_space(game, space_id), object_id);
+    return;
   }
-  else if (object_get_dependency(o_aux) == NO_ID && b == TRUE){
-      player_add_object(game_get_player(game), object_id);
-      space_del_object(game_get_space(game, space_id), object_id);
-      return;
+  else if (object_get_dependency(o_aux) == NO_ID && b == TRUE)
+  {
+    player_add_object(game_get_player(game), object_id);
+    space_del_object(game_get_space(game, space_id), object_id);
+    return;
   }
   return;
 }
 
 void game_callback_drop(Game *game, char *arg)
 {
-  Id *object_id , *ids;
+  Id *object_id, *ids;
   Id space_id = NO_ID, dependency_id = NO_ID;
   int i, j;
   space_id = game_player_get_location(game);
@@ -446,15 +451,17 @@ void game_callback_drop(Game *game, char *arg)
   {
     if (strcmp(object_get_name(game_get_object(game, object_id[i])), arg) == 0)
     {
-      o_aux = game_get_object(game,object_id[i]);
+      o_aux = game_get_object(game, object_id[i]);
       dependency_id = object_get_dependency(o_aux);
-        ids = inventory_getIds(player_get_objects(game_get_player(game)));
-        for (j = 0; j < inventory_getNumids(player_get_objects(game_get_player(game))); j++){
-          if (dependency_id == ids [j]){
-            space_add_object(game_get_space(game, space_id), ids[j]);
-            player_del_object(game_get_player(game), ids[j]);
-          }
+      ids = inventory_getIds(player_get_objects(game_get_player(game)));
+      for (j = 0; j < inventory_getNumids(player_get_objects(game_get_player(game))); j++)
+      {
+        if (dependency_id == ids[j])
+        {
+          space_add_object(game_get_space(game, space_id), ids[j]);
+          player_del_object(game_get_player(game), ids[j]);
         }
+      }
       space_add_object(game_get_space(game, space_id), object_id[i]);
       player_del_object(game_get_player(game), object_id[i]); //poner id del objeto del jugador a NO_ID
     }
@@ -561,7 +568,7 @@ void game_callback_move(Game *game, char *arg)
       if (current_id == space_id)
       {
         current_id = link_get_sp1(space_get_north(game->spaces[i]));
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_north(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -577,7 +584,7 @@ void game_callback_move(Game *game, char *arg)
       if (current_id == space_id)
       {
         current_id = link_get_sp2(space_get_south(game->spaces[i]));
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_south(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -593,7 +600,7 @@ void game_callback_move(Game *game, char *arg)
       if (current_id == space_id)
       {
         current_id = link_get_sp2(space_get_east(game->spaces[i]));
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_east(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -613,7 +620,7 @@ void game_callback_move(Game *game, char *arg)
         else
           current_id = link_get_sp1(space_get_west(game->spaces[i]));
 
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_west(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -630,7 +637,7 @@ void game_callback_move(Game *game, char *arg)
       if (current_id == space_id)
       {
         current_id = link_get_sp1(space_get_down(game->spaces[i]));
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_down(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -647,7 +654,7 @@ void game_callback_move(Game *game, char *arg)
       if (current_id == space_id)
       {
         current_id = link_get_sp2(space_get_up(game->spaces[i]));
-        if (current_id != NO_ID)
+        if (current_id != NO_ID && link_get_state(space_get_up(game->spaces[i])) == FALSE)
         {
           game_player_set_location(game, current_id);
         }
@@ -747,71 +754,99 @@ void game_callback_open(Game *game, char *arg)
   return;
 }
 
-void game_callback_turnon (Game *game, char * arg){
+void game_callback_turnon(Game *game, char *arg)
+{
 
-    Id space_id = NO_ID;
-    Id *ids;
-    int i;
-    Space *space;
-    BOOL b = FALSE;
-    if (!game || !arg) return;
-    space_id = game_player_get_location(game);
-    space = game_get_space(game,space_id);
-    ids = set_get_ids(space_get_objects(space));
+  Id space_id = NO_ID;
+  Id *ids;
+  int i;
+  Space *space;
+  BOOL b = FALSE;
+  if (!game || !arg)
+    return;
+  space_id = game_player_get_location(game);
+  space = game_get_space(game, space_id);
+  ids = set_get_ids(space_get_objects(space));
 
-    for (i=0;i<game_num_o(game) && b == FALSE;i++){
-        if (strcmp(arg,object_get_description(game_get_objects(game)[i])) == 0)
-          b = TRUE;
-    }
-    for (i=0;i<space_number_of_objects(game_get_space(game,space_id)) && b == TRUE;i++){
-      if (strcmp(arg,object_get_description(game_get_object(game,ids[i]))) == 0 && object_can_iluminate(game_get_object(game,ids[i])) == TRUE){ 
-        if (object_is_on(game_get_object(game,ids[i])) == FALSE){
-          object_set_turnedon(game_get_object(game,ids[i]),TRUE); 
-        }
-        return;
+  for (i = 0; i < OBJECTS && b == FALSE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_objects(game)[i])) == 0)
+      b = TRUE;
+  }
+  for (i = 0; i < space_number_of_objects(game_get_space(game, space_id)) && b == TRUE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_object(game, ids[i]))) == 0 && object_can_iluminate(game_get_object(game, ids[i])) == TRUE)
+    {
+      if (object_is_on(game_get_object(game, ids[i])) == FALSE)
+      {
+        object_print(game_get_object(game, ids[i]));
+        object_set_turnedon(game_get_object(game, ids[i]), TRUE);
+        object_print(game_get_object(game, ids[i]));
       }
+      return;
     }
-    ids = inventory_getIds(player_get_objects(game_get_player(game)));
-     for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game))) && b == TRUE;i++){
-      if (strcmp(arg,object_get_description(game_get_object(game,ids[i]))) == 0 && object_can_iluminate(game_get_object(game,ids[i])) == TRUE){ 
-        if (object_is_on(game_get_object(game,ids[i])) == FALSE){
-          object_set_turnedon(game_get_object(game,ids[i]),TRUE);
-        }
-        return; 
-      }
-    }
+  }
+  ids = inventory_getIds(player_get_objects(game_get_player(game)));
+  for (i = 0; i < inventory_getNumids(player_get_objects(game_get_player(game))) && b == TRUE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_object(game, ids[i]))) == 0 && object_can_iluminate(game_get_object(game, ids[i])) == TRUE)
+    {
+      if (object_is_on(game_get_object(game, ids[i])) == FALSE)
+      {
+        object_print(game_get_object(game, ids[i]));
 
+        object_set_turnedon(game_get_object(game, ids[i]), TRUE);
+        object_print(game_get_object(game, ids[i]));
+      }
+      return;
+    }
+  }
 }
 
-void game_callback_turnoff (Game *game, char * arg){
+void game_callback_turnoff(Game *game, char *arg)
+{
   Id space_id = NO_ID;
-    Id *ids;
-    int i;
-    Space *space;
-    BOOL b = FALSE;
-    if (!game || !arg) return;
-    space_id = game_player_get_location(game);
-    space = game_get_space(game,space_id);
-    ids = set_get_ids(space_get_objects(space));
-    for (i=0;i<game_num_o(game) && b == FALSE;i++){
-        if (strcmp(arg,object_get_description(game_get_objects(game)[i])) == 0)
-          b = TRUE;
-    }
-    for (i=0;i<space_number_of_objects(game_get_space(game,space_id)) && b == TRUE;i++){
-      if (strcmp(arg,object_get_description(game_get_object(game,ids[i]))) == 0 && object_can_iluminate(game_get_object(game,ids[i])) == TRUE){ 
-        if (object_is_on(game_get_object(game,ids[i])) == TRUE){
-          object_set_turnedon(game_get_object(game,ids[i]),FALSE); 
-        }
-        return;
+  Id *ids;
+  int i;
+  Space *space;
+  BOOL b = FALSE;
+  if (!game || !arg)
+    return;
+  space_id = game_player_get_location(game);
+  space = game_get_space(game, space_id);
+  ids = set_get_ids(space_get_objects(space));
+  for (i = 0; i < game_num_o(game) && b == FALSE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_objects(game)[i])) == 0)
+      b = TRUE;
+  }
+  for (i = 0; i < space_number_of_objects(game_get_space(game, space_id)) && b == TRUE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_object(game, ids[i]))) == 0 && object_can_iluminate(game_get_object(game, ids[i])) == TRUE)
+    {
+      if (object_is_on(game_get_object(game, ids[i])) == TRUE)
+      {
+        object_print(game_get_object(game, ids[i]));
+
+        object_set_turnedon(game_get_object(game, ids[i]), FALSE);
+        object_print(game_get_object(game, ids[i]));
       }
+      return;
     }
-    ids = inventory_getIds(player_get_objects(game_get_player(game)));
-     for (i=0;i<inventory_getNumids(player_get_objects(game_get_player(game))) && b == TRUE;i++){
-      if (strcmp(arg,object_get_description(game_get_object(game,ids[i]))) == 0 && object_can_iluminate(game_get_object(game,ids[i])) == TRUE){ 
-        if (object_is_on(game_get_object(game,ids[i])) == TRUE){
-          object_set_turnedon(game_get_object(game,ids[i]),FALSE);
-        }
-        return; 
+  }
+  ids = inventory_getIds(player_get_objects(game_get_player(game)));
+  for (i = 0; i < inventory_getNumids(player_get_objects(game_get_player(game))) && b == TRUE; i++)
+  {
+    if (strcmp(arg, object_get_name(game_get_object(game, ids[i]))) == 0 && object_can_iluminate(game_get_object(game, ids[i])) == TRUE)
+    {
+      if (object_is_on(game_get_object(game, ids[i])) == TRUE)
+      {
+        object_print(game_get_object(game, ids[i]));
+
+        object_set_turnedon(game_get_object(game, ids[i]), FALSE);
+        object_print(game_get_object(game, ids[i]));
       }
+      return;
     }
+  }
 }
