@@ -139,7 +139,7 @@ STATUS game_create(Game *game)
     game->links[i] = NULL;
   }
 
-  game->player = player_create(1);
+  game->player = NULL;
 
   game->last_cmd = NO_CMD;
 
@@ -160,7 +160,7 @@ STATUS game_destroy(Game *game)
   {
     space_destroy(game->spaces[i]);
   }
-  for (i = 0; (i < OBJECTS) && (game->spaces[i] != NULL); i++)
+  for (i = 0; (i < OBJECTS) && (game->objects[i] != NULL); i++)
   {
     object_destroy(game->objects[i]);
   }

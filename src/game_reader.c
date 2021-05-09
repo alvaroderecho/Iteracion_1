@@ -118,6 +118,9 @@ STATUS game_reader_create_from_file(Game *game, char *filename)
   if (game_create(game) == ERROR)
     return ERROR;
 
+  if (game_reader_load_player(game, filename) == ERROR)
+    return ERROR;
+
   if (game_reader_load_spaces(game, filename) == ERROR)
     return ERROR;
 
@@ -128,9 +131,6 @@ STATUS game_reader_create_from_file(Game *game, char *filename)
     return ERROR;
 
   if (game_reader_load_links(game, filename) == ERROR)
-    return ERROR;
-
-  if (game_reader_load_player(game, filename) == ERROR)
     return ERROR;
 
   return OK;

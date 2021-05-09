@@ -20,7 +20,7 @@
 #include "inventory.h"
 
 #define OBJECTS 21
-#define LINKS 128
+#define LINKS 10
 
 typedef struct _Game Game;
 

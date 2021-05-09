@@ -1,28 +1,17 @@
-RECORRIDO DE COMANDOS PARA GANAR:
-
-//Pasar Sala 1:
-take linterna
+take Linterna
 open Puerta1 with Llave1
 move south
-
-//Pasar Sala 2:
 drop LLave1
 take Llave2
 take Silla
 open Puerta2 with Llave2
 move south
-
-//Pasar Sala 3:
 drop llave2
 take Comida
 drop Silla
 move south
-
-//Pasar Sala 4:
 open Perro with Comida
 move south
-
-//Pasar Sala 5:
 turnon Linterna
 drop Comida
 take Palanca
@@ -30,32 +19,22 @@ take Vagon
 take Liston
 open Escombros with Vagon
 move south
-
-//Pasar Sala 6:
 drop Linterna
 drop Vagon
 drop Palanca
 take Cubo Vacio
 open Barranco with Liston
 move south
-
-//Pasar Sala 7:
 drop Liston
 take Agua 
 open Incendio with Agua
 move south
-
-//Pasar Sala 8:
 drop Cubo Vacio
 take Pistola
 take LLave3
 move south
-
-//Pasar Sala 9:
 open Puerta9 with LLave3
 move south
-
-//Pasar Sala 10:
 open Monstruo with Pistola
 move south
-
+exit

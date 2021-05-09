@@ -58,7 +58,7 @@ T_Command command_get_user_input(char *arg)
 
 	strcpy(arg," ");
 	fgets(aux,CMD_LENGHT,stdin); 
-	if (aux == NULL) return UNKNOWN;
+	if (!strcmp(aux, "\n")) return UNKNOWN;
 	aux2 = strtok(aux," \t\r\n");
 	strcpy(input,aux2);//ERROR EN ESTA PARTE, AL METER SOLO ENTER EN LA CONSOLA
 
