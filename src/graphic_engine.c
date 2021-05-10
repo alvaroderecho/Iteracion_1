@@ -57,6 +57,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   int i;
   Object **objects = NULL;
   char *last_detailed_descr = NULL;
+  Link * enlace = NULL;
 
   /* Paint the in the map area */
   screen_area_clear(ge->map);
@@ -287,6 +288,16 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   }
   sprintf(str, " ");
   screen_area_puts(ge->descript, str);
+
+  sprintf(str, " Obstaculo:");
+  screen_area_puts(ge->descript, str);
+
+  enlace = game_find_link_by_sp1(game,game_player_get_location(game));
+  
+  if (link_get_state(enlace) == TRUE) {
+    sprintf(str, " %s", link_get_name(enlace));
+    screen_area_puts(ge->descript, str);
+  }
 
   /* Paint in the banner area */
   screen_area_puts(ge->banner, "Escapa de las Catacumbas:");

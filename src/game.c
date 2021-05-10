@@ -861,3 +861,16 @@ void game_callback_turnoff(Game *game, char *arg)
     }
   }
 }
+
+Link * game_find_link_by_sp1 (Game *game, Id sp1) {
+  int i;
+
+  if (!game || sp1 == NO_ID) return NULL;
+
+  for (i=0;i<LINKS;i++) {
+    if (link_get_sp1(game->links[i]) == sp1)
+      return game->links[i];
+  }
+
+  return NULL;
+}

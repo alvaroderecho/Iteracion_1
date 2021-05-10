@@ -320,4 +320,17 @@ char * game_get_last_detailed_description (Game * game);
  */
 BOOL game_get_space_illuminate (Game * game, Id id);
 
+/**
+ * @brief Encuentra un enlace según su id
+ *
+ * @file game.c
+ * @author Álvaro Derecho
+ * @version 1.0
+ * @date 20/04/2021
+ * @param game Juego usado
+ * @param id Id del enlace 
+ * @return Link
+ */
+Link * game_find_link_by_sp1 (Game *game, Id sp1);
+
 #endif
